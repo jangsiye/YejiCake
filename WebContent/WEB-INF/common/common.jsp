@@ -239,143 +239,143 @@
 </head>
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
 	<nav class="navbar navbar-default navbar-fixed-top">
- 	 <div class="container">
-  	  <div class="navbar-header">
-     	 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-      	  <span class="icon-bar"></span>
-      	  <span class="icon-bar"></span>
-      	  <span class="icon-bar"></span>                        
-     	 </button>
-    	  <a class="navbar-brand" href="main.jsp">예지케잌</a>
-   	 </div>
-			<div class="collapse navbar-collapse" id="myNavbar">
-				<ul class="nav navbar-nav">
-					
-					<!-- 회사 소개 -->
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown">Our Store<b class="caret"></b></a>
-						<ul class="dropdown-menu">
-							<li>
-								<a href="<%=contextPath%>/common/#.jsp">가게 소개</a>
-							</li>
-							<li>
-								<a href="<%=contextPath%>/common/#.jsp">찾아오시는 길</a>
-							</li>
-						</ul>
-					</li>
-					
-					<!-- 회원 관리 탭 : 관리자한테만 보임 -->
-					<c:if test="${whologin == 2}">
-						<li class="dropdown"><a href="#" class="dropdown-toggle"
-							data-toggle="dropdown">Member Info<b class="caret"></b></a>
-							<ul class="dropdown-menu">
-								<li>
-									<a href="<%=contextPath%>/member/Mlist.jsp">회원 목록 보기</a>
-								</li>						
-							</ul>
+	<div class="navbar-header">
+		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+		<span class="icon-bar"></span>
+		<span class="icon-bar"></span>
+		<span class="icon-bar"></span>                        
+		</button>
+		<a class="navbar-brand" href="main.jsp">예지케잌</a>
+	</div>
+ 	<div class="container">
+		<div class="collapse navbar-collapse" id="myNavbar">
+			<ul class="nav navbar-nav">
+				
+				<!-- 회사 소개 -->
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown">Our Store<b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<li>
+							<a href="<%=contextPath%>/common/#.jsp">가게 소개</a>
 						</li>
-					</c:if>
-					
-					<!-- product 탭 -->
+						<li>
+							<a href="<%=contextPath%>/common/#.jsp">찾아오시는 길</a>
+						</li>
+					</ul>
+				</li>
+				
+				<!-- 회원 관리 탭 : 관리자한테만 보임 -->
+				<c:if test="${whologin == 2}">
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown">Product<b class="caret"></b></a>
+						data-toggle="dropdown">Member Info<b class="caret"></b></a>
 						<ul class="dropdown-menu">
 							<li>
-								<c:if test="${whologin == 2}">
-									<a href="<%=contextPath%>/product/PinsertForm.jsp">상품 등록</a>
-								</c:if>
-							</li>
-							<li>
-								<a href="<%=contextPath%>/product/Plist.jsp">상품 목록 보기</a>
+								<a href="<%=contextPath%>/member/Mlist.jsp">회원 목록 보기</a>
 							</li>						
 						</ul>
 					</li>
-					
-					<!-- order 탭 -->
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown">Order<b class="caret"></b></a>
-						<ul class="dropdown-menu">
-							<li>
-								<a href="<%=contextPath%>/order/Olist.jsp">주문 목록 보기</a>
-							</li>						
-						</ul>
-					</li>
-					
-					<!-- 문의사항 -->
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown">Q&A<b class="caret"></b></a>
-						<ul class="dropdown-menu">
-							<li>
-								<a href="<%=contextPath%>/board/Blist.jsp">문의 목록</a>
-							</li>
-							<c:if test="${whologin != 0}">
-								<li>
-									<a href="<%=contextPath%>/board/BinsertForm.jsp">문의하기</a>
-								</li>
+				</c:if>
+				
+				<!-- product 탭 -->
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown">Product<b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<li>
+							<c:if test="${whologin == 2}">
+								<a href="<%=contextPath%>/product/PinsertForm.jsp">상품 등록</a>
 							</c:if>
-						</ul>
-					</li>
-					
-					<!-- mypage 탭 : 로그인 한 사람에게만 보임 -->
-					<c:if test="${whologin != 0}">		
-						<li class="dropdown"><a href="#" class="dropdown-toggle"
-							data-toggle="dropdown">MyPage<b class="caret"></b></a>
-							<ul class="dropdown-menu">
-								<li>								
-									<a href="<%=contextPath%>/member/MdetailView.jsp?id=<%=loginfo.getId()%>">내 정보 보기</a>
-								</li>
-								<li>								
-									<a href="<%=contextPath%>/mall/order.jsp">나의 쇼핑 내역</a>
-								</li>
-								<li>
-									<a href="<%=contextPath%>/mall/list.jsp">장바구니 보기</a>
-								</li>
-							</ul>
 						</li>
-					</c:if>
-					
-				</ul>
-				<ul class="nav navbar-nav navbar-right">
-					
-						<c:if test="${empty sessionScope.loginfo}">
+						<li>
+							<a href="<%=contextPath%>/product/Plist.jsp">상품 목록 보기</a>
+						</li>						
+					</ul>
+				</li>
+				
+				<!-- order 탭 -->
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown">Order<b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<li>
+							<a href="<%=contextPath%>/order/Olist.jsp">주문 목록 보기</a>
+						</li>						
+					</ul>
+				</li>
+				
+				<!-- 문의사항 -->
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown">Q&A<b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<li>
+							<a href="<%=contextPath%>/board/Blist.jsp">문의 목록</a>
+						</li>
+						<c:if test="${whologin != 0}">
 							<li>
-								<a href="<%=contextPath%>/member/MinsertForm.jsp">
-									<span class="glyphicon glyphicon-plus"> 회원가입</span>
-								</a>
-							</li>
-							<li>
-								<a href="<%=contextPath%>/member/loginForm.jsp">
-									<span class="glyphicon glyphicon-log-in"> 로그인</span>
-								</a>
-							</li>
-						</c:if> 
-						<c:if test="${not empty sessionScope.loginfo}">
-							<li>
-								<a href="<%=contextPath%>/member/logout.jsp">
-									<span class="glyphicon glyphicon-log-out"> 로그 아웃</span>
-								</a>
+								<a href="<%=contextPath%>/board/BinsertForm.jsp">문의하기</a>
 							</li>
 						</c:if>
-					
-				</ul>
-			</div>
-
+					</ul>
+				</li>
+				
+				<!-- mypage 탭 : 로그인 한 사람에게만 보임 -->
+				<c:if test="${whologin != 0}">		
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown">MyPage<b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li>								
+								<a href="<%=contextPath%>/member/MdetailView.jsp?id=<%=loginfo.getId()%>">내 정보 보기</a>
+							</li>
+							<li>								
+								<a href="<%=contextPath%>/mall/order.jsp">나의 쇼핑 내역</a>
+							</li>
+							<li>
+								<a href="<%=contextPath%>/mall/list.jsp">장바구니 보기</a>
+							</li>
+						</ul>
+					</li>
+				</c:if>
+				
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				
+					<c:if test="${empty sessionScope.loginfo}">
+						<li>
+							<a href="<%=contextPath%>/member/MinsertForm.jsp">
+								<span class="glyphicon glyphicon-plus"> 회원가입</span>
+							</a>
+						</li>
+						<li>
+							<a href="<%=contextPath%>/member/loginForm.jsp">
+								<span class="glyphicon glyphicon-log-in"> 로그인</span>
+							</a>
+						</li>
+					</c:if> 
+					<c:if test="${not empty sessionScope.loginfo}">
+						<li>
+							<a href="<%=contextPath%>/member/logout.jsp">
+								<span class="glyphicon glyphicon-log-out"> 로그 아웃</span>
+							</a>
+						</li>
+					</c:if>
+				
+			</ul>
 		</div>
-	</nav>
-	<div class="jumbotron text-center">
-	  <h1>YejiCake</h1> 
-	  <p>We are making a special cake just for you</p> 
+
 	</div>
-	<c:if test="${not empty requestScope.errmsg}">
-		<script type="text/javascript">
-			alert('${requestScope.errmsg}');
-		</script>
-	</c:if>
-	<c:if test="${not empty sessionScope.message}">
-		<script type="text/javascript">
-			alert('${sessionScope.message}') ;	 
-		</script>
-		<% session.removeAttribute("message") ; %>
-	</c:if>	
+</nav>
+<div class="jumbotron text-center">
+  <h1>YejiCake</h1> 
+  <p>We are making a special cake just for you</p> 
+</div>
+<c:if test="${not empty requestScope.errmsg}">
+	<script type="text/javascript">
+		alert('${requestScope.errmsg}');
+	</script>
+</c:if>
+<c:if test="${not empty sessionScope.message}">
+	<script type="text/javascript">
+		alert('${sessionScope.message}') ;	 
+	</script>
+	<% session.removeAttribute("message") ; %>
+</c:if>	
 </body>
 </html>
