@@ -21,15 +21,15 @@
     <!-- Wrapper for slides -->
     <div class="carousel-inner">
       <div class="item active">
-        <img src="cake1.jpg" alt="Cake" style="width:100%;">
+        <img src="cake1.PNG" alt="Cake1" style="width:100%;">
       </div>
 
       <div class="item">
-        <img src="cake2.jpg" alt="Cake" style="width:100%;">
+        <img src="cake2.PNG" alt="Cake2" style="width:100%;">
       </div>
     
       <div class="item">
-        <img src="cake3.jpg" alt="Cake" style="width:100%;">
+        <img src="cake3.PNG" alt="Cake3" style="width:100%;">
       </div>
     </div>
 
