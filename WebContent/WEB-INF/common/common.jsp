@@ -93,7 +93,19 @@
 							</li>
 						</ul>
 					</li>
-						
+					
+					<!-- 회원 관리 탭 : 관리자한테만 보임 -->
+					<c:if test="${whologin == 2}">
+						<li class="dropdown"><a href="#" class="dropdown-toggle"
+							data-toggle="dropdown">Member Info<b class="caret"></b></a>
+							<ul class="dropdown-menu">
+								<li>
+									<a href="<%=contextPath%>/member/Mlist.jsp">회원 목록 보기</a>
+								</li>						
+							</ul>
+						</li>
+					</c:if>
+					
 					<!-- product 탭 -->
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown">Product<b class="caret"></b></a>
@@ -119,7 +131,22 @@
 						</ul>
 					</li>
 					
-					<!-- mypage 탭 -->
+					<!-- 문의사항 -->
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown">Q&A<b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li>
+								<a href="<%=contextPath%>/board/Blist.jsp">문의 목록</a>
+							</li>
+							<c:if test="${whologin != 0}">
+								<li>
+									<a href="<%=contextPath%>/board/BinsertForm.jsp">문의하기</a>
+								</li>
+							</c:if>
+						</ul>
+					</li>
+					
+					<!-- mypage 탭 : 로그인 한 사람에게만 보임 -->
 					<c:if test="${whologin != 0}">		
 						<li class="dropdown"><a href="#" class="dropdown-toggle"
 							data-toggle="dropdown">MyPage<b class="caret"></b></a>
