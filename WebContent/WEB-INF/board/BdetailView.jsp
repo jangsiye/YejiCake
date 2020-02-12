@@ -49,15 +49,26 @@
 						<td width="25%" align="center">작성일자</td>
 						<td width="75%" align="left"><%= board.getRegdate()%></td>
 					</tr>
+					<c:if test="${whologin == 2 || whologin = 1 }">
 					<tr>
 						<td>
 							<a href="<%=contextPath%>/board/replyForm.jsp?no=<%=board.getNo()%>
 							&groupno=<%=board.getGroupno()%>&orderno=<%=board.getOrderno()%>&depth=<%=board.getDepth()%>">답글 달기</a>
 						</td>
 					</tr>
-												
+					</c:if>				
 				</table>
 			</div>
+			<hr>
+			<c:if test="${whologin == 2}">
+        		 
+        		 <form action="./../board/BupdateForm.jsp">
+        		    <button type="submit">수정</button>
+      			   </form>
+      		   <form action="./../board/Bdelete.jsp">
+            		<button type="submit">삭제</button>
+         		</form>      
+      		</c:if>
 		</div>
 		<!-- end panel-body -->
 	</div>
