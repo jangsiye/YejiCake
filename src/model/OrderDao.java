@@ -141,6 +141,36 @@ public class OrderDao extends SuperDao {
 		return lists;
 	}
 	
+	//페이징 처리 할 때 필요
+	public int GetCount() {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = " select count(*) as cnt from orders";
+		int cnt = -1;
+		
+		try {
+			conn = super.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				cnt = rs.getInt("cnt");
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs!=null) {rs.close();}
+				if(pstmt!=null) {pstmt.close();}
+				if(conn!=null) {conn.close();}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return cnt;
+	}
 	
 	public int calculate(Member loginfo, MyCartList mycart, int totalPoint) {
 		Connection conn = null;
@@ -246,5 +276,7 @@ public class OrderDao extends SuperDao {
 		}
 		return cnt;
 	}
+	
+	
 	
 }
