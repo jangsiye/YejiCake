@@ -22,7 +22,6 @@
 	if (loginfo == null) {
 		whologin = 0;
 		mem = "미로그인" ;
-
 	} else { //관리자는 아이디가 admin이라고 가정한다.
 		mem = loginfo.getName() + "(" + loginfo.getMid() + ")님" ;
 		if (loginfo.getMid().equals("admin")) {
@@ -250,7 +249,7 @@ p > img {
 		<span class="icon-bar"></span>
 		<span class="icon-bar"></span>                        
 		</button>
-		<a class="navbar-brand" href="main.jsp">예지케잌</a>
+		<a class="navbar-brand" href="./../common/main.jsp">예지케잌</a>
 	</div>
  	<div class="container">
 		<div class="collapse navbar-collapse" id="myNavbar">
@@ -302,7 +301,7 @@ p > img {
 					<ul class="dropdown-menu">
 						<li>
 							<a href="<%=contextPath%>/order/Olist.jsp">주문 목록 보기</a>
-						</li>						
+						</li>					
 					</ul>
 				</li>
 				
@@ -327,7 +326,7 @@ p > img {
 						data-toggle="dropdown">MyPage<b class="caret"></b></a>
 						<ul class="dropdown-menu">
 							<li>								
-								<a href="<%=contextPath%>/member/MdetailView.jsp?id=<%=loginfo.getMid()%>">내 정보 보기</a>
+								<a href="<%=contextPath%>/member/MdetailView.jsp?mid=<%=loginfo.getMid()%>">내 정보 보기</a>
 							</li>
 							<li>								
 								<a href="<%=contextPath%>/mall/order.jsp">나의 쇼핑 내역</a>

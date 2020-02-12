@@ -18,7 +18,7 @@
 </head>
 <body>
 <div class="container col-sm-offset-3 col-sm-6">
-	<div class="panel panel-default panel-primary">
+	<div class="panel panel-default">
 		<div class="panel-heading">
 			<h1 class="panel-title" align="left">게시물 상세 보기</h1>
 		</div>

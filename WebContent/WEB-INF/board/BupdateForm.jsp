@@ -24,7 +24,7 @@
 <h3>게시글 수정 페이지입니다</h3>
 
 <div class="col-sm-offset-2 col-sm-8">
-	<div class="panel panel-primary">
+	<div class="panel panel-default">
 		<div class="panel-heading">
 			<h2 class="panel-title">게시글 수정</h2>
 		</div>

@@ -30,7 +30,7 @@
 %>
 
 <div class="col-sm-offset-1 col-sm-10">
-	<div class="panel panel-primary">
+	<div class="panel panel-default">
 		<div class="panel-heading">
 			<h2 class="panel-title">문의사항 보기&nbsp;&nbsp;&nbsp;<%=pageInfo.getPagingStatus() %></h2>
 		</div>

@@ -10,7 +10,7 @@
 
 <body>
 	<div class="col-sm-offset-3 col-sm-6">
-		<div class="panel panel-primary">
+		<div class="panel panel-default">
 			<div class="panel-heading">
 				<h2 class="panel-title">로그인 페이지</h2>
 	</div>

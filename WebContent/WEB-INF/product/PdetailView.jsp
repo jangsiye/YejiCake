@@ -20,7 +20,7 @@
 </head>
 <body>
 <div class="container col-sm-offset-2 col-sm-8">
-	<div class="panel panel-default panel-primary">
+	<div class="panel panel-default">
 		<div class="panel-heading">
 			<h1 class="panel-title" align="left">상품 상세 보기</h1>
 		</div>
