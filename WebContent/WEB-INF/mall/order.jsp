@@ -5,7 +5,7 @@
 <%@ include file="./../common/common.jsp" %>
 <jsp:useBean id="mdao" class="model.OrderDao"/>
 <%
-	List<Order> lists = mdao.orderMall( loginfo.getId() ) ;
+	List<Order> lists = mdao.orderMall( loginfo.getMid() ) ;
 	request.setAttribute("lists", lists) ;
 %>
 <!DOCTYPE html>
