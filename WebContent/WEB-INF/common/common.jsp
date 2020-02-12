@@ -327,7 +327,7 @@ p > img {
 						data-toggle="dropdown">MyPage<b class="caret"></b></a>
 						<ul class="dropdown-menu">
 							<li>								
-								<a href="<%=contextPath%>/member/MdetailView.jsp?id=<%=loginfo.getMid()%>">내 정보 보기</a>
+								<a href="<%=contextPath%>/member/MdetailView.jsp?mid=<%=loginfo.getMid()%>">내 정보 보기</a>
 							</li>
 							<li>								
 								<a href="<%=contextPath%>/mall/order.jsp">나의 쇼핑 내역</a>
