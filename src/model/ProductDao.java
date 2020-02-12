@@ -19,7 +19,7 @@ public class ProductDao extends SuperDao {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		String sql =" insert into products(pnum, pname, price, point, content, image, hit, stock)";
-		sql += " values(seqboard.nextval, ?, ?, ?, ?, ?, 0, ?) ";
+		sql += " values(seqpnum.nextval, ?, ?, ?, ?, ?, 0, ?) ";
 		int cnt = -1;
 		try {
 			conn = super.getConnection();
