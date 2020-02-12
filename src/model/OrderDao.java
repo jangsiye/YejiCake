@@ -11,10 +11,10 @@ import java.util.Set;
 import mall.MyCartList;
 import mall.ShoppingInfo;
 
-//실상 OrderDao임
+//실상 OrderDao + OrderdetailDao임
 public class OrderDao extends SuperDao {
 	
-	//상세보기 1
+	//oid를 매개로 order 데이터를 가져옴
 	public Order SelectDataByPk(int oid) {
 		Connection conn = null ;
 		PreparedStatement pstmt = null ;
@@ -50,7 +50,7 @@ public class OrderDao extends SuperDao {
 		return order;
 	}
 	
-	//상세보기 2
+	//oid를 매개로 order및 product, orderdetail 데이터를 가져옴
 	public List<ShoppingInfo> ShowDetail(int oid) {
 		Connection conn = null ;
 		PreparedStatement pstmt = null ;
