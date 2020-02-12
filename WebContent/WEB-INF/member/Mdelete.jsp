@@ -7,7 +7,7 @@
 	MemberDao dao = new MemberDao();
 	dao.DeleteData(mid);	
 	
-	response.sendRedirect("Mlist.jsp") ;
+	response.sendRedirect("./../common/main.jsp") ;
 %>
 <!DOCTYPE html>
 <html>
