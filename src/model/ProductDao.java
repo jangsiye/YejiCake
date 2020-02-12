@@ -57,7 +57,7 @@ public class ProductDao extends SuperDao {
 	public int UpdateData(Product bean) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		String sql = " update boards set pname=?, price=?, point=?, content=?, image=?, hit=?, stock=? ";
+		String sql = " update products set pname=?, price=?, point=?, content=?, image=?, hit=?, stock=? ";
 		sql += " where pnum = ? ";
 		int cnt = -1;
 		
