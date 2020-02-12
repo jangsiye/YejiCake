@@ -32,7 +32,7 @@
 <div class="col-sm-offset-1 col-sm-10">
 	<div class="panel panel-primary">
 		<div class="panel-heading">
-			<h2 class="panel-title">게시물 목록 보기&nbsp;&nbsp;&nbsp;<%=pageInfo.getPagingStatus() %></h2>
+			<h2 class="panel-title">문의사항 보기&nbsp;&nbsp;&nbsp;<%=pageInfo.getPagingStatus() %></h2>
 		</div>
 		<div class="container panel-body col-sm-12">
 			<table class="table table-hover">
@@ -56,7 +56,7 @@
 				<% } else {%>
 					<% for(Board board : lists) {%>
 					<tr>
-						<% if(bean.getMid().equals("admin")) {	//관리자면 모든 회원 수정삭제조회가능%>
+						<% if(whologin==2) {	//관리자면 모든 회원 문의사항 수정삭제조회가능%>
 							<td>
 								<a href="<%=contextPath%>/board/Bdelete.jsp?no=<%=board.getNo()%>">
 								<%=board.getNo()%>
@@ -76,23 +76,25 @@
 							<td><%=board.getContent()%></td>
 							<td><%=board.getRegdate()%></td>		
 						<%} else {%>
-							<% if(bean.getMid().equals(board.getWriter())) {	//순서 그대로 가려면 if else로 세 번 분기처리 해줘야 함%>
-							<td>
-								<a href="<%=contextPath%>/board/Bdelete.jsp?no=<%=board.getNo()%>">
-								<%=board.getNo()%>
-								</a>
-							</td>
-							<td>
-								<a href="<%=contextPath%>/board/BdetailView.jsp?no=<%=board.getNo()%>">
-								<%=board.getSubject()%>
-								</a>
-							</td>
-							<td>
-								<a href="<%=contextPath%>/board/BupdateForm.jsp?no=<%=board.getNo()%>">
-								<%=board.getWriter()%>
-								</a>
-							</td>
-							<% } else {%>
+							<%if (whologin==1) {%>
+								<% if(bean.getMid().equals(board.getWriter())) {	//순서 그대로 가려면 if else로 세 번 분기처리 해줘야 함%>
+								<td>
+									<a href="<%=contextPath%>/board/Bdelete.jsp?no=<%=board.getNo()%>">
+									<%=board.getNo()%>
+									</a>
+								</td>
+								<td>
+									<a href="<%=contextPath%>/board/BdetailView.jsp?no=<%=board.getNo()%>">
+									<%=board.getSubject()%>
+									</a>
+								</td>
+								<td>
+									<a href="<%=contextPath%>/board/BupdateForm.jsp?no=<%=board.getNo()%>">
+									<%=board.getWriter()%>
+									</a>
+								</td>
+								<% }
+							} else {%>
 							<td><%=board.getNo()%></td>
 							<td>
 								<!-- common.jsp의 경로 지정 변수인 contextPath를 이렇게 사용할 수 있음! -->
