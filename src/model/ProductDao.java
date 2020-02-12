@@ -27,11 +27,11 @@ public class ProductDao extends SuperDao {
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setString(1, mr.getParameter("pname")); 
-			pstmt.setString(2, mr.getParameter("price"));
-			pstmt.setString(3, mr.getParameter("point"));
+			pstmt.setInt(2, Integer.parseInt(mr.getParameter("price")));
+			pstmt.setInt(3, Integer.parseInt(mr.getParameter("point")));
 			pstmt.setString(4, mr.getParameter("content"));
 			pstmt.setString(5, mr.getFilesystemName("image"));
-			pstmt.setString(6, mr.getParameter("stock"));
+			pstmt.setInt(6, Integer.parseInt(mr.getParameter("stock")));
 			
 			cnt = pstmt.executeUpdate();
 		
@@ -188,7 +188,7 @@ public class ProductDao extends SuperDao {
 				product.setImage(rs.getString("image"));
 				product.setHit(rs.getInt("hit"));
 				product.setPnum(rs.getInt("pnum"));
-				product.setPnum(rs.getInt("stock"));
+				product.setStock(rs.getInt("stock"));
 
 			}
 			
@@ -230,7 +230,7 @@ public class ProductDao extends SuperDao {
 				product.setImage(rs.getString("image"));
 				product.setHit(rs.getInt("hit"));
 				product.setPnum(rs.getInt("pnum"));
-				product.setPnum(rs.getInt("stock"));
+				product.setStock(rs.getInt("stock"));
 				
 				list.add(product);
 			}
@@ -277,7 +277,7 @@ public class ProductDao extends SuperDao {
 				product.setImage(rs.getString("image"));
 				product.setHit(rs.getInt("hit"));
 				product.setPnum(rs.getInt("pnum"));
-				product.setPnum(rs.getInt("stock"));
+				product.setStock(rs.getInt("stock"));
 				
 				list.add(product);
 			}
