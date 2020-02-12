@@ -20,7 +20,7 @@
 <div class="col-sm-offset-3 col-sm-6">
 	<div class="panel panel-primary">
 		<div class="panel-heading">
-			<h2 class="panel-title">장바구니 보기</h2>
+			<h2 class="panel-title">이전주문내역</h2>
 		</div>
 		<div class="panel-body col-sm-12">
 			<div class="col-sm-12">
@@ -37,7 +37,7 @@
 						<td align="center" valign="middle">${order.oid}</td>						
 						<td align="center" valign="middle">${order.orderdate}</td>						
 						<td align="center" valign="middle">
-							<a href="detail.jsp?oid=${order.oid}">상세 보기</a>
+							<a href="detailView.jsp?oid=${order.oid}">상세 보기</a>
 						</td>						
 					</tr>
 					</c:forEach>
