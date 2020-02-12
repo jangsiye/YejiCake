@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MemberDao extends SuperDao {
-	public Member LoginCheck(String id, String password) {
+	public Member LoginCheck(String mid, String password) {
 		Connection conn = null ;
 		PreparedStatement pstmt = null ;
 		ResultSet rs = null ;
@@ -18,14 +18,14 @@ public class MemberDao extends SuperDao {
 		try {
 			conn = super.getConnection() ;
 			pstmt = conn.prepareStatement(sql) ;
-			pstmt.setString(1, id);
+			pstmt.setString(1, mid);
 			pstmt.setString(2, password);
 			rs = pstmt.executeQuery() ;
 			
 			if (rs.next()) {
 				member = new Member();
 				member.setMpoint( rs.getInt("mpoint") ); 
-				member.setId( rs.getString("id") );
+				member.setMid( rs.getString("mid") );
 				member.setName( rs.getString("name") );
 				member.setPassword( rs.getString("password") );
 				member.setPhone( rs.getString("phone") ); 
@@ -46,7 +46,7 @@ public class MemberDao extends SuperDao {
 		return member;
 	}	
 	
-	public Member SelectByPk(String id) {
+	public Member SelectByPk(String mid) {
 		Connection conn = null ;
 		PreparedStatement pstmt = null ;
 		ResultSet rs = null ;
@@ -56,13 +56,13 @@ public class MemberDao extends SuperDao {
 		try {
 			conn = super.getConnection() ;
 			pstmt = conn.prepareStatement(sql) ;
-			pstmt.setString(1, id);
+			pstmt.setString(1, mid);
 			rs = pstmt.executeQuery() ;
 			
 			if (rs.next()) {
 				member = new Member();
 				member.setMpoint( rs.getInt("mpoint") ); 
-				member.setId( rs.getString("id") );
+				member.setMid( rs.getString("mid") );
 				member.setName( rs.getString("name") );
 				member.setPassword( rs.getString("password") );
 				member.setPhone( rs.getString("phone") ); 
@@ -104,7 +104,7 @@ public class MemberDao extends SuperDao {
 			while(rs.next()) {
 				Member member = new Member();
 				member.setMpoint( rs.getInt("mpoint") ); 
-				member.setId( rs.getString("id") );
+				member.setMid( rs.getString("mid") );
 				member.setName( rs.getString("name") );
 				member.setPassword( rs.getString("password") );
 				member.setPhone( rs.getString("phone") ); 
@@ -143,7 +143,7 @@ public class MemberDao extends SuperDao {
 				Member member = new Member();
 				
 				member.setMpoint( rs.getInt("mpoint") ); 
-				member.setId( rs.getString("id") );
+				member.setMid( rs.getString("mid") );
 				member.setName( rs.getString("name") );
 				member.setPassword( rs.getString("password") );
 				member.setPhone( rs.getString("phone") ); 
@@ -196,7 +196,7 @@ public class MemberDao extends SuperDao {
 		return cnt;
 	}
 	
-	public int DeleteData(String id) {
+	public int DeleteData(String mid) {
 		Connection conn = null ;
 		PreparedStatement pstmt = null ;
 		
@@ -208,7 +208,7 @@ public class MemberDao extends SuperDao {
 			conn.setAutoCommit(false);
 			pstmt = conn.prepareStatement(sql) ;
 			
-			pstmt.setString(1, id);
+			pstmt.setString(1, mid);
 			
 			cnt = pstmt.executeUpdate() ;
 			
@@ -246,7 +246,7 @@ public class MemberDao extends SuperDao {
 			pstmt.setString(3, bean.getPhone());
 			pstmt.setString(4, bean.getAddress());
 			pstmt.setInt(5, bean.getMpoint());
-			pstmt.setString(6, bean.getId());
+			pstmt.setString(6, bean.getMid());
 			
 			cnt = pstmt.executeUpdate() ;
 			conn.commit();
@@ -280,7 +280,7 @@ public class MemberDao extends SuperDao {
 			conn.setAutoCommit(false);
 			pstmt = conn.prepareStatement(sql) ;
 
-			pstmt.setString(1, bean.getId()); 
+			pstmt.setString(1, bean.getMid()); 
 			pstmt.setString(2, bean.getName());
 			pstmt.setString(3, bean.getPassword());
 			pstmt.setString(4, bean.getPhone());
