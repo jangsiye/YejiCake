@@ -13,24 +13,61 @@ public class ProductDao extends SuperDao {
 		
 	}
 	
-	public int InsertData(Product bean) {
+		public int InsertData(MultipartRequest mr) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		String sql =" insert into products(pnum, pname, price, point, content, image, hit)";
-		sql += " values(seqboard.nextval, ?, ?, ?, ?, ?, ?) ";
+		String sql =" insert into products(pnum, pname, price, point, content, image, hit, stock)";
+		sql += " values(seqboard.nextval, ?, ?, ?, ?, ?, 0, ?) ";
 		int cnt = -1;
 		try {
 			conn = super.getConnection();
 			conn.setAutoCommit(false);
 			pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setString(1, bean.getName());
-			pstmt.setInt(2, bean.getPrice());
-			pstmt.setInt(3, bean.getPoint());
-			pstmt.setString(4, bean.getContent());
-			pstmt.setString(5, bean.getImage());
-			pstmt.setInt(6, bean.getHit());
-
+			pstmt.setString(1, mr.getParameter("pname")); 
+			pstmt.setString(2, mr.getParameter("price"));
+			pstmt.setString(3, mr.getParameter("point"));
+			pstmt.setString(4, mr.getParameter("content"));
+			pstmt.setString(5, mr.getFilesystemName("image"));
+			pstmt.setString(6, mr.getParameter("stock"));
+			
+			cnt = pstmt.executeUpdate();
+		
+			conn.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			try {
+				conn.rollback();
+			} catch (SQLException e2) {
+				e2.printStackTrace();
+			}
+		} finally {
+			try {
+				if(pstmt != null) {pstmt.close();}
+				if(conn != null) {conn.close();}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return cnt;
+	}	public int InsertData(MultipartRequest mr) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql =" insert into products(pnum, pname, price, point, content, image, hit, stock)";
+		sql += " values(seqboard.nextval, ?, ?, ?, ?, ?, 0, ?) ";
+		int cnt = -1;
+		try {
+			conn = super.getConnection();
+			conn.setAutoCommit(false);
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, mr.getParameter("pname")); 
+			pstmt.setString(2, mr.getParameter("price"));
+			pstmt.setString(3, mr.getParameter("point"));
+			pstmt.setString(4, mr.getParameter("content"));
+			pstmt.setString(5, mr.getFilesystemName("image"));
+			pstmt.setString(6, mr.getParameter("stock"));
+			
 			cnt = pstmt.executeUpdate();
 		
 			conn.commit();
