@@ -235,6 +235,11 @@
       font-size: 150px;
     }
   }
+	  
+<!-- 이미지 모서리 둥글게 하기-->
+p > img {
+	border-radius : 5px;
+}
   </style>
 </head>
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
