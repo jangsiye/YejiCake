@@ -163,7 +163,7 @@ public class OrderDao extends SuperDao {
 			sql1 += " values(seqoid.nextval, ?, sysdate) ";
 			
 			pstmt1 = conn.prepareStatement(sql1);
-			pstmt1.setString(1, loginfo.getId());
+			pstmt1.setString(1, loginfo.getMid());
 			cnt = pstmt1.executeUpdate();
 			
 			
