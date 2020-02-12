@@ -156,12 +156,8 @@
 									님</td>
 							</tr>
 							<tr>
-								<td class="text-center gr"><strong>우편  번호 </strong></td>
-								<td>${sessionScope.loginfo.zipcode}</td>
-							</tr>
-							<tr>
 								<td class="text-center gr"><strong>주소</strong></td>
-								<td>${sessionScope.loginfo.address1} ${sessionScope.loginfo.address2}</td>
+								<td>${sessionScope.loginfo.address}</td>
 							</tr>
 							<tr>
 								<td class="text-center gr"><strong>적립 포인트 </strong></td>
