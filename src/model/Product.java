@@ -10,16 +10,11 @@ public class Product {
 	private int hit;
 	private int stock;
 	
-	private int groupno;
-	private int orderno;
-	private int depth;
-	
 	public Product() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Product(int pnum, String pname, int price, int point, String content, String image, int hit, int stock,
-			int groupno, int orderno, int depth) {
+	public Product(int pnum, String pname, int price, int point, String content, String image, int hit, int stock) {
 		super();
 		this.pnum = pnum;
 		this.pname = pname;
@@ -29,16 +24,13 @@ public class Product {
 		this.image = image;
 		this.hit = hit;
 		this.stock = stock;
-		this.groupno = groupno;
-		this.orderno = orderno;
-		this.depth = depth;
+
 	}
 	
 	@Override
 	public String toString() {
 		return "Product [pnum=" + pnum + ", pname=" + pname + ", price=" + price + ", point=" + point + ", content="
-				+ content + ", image=" + image + ", hit=" + hit + ", stock=" + stock + ", groupno=" + groupno
-				+ ", orderno=" + orderno + ", depth=" + depth + "]";
+				+ content + ", image=" + image + ", hit=" + hit + ", stock=" + stock + "]";
 	}
 	
 	public int getStock() {
@@ -104,31 +96,5 @@ public class Product {
 	public void setHit(int hit) {
 		this.hit = hit;
 	}
-
-	public int getGroupno() {
-		return groupno;
-	}
-
-	public void setGroupno(int groupno) {
-		this.groupno = groupno;
-	}
-
-	public int getOrderno() {
-		return orderno;
-	}
-
-	public void setOrderno(int orderno) {
-		this.orderno = orderno;
-	}
-
-	public int getDepth() {
-		return depth;
-	}
-
-	public void setDepth(int depth) {
-		this.depth = depth;
-	}
-
-
 	
 }
