@@ -29,7 +29,7 @@
 				<table>
 					<tr>
 						<td align="center">
-							<img align="middle" src="<%=realPath%>/<%=product.getImage()%>"
+							<img align="middle" src="<%=realPath%>/${product.image}"
 								class="img-thumbnail" width="230" height="300">
 						</td>
 					</tr>
