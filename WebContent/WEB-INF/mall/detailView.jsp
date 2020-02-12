@@ -51,7 +51,7 @@
 							<c:forEach items="${requestScope.lists}" var="shopinfo">
 								<tr>
 									<td>${shopinfo.pnum}</td>
-									<td>${shopinfo.name}</td>
+									<td>${shopinfo.pname}</td>
 									<td class="text-center"><fmt:formatNumber
 											value="${shopinfo.price}" pattern="###,###"/> 원</td>
 									<td class="text-center"><fmt:formatNumber
@@ -73,10 +73,10 @@
 							<!-- 요금에 따른 운송비 구하기 -->
 							<c:set var="shipExpense" value="0" />
 							<c:choose>
-								<c:when test="${totalAmount >= 500000}">
+								<c:when test="${totalAmount >= 50000}">
 									<c:set var="shipExpense" value="0" />
 								</c:when>
-								<c:when test="${totalAmount >= 300000}">
+								<c:when test="${totalAmount >= 30000}">
 									<c:set var="shipExpense" value="2000" />
 								</c:when>
 								<c:otherwise>
@@ -152,7 +152,7 @@
 						<tbody>
 							<tr>
 								<td class="text-center gr"><strong>받으시는 분</strong></td>
-								<td>${sessionScope.loginfo.name}(${sessionScope.loginfo.id})
+								<td>${sessionScope.loginfo.name}(${sessionScope.loginfo.mid})
 									님</td>
 							</tr>
 							<tr>
