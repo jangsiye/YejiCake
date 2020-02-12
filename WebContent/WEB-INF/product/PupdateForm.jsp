@@ -55,7 +55,7 @@
 </head>
 <body>
 <div class="col-sm-offset-2 col-sm-8">
-	<div class="panel panel-primary">
+	<div class="panel panel-default">
 		<div class="panel-heading">
 			<h2 class="panel-title">상품 정보 수정</h2>
 		</div>
