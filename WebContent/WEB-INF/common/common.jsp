@@ -24,8 +24,8 @@
 		mem = "미로그인" ;
 
 	} else { //관리자는 아이디가 admin이라고 가정한다.
-		mem = loginfo.getName() + "(" + loginfo.getId() + ")님" ;
-		if (loginfo.getId().equals("admin")) {
+		mem = loginfo.getName() + "(" + loginfo.getMid() + ")님" ;
+		if (loginfo.getMid().equals("admin")) {
 			whologin = 2;
 		} else {
 			whologin = 1; //일반 사용자 로그인 
@@ -256,10 +256,10 @@
 					data-toggle="dropdown">Our Store<b class="caret"></b></a>
 					<ul class="dropdown-menu">
 						<li>
-							<a href="<%=contextPath%>/common/#.jsp">가게 소개</a>
+							<a href="<%=contextPath%>/common/storeinfo.jsp">가게 소개</a>
 						</li>
 						<li>
-							<a href="<%=contextPath%>/common/#.jsp">찾아오시는 길</a>
+							<a href="<%=contextPath%>/common/storemap.jsp">찾아오시는 길</a>
 						</li>
 					</ul>
 				</li>
@@ -322,7 +322,7 @@
 						data-toggle="dropdown">MyPage<b class="caret"></b></a>
 						<ul class="dropdown-menu">
 							<li>								
-								<a href="<%=contextPath%>/member/MdetailView.jsp?id=<%=loginfo.getId()%>">내 정보 보기</a>
+								<a href="<%=contextPath%>/member/MdetailView.jsp?id=<%=loginfo.getMid()%>">내 정보 보기</a>
 							</li>
 							<li>								
 								<a href="<%=contextPath%>/mall/order.jsp">나의 쇼핑 내역</a>
