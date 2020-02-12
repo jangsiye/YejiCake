@@ -8,6 +8,7 @@
 	String mid = request.getParameter("mid") ;
 	String name = request.getParameter("name") ;
 	String password = request.getParameter("password") ;
+	String phone = request.getParameter("phone") ;
 	String address = request.getParameter("address") ;
 	int mpoint = Integer.parseInt(request.getParameter("mpoint")) ;
 %>
@@ -16,6 +17,7 @@
 	bean.setMid(mid) ;
 	bean.setName(name);
 	bean.setPassword(password);
+	bean.setPhone(phone) ;
 	bean.setAddress(address);
 	bean.setMpoint(mpoint);
 	
@@ -27,7 +29,7 @@
 	if(cnt == -1){
 		response.sendRedirect("MinsertForm.jsp");
 	} else {
-		response.sendRedirect("Mlist.jsp");	
+		response.sendRedirect("./../common/main.jsp");	
 	}
 %>
 <!DOCTYPE html>
@@ -37,6 +39,5 @@
 <title>Insert title here</title>
 </head>
 <body>
-
 </body>
 </html>
