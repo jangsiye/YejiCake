@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%
 	session.invalidate() ;
-	response.sendRedirect( "./../common.main.jsp" ) ;
+	response.sendRedirect( "./../common/main.jsp" ) ;
 %>    
 <!DOCTYPE html>
 <html>
