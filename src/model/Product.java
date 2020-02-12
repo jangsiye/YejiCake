@@ -1,13 +1,14 @@
 package model;
 
 public class Product {
-	private int num;
-	private String name;
+	private int pnum;
+	private String pname;
 	private int price;
 	private int point;
 	private String content;
 	private String image;
 	private int hit;
+	private int stock;
 	
 	private int groupno;
 	private int orderno;
@@ -17,37 +18,51 @@ public class Product {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Product(int num, String name, int price, int point, String content, String image, int hit) {
+	public Product(int pnum, String pname, int price, int point, String content, String image, int hit, int stock,
+			int groupno, int orderno, int depth) {
 		super();
-		this.num = num;
-		this.name = name;
+		this.pnum = pnum;
+		this.pname = pname;
 		this.price = price;
 		this.point = point;
 		this.content = content;
 		this.image = image;
 		this.hit = hit;
+		this.stock = stock;
+		this.groupno = groupno;
+		this.orderno = orderno;
+		this.depth = depth;
 	}
-
+	
 	@Override
 	public String toString() {
-		return "Product [num=" + num + ", name=" + name + ", price=" + price + ", point=" + point + ", content="
-				+ content + ", image=" + image + ", hit=" + hit + "]";
+		return "Product [pnum=" + pnum + ", pname=" + pname + ", price=" + price + ", point=" + point + ", content="
+				+ content + ", image=" + image + ", hit=" + hit + ", stock=" + stock + ", groupno=" + groupno
+				+ ", orderno=" + orderno + ", depth=" + depth + "]";
+	}
+	
+	public int getStock() {
+		return stock;
 	}
 
-	public int getNum() {
-		return num;
+	public void setStock(int stock) {
+		this.stock = stock;
 	}
 
-	public void setNum(int num) {
-		this.num = num;
+	public int getPnum() {
+		return pnum;
 	}
 
-	public String getName() {
-		return name;
+	public void setPnum(int pnum) {
+		this.pnum = pnum;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public String getPname() {
+		return pname;
+	}
+
+	public void setPname(String pname) {
+		this.pname = pname;
 	}
 
 	public int getPrice() {
