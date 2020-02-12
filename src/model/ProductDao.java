@@ -15,6 +15,41 @@ public class ProductDao extends SuperDao {
 		
 	}
 	
+	
+	public int UpHit(int pnum) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = " update products set hit = hit + 1 where pnum = ?";
+	    int cnt = -1;
+
+		try {
+			conn = super.getConnection();
+			conn.setAutoCommit(false);
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, pnum);
+
+			cnt = pstmt.executeUpdate();
+			
+			conn.commit();
+					
+		} catch (Exception e) {
+			try {
+				conn.rollback();
+			} catch (Exception e2) {
+				e.printStackTrace();
+			}
+		} finally {
+			try {
+				if(pstmt != null) {pstmt.close();}
+				if(conn != null) {conn.close();}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}	
+		}
+		return cnt;
+	   }
+	
 	public int InsertData(MultipartRequest mr) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
