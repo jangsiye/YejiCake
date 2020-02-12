@@ -172,6 +172,85 @@ public class OrderDao extends SuperDao {
 		return cnt;
 	}
 	
+	public List<Order> SelectAll() {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = " select * from orders " ;
+				
+		List<Order> list = new ArrayList<Order>();
+		
+		try {
+			conn = super.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				Order order = new Order();
+				
+				order.setMid(rs.getString("mid"));
+				order.setOid(rs.getInt("oid"));
+				order.setOrderdate(String.valueOf( rs.getDate("orderdate")));
+				
+				list.add(order);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs != null) {rs.close();}
+				if(pstmt != null) {pstmt.close();}
+				if(conn != null) {conn.close();}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return list;
+	}
+
+	public List<Order> SelectAll(int beginRow, int endRow) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = " select mid, oid, orderdate";
+		sql += " from ( select  mid, oid, orderdate, rank() over(order by orderdate desc) as ranking ";
+		sql += " from orders) ";
+		sql += " where ranking between ? and ? ";
+		
+		List<Order> list = new ArrayList<Order>();
+		
+		try {
+			conn = super.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, beginRow);
+			pstmt.setInt(2, endRow);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				Order order = new Order();
+				
+				order.setMid(rs.getString("mid"));
+				order.setOid(rs.getInt("oid"));
+				order.setOrderdate(String.valueOf( rs.getDate("orderdate")));
+				
+				list.add(order);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs != null) {rs.close();}
+				if(pstmt != null) {pstmt.close();}
+				if(conn != null) {conn.close();}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return list;
+	}
+	
 	public int calculate(Member loginfo, MyCartList mycart, int totalPoint) {
 		Connection conn = null;
 		PreparedStatement pstmt1 = null;
