@@ -45,7 +45,7 @@
 			<h2 class="panel-title">회원 정보 수정</h2>
 		</div>
 		<div class="panel-body">
-			<form action="insertTo.jsp" method="post"  name = "myform" class="form-horizontal" role="form" >
+			<form action="MupdateTo.jsp" method="post"  name = "myform" class="form-horizontal" role="form" >
 				<input type = "hidden" name = "mpoint" value = "0">
                 <div class="form-group">
                     <div class="col-sm-3">
