@@ -8,6 +8,9 @@
 <jsp:useBean id="dao" class="model.ProductDao" />
 <%
 	int pnum = Integer.parseInt(request.getParameter("pnum"));
+	//조회수 증가시켜주고
+	dao.UpHit2(pnum);
+	//데이터 불러오기
 	Product product = dao.SelectByPk(pnum);
 	
 	request.setAttribute("product", product);
