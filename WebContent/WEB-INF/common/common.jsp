@@ -128,7 +128,7 @@
     font-style: normal;
   }
   .panel {
-    border: 1px solid #f4511e; 
+    border: 1px solid #E8CEC2; 
     border-radius:0 !important;
     transition: box-shadow 0.5s;
   }
@@ -136,13 +136,13 @@
     box-shadow: 5px 0px 40px rgba(0,0,0, .2);
   }
   .panel-footer .btn:hover {
-    border: 1px solid #f4511e;
+    border: 1px solid #E8CEC2;
     background-color: #fff !important;
-    color: #f4511e;
+    color: #E8CEC2;
   }
   .panel-heading {
     color: #fff !important;
-    background-color: #f4511e !important;
+    background-color: #E8CEC2 !important;
     padding: 25px;
     border-bottom: 1px solid transparent;
     border-top-left-radius: 0px;
@@ -162,7 +162,7 @@
   }
   .panel-footer .btn {
     margin: 15px 0;
-    background-color: #f4511e;
+    background-color: #E8CEC2;
     color: #fff;
   }
   .navbar {
