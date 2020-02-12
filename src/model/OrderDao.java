@@ -218,7 +218,7 @@ public class OrderDao extends SuperDao {
 			pstmt5 = conn.prepareStatement(sql5);
 			
 			pstmt5.setInt(1, totalPoint);
-			pstmt5.setString(2, loginfo.getId());
+			pstmt5.setString(2, loginfo.getMid());
 			
 			cnt = pstmt5.executeUpdate();
 
