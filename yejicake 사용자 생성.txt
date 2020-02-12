@@ -1,0 +1,9 @@
+create user yejicake
+identified by oracle
+account unlock;
+
+alter user yejicake default tablespace users;
+
+grant connect, resource to yejicake;
+
+
