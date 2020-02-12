@@ -82,10 +82,10 @@
 					돌아가기
 				</button>
 				<c:if test="${whologin == 2}">
-		         <form action="./../PupdateForm.jsp">
+		         <form action="./../product/PupdateForm.jsp">
 		            <button type="submit">수정</button>
 		         </form>
-		         <form action="./../Pdelete.jsp">
+		         <form action="./../product/Pdelete.jsp">
 		            <button type="submit">삭제</button>
 		         </form>      
 		      </c:if>				
