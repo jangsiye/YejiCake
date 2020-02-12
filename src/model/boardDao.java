@@ -13,11 +13,11 @@ public class BoardDao extends SuperDao {
 		PreparedStatement pstmt1 = null;
 		PreparedStatement pstmt2 = null;
 		
-		String sql1 = " update sample set orderno = orderno + 1 "; 
+		String sql1 = " update boards set orderno = orderno + 1 "; 
 		sql1 += " where groupno = ? and orderno > ? ";
 		
 		String sql2 = " insert into boards(no, subject, writer, password, content, regdate, groupno, orderno, depth) ";
-		sql2 += " values(seqboard.nextval, ?, ?, ?, ?, sysdate, ?, ?, ?) ";
+		sql2 += " values(seqno.nextval, ?, ?, ?, ?, sysdate, ?, ?, ?) ";
 		int cnt = -1;
 		try {
 			conn = super.getConnection();
@@ -70,7 +70,7 @@ public class BoardDao extends SuperDao {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		String sql =" insert into boards(no, subject, writer, password, content, regdate, groupno, orderno, depth)";
-		sql += " values(seqboard.nextval, ?, ?, ?, ?, sysdate, seqboard.currval, 0, 0, 0) ";
+		sql += " values(seqno.nextval, ?, ?, ?, ?, sysdate, seqno.currval, 0, 0) ";
 		int cnt = -1;
 		try {
 			conn = super.getConnection();
@@ -352,36 +352,5 @@ public class BoardDao extends SuperDao {
 		return list;
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
