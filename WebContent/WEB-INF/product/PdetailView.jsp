@@ -93,7 +93,7 @@
 				<c:if test="${whologin == 2}">
 					<div class="btn-group btn-group-justified" align="right">
   						<a href="PupdateForm.jsp?pnum=<%=product.getPnum()%>" class="btn btn-default">수정</a>
-  						<a href="Pdelete.jsp?pnum=<%=product.getPnum()%>" class="btn btn-default">삭제</a>  						
+  						<a onclick="return confirm('정말로 삭제하시겠습니까?')" href="<%=contextPath%>/product/Pdelete.jsp?pnum=${product.pnum}" class="btn btn-default">삭제</a>				
 					</div>
 		               
 		      </c:if>
