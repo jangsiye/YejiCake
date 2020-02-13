@@ -35,6 +35,13 @@
 							<img align="middle" src="<%=realPath%>/${product.image}"
 								class="img-thumbnail" width="230" height="300">
 						</td>
+						<!-- 만약 이미지2가 있으면 그것도 출력해주기 -->
+						<%if(product.getImage2() != null) { %>
+						<td align="center">
+							<img align="middle" src="<%=realPath%>/${product.image2}"
+								class="img-thumbnail" width="230" height="300">
+						</td>
+						<%} %>
 					</tr>
 				</table>
 			</div>
@@ -61,19 +68,19 @@
 						<td width="75%" align="left">${product.hit}</td>
 					</tr>
 					<tr>
-						<td width="25%" align="center">주문하기</td>
+						<td width="25%" align="center">주문 하기</td>
 						<td width="75%" align="left">
 							<form action="./../mall/insert.jsp" method="post" role="form" class="form-inline">
 								<div class="form-group">
 									<input type="hidden" name="pnum" value="${product.pnum}">
 									<input type="hidden" name="stock" value="${product.stock}">
-									<input type="text" class="form-control" name="qty">
-									<button class="btn btn-default" type="submit">주문</button>
+									개수 <input type="text" class="form-control" name="qty">
+									요청사항 <input type="text" placeholder="레터링을 적어주세요" class="form-control" name="remark">
+									<button class="btn btn-default" type="submit">장바구니 담기</button>
 								</div>	
 							</form>
 						</td>
-					</tr>
-					
+					</tr>					
 				</table>
 			</div>
 			<hr>
