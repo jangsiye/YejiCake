@@ -24,9 +24,9 @@ create table members (
     mpoint number
 );
 
-insert into members values('admin','°ü¸®ÀÚ','1234','010-0000-0000','¼­¿ï½Ã ¼­ÃÊ±¸', 0);
-insert into members values('hong','È«±æµ¿','1234','010-1111-1111','°æ±âµµ ¼ö¿ø½Ã', 0);
-insert into members values('kim','±è¿µÈñ','1234','010-2222-2222','°æ±âµµ ¼º³²½Ã', 0);
+insert into members values('admin','ê´€ë¦¬ì','1234','010-0000-0000','ì„œìš¸ì‹œ ì„œì´ˆêµ¬', 0);
+insert into members values('hong','í™ê¸¸ë™','1234','010-1111-1111','ê²½ê¸°ë„ ìˆ˜ì›ì‹œ', 0);
+insert into members values('kim','ê¹€ì˜í¬','1234','010-2222-2222','ê²½ê¸°ë„ ì„±ë‚¨ì‹œ', 0);
 
 create table products (
     pnum number primary key,
@@ -38,6 +38,9 @@ create table products (
     hit number,
     stock number
 );
+
+alter table products add(category number);
+alter table products add(img2 varchar(255));
 
 create table boards (
     no number primary key,
@@ -52,26 +55,26 @@ create table boards (
 );
 
 ------------------------------------------------------------
--- ÂüÁ¶¹«°á¼º Á¦¾à Á¶°Ç
--- È¸¿ø Å»Åğ¸¦ ÇØµµ ÁÖ¹®³»¿ªÀº ³²¾Æ ÀÖ¾î¾ß ÇÑ´Ù.
+-- ì°¸ì¡°ë¬´ê²°ì„± ì œì•½ ì¡°ê±´
+-- íšŒì› íƒˆí‡´ë¥¼ í•´ë„ ì£¼ë¬¸ë‚´ì—­ì€ ë‚¨ì•„ ìˆì–´ì•¼ í•œë‹¤.
 alter table orders
 add constraint orders_mid_fk
 foreign key(mid) references members(mid)
 on delete set null;
 
--- »óÇ°ÀÌ »èÁ¦µÇ¾îµµ ÁÖ¹®³»¿ªÀº ³²¾Æ ÀÖ¾î¾ß ÇÑ´Ù
+-- ìƒí’ˆì´ ì‚­ì œë˜ì–´ë„ ì£¼ë¬¸ë‚´ì—­ì€ ë‚¨ì•„ ìˆì–´ì•¼ í•œë‹¤
 alter table orderdetails
 add constraint orderdetails_pnum_fk
 foreign key(pnum) references products(pnum)
 on delete set null;
 
--- ÁÖ¹®ÀÌ »èÁ¦µÇ¸é ¸ğµç »ó¼¼³»¿ªµµ »èÁ¦µÇ¾î¾ß ÇÑ´Ù
+-- ì£¼ë¬¸ì´ ì‚­ì œë˜ë©´ ëª¨ë“  ìƒì„¸ë‚´ì—­ë„ ì‚­ì œë˜ì–´ì•¼ í•œë‹¤
 alter table orderdetails
 add constraint orderdetails_oid_fk
 foreign key(oid) references orders(oid)
 on delete cascade;
 
--- ±Û¾´ÀÌ´Â ¾ÆÀÌµğ¿Í µ¿ÀÏÇØ¾ß ÇÑ´Ù
+-- ê¸€ì“´ì´ëŠ” ì•„ì´ë””ì™€ ë™ì¼í•´ì•¼ í•œë‹¤
 alter table boards
 add constraint boards_writer_fk
 foreign key(writer) references members(mid)
