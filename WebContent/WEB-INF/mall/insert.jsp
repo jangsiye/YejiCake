@@ -2,9 +2,12 @@
     pageEncoding="UTF-8"%>
 <%@ include file="./../common/common.jsp"%>
 <%
+	request.setCharacterEncoding("UTF-8");
+
 	int pnum = Integer.parseInt(request.getParameter("pnum"));
 	int stock= Integer.parseInt(request.getParameter("stock"));
 	int qty = Integer.parseInt(request.getParameter("qty"));
+	String remark = request.getParameter("remark");
 	
 	//재고 수량 초과
 	if(stock < qty) {
@@ -12,7 +15,7 @@
 		response.sendRedirect("./../product/PdetailView.jsp");
 	} else {
 		//장바구니에 담기
-		mycart.AddOrder(pnum, qty);
+		mycart.AddOrder(pnum, qty, remark);
 		//어딜가도 장바구니 정보는 유지되어야 하므로 session에 담아줌
 		session.setAttribute("mycart", mycart);
 		response.sendRedirect("./../product/Plist.jsp");
