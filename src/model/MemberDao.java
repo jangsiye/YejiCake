@@ -101,7 +101,7 @@ public class MemberDao extends SuperDao {
 				member.setPassword( rs.getString("password") );
 				member.setPhone( rs.getString("phone") ); 
 				member.setAddress( rs.getString("address") ); 
-			}
+			} 
 			
 		} catch (Exception e) {
 			e.printStackTrace();
