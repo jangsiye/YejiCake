@@ -1,0 +1,82 @@
+create sequence seqoid;
+create sequence seqpnum;
+create sequence seqno;
+
+create table orders (
+    oid number primary key,
+    mid varchar(255),
+    orderdate date
+);
+
+create table orderdetails (
+    oid number primary key,
+    pnum number,
+    qty number,
+    remark varchar(255)
+);
+
+create table members (
+    mid varchar(255) primary key,
+    name varchar(255),
+    password varchar(255),
+    phone varchar(255),
+    address varchar(255),
+    mpoint number
+);
+
+insert into members values('admin','관리자','1234','010-0000-0000','서울시 서초구', 0);
+insert into members values('hong','홍길동','1234','010-1111-1111','경기도 수원시', 0);
+insert into members values('kim','김영희','1234','010-2222-2222','경기도 성남시', 0);
+
+create table products (
+    pnum number primary key,
+    pname varchar(255),
+    price number,
+    point number,
+    content varchar(1000),
+    image varchar(255),
+    hit number,
+    stock number
+);
+
+alter table products add(category number);
+alter table products add(img2 varchar(255));
+
+create table boards (
+    no number primary key,
+    subject varchar2(100),
+    writer varchar2(100),
+    password varchar2(100),
+    content varchar2(1000),
+    regdate date,
+    groupno number,
+    orderno number,
+    depth number
+);
+
+------------------------------------------------------------
+-- 참조무결성 제약 조건
+-- 회원 탈퇴를 해도 주문내역은 남아 있어야 한다.
+alter table orders
+add constraint orders_mid_fk
+foreign key(mid) references members(mid)
+on delete set null;
+
+-- 상품이 삭제되어도 주문내역은 남아 있어야 한다
+alter table orderdetails
+add constraint orderdetails_pnum_fk
+foreign key(pnum) references products(pnum)
+on delete set null;
+
+-- 주문이 삭제되면 모든 상세내역도 삭제되어야 한다
+alter table orderdetails
+add constraint orderdetails_oid_fk
+foreign key(oid) references orders(oid)
+on delete cascade;
+
+-- 글쓴이는 아이디와 동일해야 한다
+alter table boards
+add constraint boards_writer_fk
+foreign key(writer) references members(mid)
+on delete cascade;
+

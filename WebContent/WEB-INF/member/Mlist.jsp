@@ -20,16 +20,14 @@
 	String pageSize = request.getParameter("pageSize");
 	int totalCount = dao.GetCount() ;
 	String url = "Mlist.jsp" ;
-
 	Paging paging = new Paging(pageNumber, pageSize, totalCount, url);
-
 	int beginRow = paging.getBeginRow() ;
 	int endRow = paging.getEndRow() ;
 	List<Member> Mlists = dao.SelectAll(beginRow, endRow) ;
 	request.setAttribute("Mlists", Mlists) ;
 %>
 	<div class="col-sm-offset-1 col-sm-10">
-		<div class="panel panel-primary">
+		<div class="panel panel-default">
 			<div class="panel-heading">
 				<h2 class="panel-title" align = "left">회원 목록 보기</h2>
 			</div>
