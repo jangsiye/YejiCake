@@ -1,7 +1,7 @@
+<%@page import="model.Order"%>
+<%@page import="model.OrderDao"%>
 <%@page import="utility.Paging"%>
 <%@page import="java.util.List"%>
-<%@page import="yejicake.OrderDao"%>
-<%@page import="yejicake.Order"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="./../common/common.jsp" %>
@@ -50,24 +50,35 @@
 	<% }else{%>
 		<% for( Order order : lists){ %>
 			<tr>
+			<!-- 관리자는 상세보기 가능 -->
+			<%if (whologin==2) {%>
+				<td>
+					<a href="<%=contextPath%>/mall/detailView.jsp?id=<%=order.getMid()%>"><%=order.getOid()%></a>
+				</td>
+				<td><%=order.getOrderdate()%></td>
+				<td><%=order.getMid()%></td>
+			<!-- 로그인 한 사람 중 글쓴 사람만 상세보기 가능 -->
+			<% } else if (whologin==1) {%>
 				<% if( bean.getMid().equals(order.getMid())){%>
-					<td>
-						<a href="<%=contextPath%>/mall/detailView.jsp?id=<%=order.getMid()%>">
-							<%=order.getOid()%>
-						</a>
-					</td>
-					
-					<td>
-							<%=order.getOrderdate()%>
-					</td>
-					
-					<td>
-						<%=order.getMid()%>
-					</td>		
-									
-				<% }else{%>
-							
+				<td>
+					<a href="<%=contextPath%>/mall/detailView.jsp?id=<%=order.getMid()%>"><%=order.getOid()%></a>
+				</td>
+				<td><%=order.getOrderdate()%></td>
+				<td><%=order.getMid()%></td>
+				
+				<!-- 로그인 한 사람 중 글쓴 사람이 아닌 사람은 그냥 목록 보기만 가능 -->
+				<% } else { %>	
+				<td><%=order.getOid()%></td>
+				<td><%=order.getOrderdate()%></td>
+				<td><%=order.getMid()%></td>
 				<% }%>
+			
+			<!-- 미로그인 사람은 그냥 목록 보기만 가능 -->
+			<% } else { %>
+				<td><%=order.getOid()%></td>
+				<td><%=order.getOrderdate()%></td>
+				<td><%=order.getMid()%></td>
+			<% }%>	
 			</tr>
 		<% }%>			
 		<% }%>
