@@ -77,19 +77,21 @@
 				</table>
 			</div>
 			<hr>
+			
 			<div class="col-sm-offset-5 col-sm-4">
-				<button class="btn btn-primary" onclick="history.back();">
+				<button class="btn btn-default" onclick="history.back();">
 					돌아가기
 				</button>
+				<br><br>
 				<c:if test="${whologin == 2}">
-		         <form action="./../PupdateForm.jsp">
-		            <button type="submit">수정</button>
-		         </form>
-		         <form action="./../Pdelete.jsp">
-		            <button type="submit">삭제</button>
-		         </form>      
-		      </c:if>				
-			</div>
+					<div class="btn-group btn-group-justified" align="right">
+  						<a href="PupdateForm.jsp?pnum=<%=product.getPnum()%>" class="btn btn-default">수정</a>
+  						<a href="Pdelete.jsp?pnum=<%=product.getPnum()%>" class="btn btn-default">삭제</a>  						
+					</div>
+		               
+		      </c:if>
+		      </div>				
+			
 		</div>
 		<!-- end panel-body -->
 	</div>
