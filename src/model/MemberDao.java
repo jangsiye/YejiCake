@@ -8,6 +8,40 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MemberDao extends SuperDao {
+	
+	public int MidDuplicationCheck(String mid) {
+		Connection conn = null ;
+		PreparedStatement pstmt = null ;
+		ResultSet rs = null ;
+		String sql = " select count(mid) as cnt from members " ; 
+		sql += " where mid = ? " ;
+		int cnt = -1 ;
+		
+		try {
+			conn = super.getConnection() ;
+			pstmt = conn.prepareStatement(sql) ;
+			
+			pstmt.setString(1, mid);
+			rs = pstmt.executeQuery() ;
+			
+			if (rs.next()) {
+				cnt = rs.getInt("cnt") ;
+			}
+		} catch (Exception e) {
+			System.out.println("아이디 중복 확인 실패") ;
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs != null){rs.close();}
+				if(pstmt != null){pstmt.close();}
+				if(conn != null){conn.close();}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return cnt ;
+	}	
+	
 	public Member LoginCheck(String mid, String password) {
 		Connection conn = null ;
 		PreparedStatement pstmt = null ;
