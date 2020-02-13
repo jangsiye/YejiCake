@@ -44,6 +44,7 @@
 								<th class="text-center">단가</th>
 								<th class="text-center">수량</th>
 								<th class="text-center">금액</th>
+								<th class="text-center">요청사항</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -60,6 +61,7 @@
 											value="${shopinfo.price * shopinfo.qty}" /> <c:set
 											var="totalAmount" value="${totalAmount + amount}" /> <fmt:formatNumber
 											value="${amount}" pattern="###,###"/> 원</td>
+									<td class="text-center">${shopinfo.remark}</td>
 								</tr>
 							</c:forEach>
 							<tr>
