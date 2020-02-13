@@ -62,6 +62,18 @@
                         <input type="text" name="pname" id="pname" class="form-control" value="빈츠">
                     </div>
                 </div>
+				<div class="form-group">
+                    <div class="col-sm-3">
+                        <label class="control-label form-control-static">상품 분류</label>
+                    </div>
+                    <div class="col-sm-9">
+                    	<select name="category">
+                    		<option value="1" selected>케이크</option>
+                    		<option value="2">다른 디저트</option>
+                    		<option value="3">소품</option>
+                    	</select>
+                    </div>
+                </div>
                 <div class="form-group">
                     <div class="col-sm-3">
                         <label class="control-label form-control-static">이미지</label>
@@ -69,8 +81,16 @@
                     <div class="col-sm-9">
                         <input type="file" name="image" id="image" class="form-control">
                     </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-3">
+                        <label class="control-label form-control-static">이미지2</label>
                     </div>
-					<div class="form-group">
+                    <div class="col-sm-9">
+                        <input type="file" name="image2" id="image2" class="form-control">
+                    </div>
+                </div>
+				<div class="form-group">
                     <div class="col-sm-3">
                         <label class="control-label form-control-static">재고</label>
                     </div>
