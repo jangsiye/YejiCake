@@ -39,10 +39,12 @@
 				<!-- table에도 헤더가 있음. td대신 th를 씀. -->
 				<thead>
 					<tr>
-						<th>글번호(삭제하기)</th>
-						<th>제목(상세보기)</th>
-						<th>글쓴이(수정하기)</th>
+						<th>글번호</th>
+						<th>제목</th>
+						<th>글쓴이</th>
+					<%if(whologin==2){%>
 						<th>비번</th>
+					<%} %>
 						<th>글내용</th>
 						<th>작성일자</th>
 					</tr>				
@@ -58,7 +60,7 @@
 					<tr>
 						<% if(whologin==2) {	//관리자면 모든 회원 문의사항 수정삭제조회가능%>
 							<td>
-								<a href="<%=contextPath%>/board/Bdelete.jsp?no=<%=board.getNo()%>">
+								<a href="<%=contextPath%>/board/BdetailView.jsp?no=<%=board.getNo()%>">
 								<%=board.getNo()%>
 								</a>
 							</td>
@@ -68,18 +70,31 @@
 								</a>
 							</td>
 							<td>
-								<a href="<%=contextPath%>/board/BupdateForm.jsp?no=<%=board.getNo()%>">
+								<a href="<%=contextPath%>/board/BdetailView.jsp?no=<%=board.getNo()%>">
 								<%=board.getWriter()%>
 								</a>
 							</td>			
-							<td><%=board.getPassword()%></td>
-							<td><%=board.getContent()%></td>
-							<td><%=board.getRegdate()%></td>		
-						<%} else {%>
+							<td>								
+								<a href="<%=contextPath%>/board/BdetailView.jsp?no=<%=board.getNo()%>">
+								<%=board.getPassword()%>
+								</a>
+							</td>
+							<td>								
+								<a href="<%=contextPath%>/board/BdetailView.jsp?no=<%=board.getNo()%>">
+								<%=board.getContent()%>
+								</a>
+							</td>
+							<td>								
+								<a href="<%=contextPath%>/board/BdetailView.jsp?no=<%=board.getNo()%>">
+								<%=board.getRegdate()%>
+								</a>
+							</td>
+							<td><a onclick="return confirm('정말로 삭제하시겠습니까?')" href="<%=contextPath%>/board/Bdelete.jsp?no=<%=board.getNo()%>" class="btn btn-default">삭제</a></td>
+						<% } else { %>
 							<%if (whologin==1) {%>
 								<% if(bean.getMid().equals(board.getWriter())) {	//순서 그대로 가려면 if else로 세 번 분기처리 해줘야 함%>
 								<td>
-									<a href="<%=contextPath%>/board/Bdelete.jsp?no=<%=board.getNo()%>">
+									<a href="<%=contextPath%>/board/BdetailView.jsp?no=<%=board.getNo()%>">
 									<%=board.getNo()%>
 									</a>
 								</td>
@@ -89,29 +104,21 @@
 									</a>
 								</td>
 								<td>
-									<a href="<%=contextPath%>/board/BupdateForm.jsp?no=<%=board.getNo()%>">
+									<a href="<%=contextPath%>/board/BdetailView.jsp?no=<%=board.getNo()%>">
 									<%=board.getWriter()%>
 									</a>
 								</td>
-								<% }
-							} else {%>
-							<td><%=board.getNo()%></td>
-							<td>
-								<!-- common.jsp의 경로 지정 변수인 contextPath를 이렇게 사용할 수 있음! -->
-								<a href="<%=contextPath%>/board/BdetailView.jsp?no=<%=board.getNo()%>">
-								<%=board.getSubject()%>
-								</a>
-							</td>
-							<td><%=board.getWriter()%></td>
-							<%} %>
-						
-							<td><%=board.getPassword()%></td>
+								<%} else {%>
+									<td><%=board.getNo()%></td>
+									<td><%=board.getSubject()%></td>
+									<td><%=board.getWriter()%></td>
+								<%} %>
 							<td><%=board.getContent()%></td>
 							<td><%=board.getRegdate()%></td>
-						
-						</tr>
 						<% }%>
+						</tr>
 					<% }	//for 닫기%>
+					<% }%>
 				<% }%>
 			</table>
 		</div>

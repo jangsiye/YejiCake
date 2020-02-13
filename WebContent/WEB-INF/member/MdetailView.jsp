@@ -16,7 +16,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<c:set var="member" value="<%=member %>"/>
 <div class="container col-sm-offset-3 col-sm-6">
 	<div class="panel panel-default panel-primary">
 		<div class="panel-heading">
@@ -27,19 +26,19 @@
 				<table class="table table-hover table-condensed">
 					<tr>
 						<td width="25%" align="center">아이디</td>
-						<td width="75%" align="left">${member.mid}</td>
+						<td width="75%" align="left"><%=member.getMid()%></td>
 					</tr>
 					<tr>
 						<td width="25%" align="center">연락처</td>
-						<td width="75%" align="left">${member.phone}</td>
+						<td width="75%" align="left"><%=member.getPhone()%></td>
 					</tr>
 					<tr>
 						<td width="25%" align="center">주소</td>
-						<td width="75%" align="left">${member.address}</td>
+						<td width="75%" align="left"><%=member.getAddress()%></td>
 					</tr>
 					<tr>
 						<td width="25%" align="center">적립 포인트</td>
-						<td width="75%" align="left">${member.mpoint}</td>
+						<td width="75%" align="left"><%=member.getMpoint()%></td>
 					</tr>
 					<tr>
 						<td align="center">
@@ -50,10 +49,9 @@
 							</a>
 						</td>
                     	<td align="center">
-							<a href="Mdelete.jsp?mid=<%=member.getMid()%>">
-								<button type = "submit" class = "btn btn-default" >
-									회원 탈퇴
-								</button>
+							<a onclick="return confirm('정말로 탈퇴하시겠습니까?')" 
+								href="Mdelete.jsp?mid=<%=member.getMid()%>" 
+								class="btn btn-default">삭제
 							</a>
 						</td>
 					</tr>
