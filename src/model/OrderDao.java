@@ -13,7 +13,7 @@ import mall.ShoppingInfo;
 
 //실상 OrderDao + OrderdetailDao임
 public class OrderDao extends SuperDao {
-	
+
 	//oid를 매개로 order 데이터를 가져옴
 	public Order SelectDataByPk(int oid) {
 		Connection conn = null ;
@@ -56,7 +56,7 @@ public class OrderDao extends SuperDao {
 		PreparedStatement pstmt = null ;
 		ResultSet rs = null ;
 		
-		String sql = "select p.pnum pnum, p.pname pname, od.qty, p.price, p.point, p.image " ; 
+		String sql = "select p.pnum pnum, p.pname pname, od.qty, p.price, p.point, p.image, od.remark " ; 
 		sql += " from ( orders o inner join orderdetails od  ";
 		sql += " on o.oid=od.oid ) inner join products p ";
 		sql += " on od.pnum = p.pnum and o.oid = ? "; 
@@ -78,7 +78,8 @@ public class OrderDao extends SuperDao {
 				shopinfo.setPnum(rs.getInt("pnum"));			
 				shopinfo.setPoint(rs.getInt("point"));
 				shopinfo.setPrice(rs.getInt("price"));
-				shopinfo.setQty(rs.getInt("qty"));
+				shopinfo.setQty(Integer.parseInt(rs.getString("qty")));
+				shopinfo.setRemark(rs.getString("remark"));
 				
 				lists.add(shopinfo);
 			}
@@ -100,7 +101,6 @@ public class OrderDao extends SuperDao {
 	}
 	
 	//최근 날짜 순으로 주문내역 출력
-	//아이디를 매칭해 주문내역을 찾아주는 메소드
 	public List<Order> orderMall(String mid) {
 		Connection conn = null ;
 		PreparedStatement pstmt = null ;
@@ -171,7 +171,7 @@ public class OrderDao extends SuperDao {
 		}
 		return cnt;
 	}
-	
+
 	public List<Order> SelectAll() {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -251,6 +251,7 @@ public class OrderDao extends SuperDao {
 		return list;
 	}
 	
+	//장바구니에 넣기
 	public int calculate(Member loginfo, MyCartList mycart, int totalPoint) {
 		Connection conn = null;
 		PreparedStatement pstmt1 = null;
@@ -297,16 +298,18 @@ public class OrderDao extends SuperDao {
 			sql3 += " where pnum = ? ";
 			pstmt3 = conn.prepareStatement(sql3);
 			
-			String sql4 = " insert into orderdetails(oid, pnum, qty) ";
-			sql4 += " values(?, ?, ?) ";
+			String sql4 = " insert into orderdetails(oid, pnum, qty, remark) ";
+			sql4 += " values(?, ?, ?, ?) ";
 			pstmt4 = conn.prepareStatement(sql4);
 			
 			//반복문
 			for(Integer pnum : keylist ) {
 				//step3. 상품의 재고 수량 감소
 				
-				//pnum이랑 한 쌍인 qty를 불러온다
+				//★ pnum이랑 한 쌍인 qty를 불러온다
 				Integer qty = maplists.get(pnum);
+				//★ remark는 getter로 불러옴
+				String remark = mycart.getRemark();
 				
 				pstmt3.setInt(1, qty);
 				pstmt3.setInt(2, pnum);
@@ -316,6 +319,7 @@ public class OrderDao extends SuperDao {
 				pstmt4.setInt(1, maxoid);	//주문번호가 oid...!
 				pstmt4.setInt(2, qty);
 				pstmt4.setInt(3, pnum);
+				pstmt4.setString(4, remark);
 				cnt = pstmt4.executeUpdate();
 				
 				System.out.println(qty);
@@ -323,7 +327,7 @@ public class OrderDao extends SuperDao {
 			
 			//step5. 회원 마일리지 적립 
 			String sql5 = " update members set mpoint = mpoint + ? ";
-			sql5 += " where id = ? ";
+			sql5 += " where mid = ? ";
 			pstmt5 = conn.prepareStatement(sql5);
 			
 			pstmt5.setInt(1, totalPoint);
@@ -332,6 +336,7 @@ public class OrderDao extends SuperDao {
 			cnt = pstmt5.executeUpdate();
 
 			conn.commit();
+
 		} catch (Exception e) {
 			e.printStackTrace();	//꼭!! 안 쓰면 에러메시지 안 뜸!
 			try {
@@ -355,7 +360,5 @@ public class OrderDao extends SuperDao {
 		}
 		return cnt;
 	}
-	
-	
-	
+
 }
