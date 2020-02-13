@@ -17,6 +17,7 @@
 </head>
 <body>
 <%
+	request.setCharacterEncoding("UTF-8");
 	//쇼핑 내역 없음
 	if (mycart == null) {
 		session.setAttribute("message", "쇼핑 내역이 존재하지 않습니다.");
@@ -30,10 +31,13 @@
 		
 		int totalAmount = 0;	//총 금액
 		int totalPoint = 0;		//총 포인트
-		
-		for(Integer pnum : keylist) {
-			Integer qty = maplists.get(pnum);	//구매수량
 
+		for(Integer pnum : keylist) {
+			//★ qty는 GetAllOrderLists()메소드로 불러오고
+			Integer qty = maplists.get(pnum);
+			//★ remark는 getter로 불러옴
+			String remark = mycart.getRemark();
+			
 			//product 빈객체에 해당 pnum의 데이터를 삽입
 			ProductDao dao = new ProductDao();
 			Product product = dao.SelectByPk(pnum);
@@ -51,7 +55,9 @@
 			shopInfo.setPnum(product.getPnum());
 			shopInfo.setPoint(product.getPoint());
 			shopInfo.setPrice(product.getPrice());
+			
 			shopInfo.setQty(qty);
+			shopInfo.setRemark(remark);
 			
 			shoplists.add(shopInfo);
 		}	//for 끝
@@ -80,6 +86,7 @@
 						<td>포인트</td>
 						<td>금액</td>
 						<td>누적포인트</td>
+						<td>요청사항</td>
 						<td>삭제</td>
 					</tr>					
 				</thead>
@@ -104,6 +111,9 @@
 						</td>
 						<td align="center" valign="middle">
 							<fmt:formatNumber value="${shopinfo.qty * shopinfo.point}" pattern="###,###"/>포인트
+						</td>
+						<td align="center" valign="middle">
+							${shopinfo.remark}
 						</td>
 						<td align="center" valign="middle">
 							<a href="delete.jsp?pnum=${shopinfo.pnum}">삭제</a>
