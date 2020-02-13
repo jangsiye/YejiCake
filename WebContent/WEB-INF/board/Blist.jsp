@@ -90,8 +90,7 @@
 								</a>
 							</td>
 							<td><a onclick="return confirm('정말로 삭제하시겠습니까?')" href="<%=contextPath%>/board/Bdelete.jsp?no=<%=board.getNo()%>" class="btn btn-default">삭제</a></td>
-						<% } else { %>
-							<%if (whologin==1) {%>
+						<% } else if (whologin==1){ %>
 								<% if(bean.getMid().equals(board.getWriter())) {	//순서 그대로 가려면 if else로 세 번 분기처리 해줘야 함%>
 								<td>
 									<a href="<%=contextPath%>/board/BdetailView.jsp?no=<%=board.getNo()%>">
@@ -115,10 +114,15 @@
 								<%} %>
 							<td><%=board.getContent()%></td>
 							<td><%=board.getRegdate()%></td>
+						<% } else {%>
+							<td><%=board.getNo()%></td>
+							<td><%=board.getSubject()%></td>
+							<td><%=board.getWriter()%></td>
+							<td><%=board.getContent()%></td>
+							<td><%=board.getRegdate()%></td>
 						<% }%>
 						</tr>
 					<% }	//for 닫기%>
-					<% }%>
 				<% }%>
 			</table>
 		</div>
