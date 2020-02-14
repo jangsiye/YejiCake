@@ -47,11 +47,9 @@
 									회원 정보 수정
 								</button>
 							</a>
-						</td>
-                    	<td align="center">
 							<a onclick="return confirm('정말로 탈퇴하시겠습니까?')" 
 								href="Mdelete.jsp?mid=<%=member.getMid()%>" 
-								class="btn btn-default">삭제
+								class="btn btn-default">회원 탈퇴
 							</a>
 						</td>
 					</tr>
