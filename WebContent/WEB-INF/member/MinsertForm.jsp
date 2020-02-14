@@ -46,6 +46,21 @@
 			return ;
 			}
 	</script>
+	
+	<!-- 다음 주소 팝업 API -->
+	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<script>
+	    function execDaumAddress() {
+	        new daum.Postcode({
+	            oncomplete: function(data) {
+	                var roadAddr = data.address; // 도로명 주소 변수
+	                document.getElementById("address").value = roadAddr;
+	                
+	            }
+	        }).open();
+	    }
+	</script>
+	
 </head>
 <body>
 <div class="col-sm-offset-2 col-sm-8">
@@ -94,9 +109,10 @@
                 </div>
                 <div class="form-group">
                     <div class="col-sm-3">
-                        <label class="control-label form-control-static">주소</label>
+                        <label class="control-label form-control-static">도로명 주소</label>
                     </div>
                     <div class="col-sm-9">
+                   		<input type="button" class = "btn btn-primary" onclick="execDaumAddress()" value="주소 찾기"><br>
                         <input type="text" name="address" id="address" class="form-control" value = "서울시 서초구">
                     </div>
                 </div>
@@ -121,5 +137,7 @@
 		</div>
 	</div>
 </div>
+
+
 </body>
 </html>
