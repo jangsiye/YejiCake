@@ -68,7 +68,9 @@
 			</div>
 			<div class="panel-footer" align="center">
 				<button class="btn btn-default" type="submit"><b>수정하기</b></button>&nbsp;&nbsp;&nbsp;
-	    	 	<button class="btn btn-default" type="reset"><b>취소</b></button>
+	    	 	<a class="btn btn-default" type="reset" 
+	    	 		onclick="return confirm('수정을 취소하시겠습니까? 문의 목록으로 돌아갑니다.')" 
+	    	 		href="<%=contextPath%>/board/Blist.jsp"><b>취소</b></a>
 			</div>
 		</form>
 	</div>
