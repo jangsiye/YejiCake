@@ -8,6 +8,8 @@
 <%@page import="model.Member"%>
 <%@page import="java.util.*"%> 
 
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+
 <%
 	String contextPath = request.getContextPath()  ;
 	//out.print( contextPath + "<br>") ;
@@ -254,7 +256,7 @@ p > img {
 		<span class="icon-bar"></span>
 		<span class="icon-bar"></span>                        
 		</button>
-		<a class="navbar-brand" href="./../common/main.jsp">예지케잌</a>
+		<a class="navbar-brand" href="./../common/main.jsp">예지케잌<i class="fas fa-birthday-cake"></i></a>
 	</div>
  	<div class="container">
 		<div class="collapse navbar-collapse" id="myNavbar">
