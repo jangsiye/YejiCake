@@ -8,7 +8,17 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+
+<style type="text/css">
+
+<!--인기 상품 css -->
+.box {
+	float:left;
+	margin: 30px;
+	width: 300%;
+}
+
 <!--캘린더 css -->
 
 .calender {
@@ -93,6 +103,7 @@
 @media screen and (max-width: 290px) {
   .weekdays li, .days li {width: 12.2%;}
 }
+
 </style>
 </head>
 <body>
@@ -154,13 +165,16 @@
       <div class="panel-body col-sm-12">
       <!-- 베스트 케익 3개만 보여주기 -->
       <c:forEach var="i" begin="0" end="2">
-         <p><img src="<%=contextPath%>/upload/${requestScope.lists[i].image}" width="30%"/></p>
-         <p>
-            <a href="PdetailView.jsp?pnum=${requestScope.lists[i].pnum}">
-               ${requestScope.pname}
-            </a>
-         </p>
-         <p>${requestScope.lists[i].price}</p>
+	      <div class="box">
+	         <p><img src="<%=contextPath%>/upload/${requestScope.lists[i].image}" width="100%"/></p>
+	         <p>
+	            <a href="PdetailView.jsp?pnum=${requestScope.lists[i].pnum}">
+	               ${requestScope.lists[i].pname}
+	            </a>
+	         </p>
+	         <p>${requestScope.lists[i].price}</p>
+	         <p><i class="far fa-eye"></i> ${requestScope.lists[i].hit}</p>
+	       </div>
       </c:forEach>
       <a href="<%=contextPath%>/product/Plist.jsp">▶더 많은 케이크 보기 Go~</a>
       </div>
@@ -181,7 +195,7 @@
    <ul class="weekdays">
       <span style="font-size:12px">
          <li>Sun</li><li>Mon</li><li>Tue</li>
-          <li>Wed</li><li>Thu</li><li>Fri</li><li>Sat</li>
+         <li>Wed</li><li>Thu</li><li>Fri</li><li>Sat</li>
         </span>
    </ul>
    
