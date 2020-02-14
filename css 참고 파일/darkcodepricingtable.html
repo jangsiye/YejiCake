@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: url(./backimg.PNG) no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+        }
+
+        .pricing-table {
+            max-width: 1200px;
+            margin: auto;
+            display: flex;      /*div박스를 옆으로 나열*/
+            justify-content: center;    /*div박스를 가운데정렬*/
+            text-align: center;         /*div박스의 텍스트를 가운데정렬*/
+            flex-wrap: wrap;
+        }
+
+        .col {      /*각 박스를 전체넓이의 25%씩 할당*/
+            flex: 25%;
+            padding: 10px;
+            max-width: 320px;
+            box-sizing: border-box;
+        }
+
+        .table {
+            background: #fff;
+            padding: 10px;
+            font-family: "Caslon", sans-serif;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 10px #00000070;
+        }
+
+        .table h2 {
+            text-transform: uppercase;
+        }
+                
+        .table ul {
+            margin: 0;
+            padding: 0;
+        }
+
+        .table ul li {
+            padding: 10px 0;
+            list-style: none;
+        }
+
+        .price {
+            font-size: 40px;
+            margin-bottom: 20px;
+        }
+
+        .price span {
+            display: block;
+            font-size: 14px;
+        }
+
+        .table a {
+            text-decoration: none;
+            color: #2c3e50;
+            border: 2px solid #2c3e50;
+            display: block;
+            padding: 10px 0;
+            margin: 10px 0;
+            border-radius: 40px;
+            text-transform: uppercase;
+            font-size: 14px;
+            transition: 0.5s linear;
+        }
+
+        .table a:hover {
+            background: #2c3e50;
+            color: #fff;
+        }
+
+        .pop {
+            background: #2c3e50;
+            color: #fff;
+            transform: rotate(45deg);
+            padding: 10px 40px;
+            position: absolute;
+            top: 16px;
+            right: -34px;
+        }
+
+        /*980px이상일 때는 원래대로 한줄에 한 박스가 25%씩 차지.*/
+        @media screen and (max-width: 980px) {  /*이하일때는 한 줄에 한 박스가 50%씩 차지*/
+            .col {
+                flex: 50%;
+            }
+        }
+        
+        @media screen and (max-width: 700px) {  /*이하일때는 한 줄에 한 박스가 100%씩 차지*/
+            .col {
+                flex: 100%;
+            }
+        }
+
+    </style>
+</head>
+<body>
+<div class="pricing-table">
+
+    <div class="col">
+        <div class="table">
+            <h2>Regular</h2>
+            <div class="price">
+                $10
+                <span>Per Month</span>
+            </div>
+
+            <ul>
+                <li><strong>2</strong>Websites</li>
+                <li><strong>10</strong>Emails</li>
+                <li><strong>100</strong>Storage</li>
+                <li><strong>1</strong>Account</li>
+            </ul>
+            <a href="#">Buy Now</a>
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="table">
+            <h2>Pro Pack</h2>
+            <div class="pop">Popula</div>   <!--인기상품-->
+            <div class="price">
+                $15
+                <span>Per Month</span>
+            </div>
+
+            <ul>
+                <li><strong>3</strong>Websites</li>
+                <li><strong>15</strong>Emails</li>
+                <li><strong>200</strong>Storage</li>
+                <li><strong>1</strong>Account</li>
+            </ul>
+            <a href="#">Buy Now</a>
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="table">
+            <h2>Premium</h2>
+            <div class="price">
+                $20
+                <span>Per Month</span>
+            </div>
+
+            <ul>
+                <li><strong>4</strong>Websites</li>
+                <li><strong>20</strong>Emails</li>
+                <li><strong>300</strong>Storage</li>
+                <li><strong>2</strong>Account</li>
+            </ul>
+            <a href="#">Buy Now</a>
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="table">
+            <h2>Ultimate</h2>
+            <div class="price">
+                $25
+                <span>Per Month</span>
+            </div>
+
+            <ul>
+                <li><strong>6</strong>Websites</li>
+                <li><strong>20</strong>Emails</li>
+                <li><strong>500</strong>Storage</li>
+                <li><strong>1</strong>Account</li>
+            </ul>
+            <a href="#">Buy Now</a>
+        </div>
+    </div>
+
+
+</div>
+</body>
+</html>
