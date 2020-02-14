@@ -6,13 +6,13 @@
     pageEncoding="UTF-8"%>
 <%@ include file="./../common/common.jsp" %>
 
-	<%
+<%
 	OrderDao dao = new OrderDao() ;
 
 	String pageNumber = request.getParameter("pageNumber") ;
 	String pageSize = request.getParameter("pageSize") ;
 	int totalCount = dao.GetCount() ;
-	String url = "list.jsp" ;
+	String url = "Olist.jsp" ;
 	
 	Paging pageInfo 
 		= new Paging(pageNumber, pageSize, totalCount, url);
@@ -53,7 +53,7 @@
 			<!-- 관리자는 상세보기 가능 -->
 			<%if (whologin==2) {%>
 				<td>
-					<a href="<%=contextPath%>/mall/detailView.jsp?id=<%=order.getMid()%>"><%=order.getOid()%></a>
+					<a href="<%=contextPath%>/mall/detailView.jsp?oid=<%=order.getOid()%>"><%=order.getOid()%></a>
 				</td>
 				<td><%=order.getOrderdate()%></td>
 				<td><%=order.getMid()%></td>
@@ -61,7 +61,7 @@
 			<% } else if (whologin==1) {%>
 				<% if( bean.getMid().equals(order.getMid())){%>
 				<td>
-					<a href="<%=contextPath%>/mall/detailView.jsp?id=<%=order.getMid()%>"><%=order.getOid()%></a>
+					<a href="<%=contextPath%>/mall/detailView.jsp?oid=<%=order.getOid()%>"><%=order.getOid()%></a>
 				</td>
 				<td><%=order.getOrderdate()%></td>
 				<td><%=order.getMid()%></td>
