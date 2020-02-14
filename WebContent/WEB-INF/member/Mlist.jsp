@@ -11,6 +11,12 @@
 <head>
 <meta charset="UTF-8">
 <title>회원 목록 보기</title>
+<style type="text/css">
+    .orderby {
+    	margin: 30px;
+    	float: right;
+    }
+</style>
 </head>
 <body>
 <%
@@ -20,10 +26,14 @@
 	String pageSize = request.getParameter("pageSize");
 	int totalCount = dao.GetCount() ;
 	String url = "Mlist.jsp" ;
+
 	Paging paging = new Paging(pageNumber, pageSize, totalCount, url);
+
 	int beginRow = paging.getBeginRow() ;
 	int endRow = paging.getEndRow() ;
-	List<Member> Mlists = dao.SelectAll(beginRow, endRow) ;
+	String ord = dao.checkNull(request.getParameter("ord"));	//정렬
+	
+	List<Member> Mlists = dao.SelectAll(beginRow, endRow, ord) ;
 	request.setAttribute("Mlists", Mlists) ;
 %>
 	<div class="col-sm-offset-1 col-sm-10">
@@ -31,7 +41,19 @@
 			<div class="panel-heading">
 				<h2 class="panel-title" align = "left">회원 목록 보기</h2>
 			</div>
+			
 			<div class="panel-body col-sm-12">
+						<!-- 회원 정렬 기능 -->
+			<div class="orderby">
+				<form method='GET' action='Mlist.jsp'>
+					<select class="selectpicker" name='ord'>
+						<option value='o_id' selected="selected">아이디순</option>
+						<option value='o_name'>이름순</option>
+						<option value='o_point'>적립포인트순</option>
+					</select>
+					<button type='submit'>회원정렬</button>
+				</form>
+			</div>
 				<table class="table table-hover">
 					<thead>
 						<tr>
