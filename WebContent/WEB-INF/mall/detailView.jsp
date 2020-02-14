@@ -3,15 +3,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="./../common/common.jsp" %>
-<jsp:useBean id="mdao" class="model.OrderDao"/>
+<jsp:useBean id="odao" class="model.OrderDao"/>
+<jsp:useBean id="mdao" class="model.MemberDao"/>
 <%
 	int oid = Integer.parseInt(request.getParameter("oid")) ;
-	Order order = mdao.SelectDataByPk( oid ) ;
-	
-	List<ShoppingInfo> lists = mdao.ShowDetail( oid ) ;
+
+Order order = odao.SelectDataByPk( oid ) ;
+	Member member = mdao.SelectByPk(order.getMid());
+	List<ShoppingInfo> lists = odao.ShowDetail( oid ) ;
 	
 	request.setAttribute("order", order) ;
+	request.setAttribute("member", member) ;
 	request.setAttribute("lists", lists) ;
+	
 %>
 
 <!DOCTYPE html>
@@ -22,9 +26,9 @@
 </head>
 <body>
 	<div class="container col-md-offset-<%=2%> col-md-<%=8%>">
-		<h1>${sessionScope.loginfo.name}님의 주문 상세 내역</h1>
+		<h1>${member.name}님의 주문 상세 내역</h1>
 		<hr>
-		<p>${sessionScope.loginfo.name}
+		<p>${member.name}
 			고객님<br> 고객님께서 <strong>${order.orderdate}</strong>에 구매하신 상품에 대한 상세 결제
 			내역입니다.
 		</p>
@@ -154,16 +158,16 @@
 						<tbody>
 							<tr>
 								<td class="text-center gr"><strong>받으시는 분</strong></td>
-								<td>${sessionScope.loginfo.name}(${sessionScope.loginfo.mid})
+								<td>${member.name}(${member.mid})
 									님</td>
 							</tr>
 							<tr>
 								<td class="text-center gr"><strong>주소</strong></td>
-								<td>${sessionScope.loginfo.address}</td>
+								<td>${member.address}</td>
 							</tr>
 							<tr>
 								<td class="text-center gr"><strong>적립 포인트 </strong></td>
-								<td><fmt:formatNumber value="${sessionScope.loginfo.mpoint}" pattern="###,###"/> 원</td>
+								<td><fmt:formatNumber value="${member.mpoint}" pattern="###,###"/> 원</td>
 							</tr>
 							<tr>
 								<td class="text-center gr"><strong>배송 방법 </strong></td>
