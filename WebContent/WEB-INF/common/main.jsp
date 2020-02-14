@@ -18,7 +18,7 @@
 	margin: 30px;
 	width: 300%;
 }
-	
+
 .crown {
     position: relative;
     font-size: 50px;
@@ -26,7 +26,7 @@
     bottom:-100px;
     left:30px;
 }
-  
+        
 <!--캘린더 css -->
 
 .calender {
@@ -112,6 +112,25 @@
   .weekdays li, .days li {width: 12.2%;}
 }
 
+<!--sns-->
+.sns {
+    padding: 10px;
+    margin: 30px 0;
+}
+
+.sns a {
+    margin: 10px;
+    color:rgb(50, 61, 77);
+    line-height: 50px;
+    font-size: 50px;
+}
+
+/*미술관 홍보동영상*/
+.player {
+    margin: 20px 100px;
+    padding: 30px 10px;
+}
+
 </style>
 </head>
 <body>
@@ -174,7 +193,7 @@
       <!-- 베스트 케익 3개만 보여주기 -->
       <c:forEach var="i" begin="0" end="2">
 	      <div class="box">
-		 <p class="crown"><i class="fas fa-crown"></i></p>
+	      	 <p class="crown"><i class="fas fa-crown"></i></p>
 	         <p><img src="<%=contextPath%>/upload/${requestScope.lists[i].image}" width="100%"/></p>
 	         <p>
 	            <a href="PdetailView.jsp?pnum=${requestScope.lists[i].pnum}">
@@ -205,7 +224,7 @@
       <span style="font-size:12px">
          <li>Sun</li><li>Mon</li><li>Tue</li>
          <li>Wed</li><li>Thu</li><li>Fri</li><li>Sat</li>
-        </span>
+      </span>
    </ul>
    
    <ul class="days">  
@@ -218,8 +237,11 @@
 </div>
 
 
-<div>
-
+<!-- sns link view -->
+<div class="sns">
+  <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-square"></i></a>
+  <a href="https://www.twitter.com" target="_blank"><i class="fab fa-twitter-square"></i></a>
+  <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
 </div>
 
 
