@@ -4,7 +4,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=565538cd400952a901bf8bb53b25fbc9"></script>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
@@ -17,6 +16,7 @@
 		text-weight: bold;
 	}
 </style>
+				
 </head>
 <body>
 
@@ -32,7 +32,7 @@
 				
 				<hr>
 				<!-- 여기는 그냥 링크 -->
-				<li><a href="<%=contextPath%>/common/storemap/jsp">예지케잌 소개</a></li>
+				<li><a href="<%=contextPath%>/common/storeinfo.jsp">예지케잌 소개</a></li>
 				<li><a href="<%=contextPath%>/board/Blist.jsp">Q&A</a></li>
 
 				<li class="dropdown"><a class="dropdown-toggle"
@@ -72,16 +72,9 @@
 		<div class="col-sm-9">
 			<div id="section1">
 				<h1>찾아 오시는 길</h1>
-				<div id="map" style="width:700px;height:400px;"></div>
-				<script>
-					var container = document.getElementById('map');
-					var options = {
-						center: new kakao.maps.LatLng(37.5013987,127.0251758),
-						level: 3
-					};
-			
-					var map = new kakao.maps.Map(container, options);
-				</script>
+				<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3165.263727453389!2d127.02307125091664!3d37.501697579711!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.
+				1!3m3!1m2!1s0x357ca15a0c163d41%3A0xfac759224c6bc427!2z642U7KGw7J2A7Lu07ZOo7YSw7JWE7Lm0642w66-4!5e0!3m2!1sko!2skr!4v1581649340844!5m2!1sko!2skr" 
+				width="600" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
 				<p>신논현역 6번 출구로 나오신 후</p>
 				<p>직진하여 300m 가량 오시면 됩니다^^</p>
 				<p>00건물 3층, 엘리베이터 바로 오른편에 위치하고 있습니다.</p>
@@ -114,6 +107,7 @@
 					</tr>
 				</table>
 			</div>
+			<br><br><br><br>
 		</div>
 	</div>
 </div>
