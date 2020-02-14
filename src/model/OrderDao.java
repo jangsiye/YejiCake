@@ -317,8 +317,8 @@ public class OrderDao extends SuperDao {
 				
 				//step4. 주문 상세 테이블에
 				pstmt4.setInt(1, maxoid);	//주문번호가 oid...!
-				pstmt4.setInt(2, qty);
-				pstmt4.setInt(3, pnum);
+				pstmt4.setInt(2, pnum);
+				pstmt4.setInt(3, qty);
 				pstmt4.setString(4, remark);
 				cnt = pstmt4.executeUpdate();
 				
