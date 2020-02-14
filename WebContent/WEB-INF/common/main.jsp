@@ -18,7 +18,15 @@
 	margin: 30px;
 	width: 300%;
 }
-
+	
+.crown {
+    position: relative;
+    font-size: 50px;
+    color: rgb(247, 213, 65);
+    bottom:-100px;
+    left:30px;
+}
+  
 <!--캘린더 css -->
 
 .calender {
@@ -166,6 +174,7 @@
       <!-- 베스트 케익 3개만 보여주기 -->
       <c:forEach var="i" begin="0" end="2">
 	      <div class="box">
+		 <p class="crown"><i class="fas fa-crown"></i></p>
 	         <p><img src="<%=contextPath%>/upload/${requestScope.lists[i].image}" width="100%"/></p>
 	         <p>
 	            <a href="PdetailView.jsp?pnum=${requestScope.lists[i].pnum}">
