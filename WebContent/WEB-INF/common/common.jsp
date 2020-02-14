@@ -276,11 +276,19 @@ p > img {
 				<!-- 회원 관리 탭 : 관리자한테만 보임 -->
 				<c:if test="${whologin == 2}">
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown">Member Info<b class="caret"></b></a>
+						data-toggle="dropdown">Admin Tap<b class="caret"></b></a>
 						<ul class="dropdown-menu">
 							<li>
 								<a href="<%=contextPath%>/member/Mlist.jsp">회원 목록 보기</a>
-							</li>						
+							</li>
+							<li>
+								<a href="<%=contextPath%>/order/Olist.jsp">주문 목록 보기</a>
+							</li>
+							<li>
+								<c:if test="${whologin == 2}">
+									<a href="<%=contextPath%>/product/PinsertForm.jsp">상품 등록</a>
+								</c:if>
+							</li>
 						</ul>
 					</li>
 				</c:if>
@@ -299,17 +307,7 @@ p > img {
 						</li>						
 					</ul>
 				</li>
-				
-				<!-- order 탭 -->
-				<li class="dropdown"><a href="#" class="dropdown-toggle"
-					data-toggle="dropdown">Order<b class="caret"></b></a>
-					<ul class="dropdown-menu">
-						<li>
-							<a href="<%=contextPath%>/order/Olist.jsp">주문 목록 보기</a>
-						</li>						
-					</ul>
-				</li>
-				
+
 				<!-- 문의사항 -->
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown">Q&A<b class="caret"></b></a>
