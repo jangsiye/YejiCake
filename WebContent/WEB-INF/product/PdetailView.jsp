@@ -54,7 +54,9 @@
 				<p>${product.hit}명이나 이 케이크를 살펴봤습니다!</p>
 
 				<br><br>
-				<form action="./../mall/insert.jsp" method="post" role="form" class="form-inline">			
+				<form action="./../mall/insert.jsp" method="post" role="form" class="form-inline">	
+				<input type="hidden" name="pnum" value="<%=product.getPnum()%>">
+				<input type="hidden" name="stock" value="<%=product.getStock()%>">
 				<table class="table table-hover table-condensed">
 					<tr>
 						<td width="25%" align="center">주문하기</td>
