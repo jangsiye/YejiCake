@@ -15,6 +15,98 @@ public class ProductDao extends SuperDao {
 		
 	}
 	
+	//검색할 때 널 체크하는 메소드
+	public String checkNull(String i ) {
+		if(i==null) {
+			return "";
+		} else {
+			return i;
+		}
+	}
+	
+	//검색기능 : 검색 안 하면 전체 출력해줘야함
+	public List<Product> SelectAll(String col, String word) {
+		
+		Connection conn = null ;
+		PreparedStatement pstmt = null ;
+		ResultSet rs = null ;
+		
+		String sql = "";
+		
+        List<Product> list = new ArrayList<Product>();
+		
+        try {
+        	conn = super.getConnection() ;
+        	
+            if (col.equals("all")) {
+                sql +=" select * ";
+                sql +=" from products ";
+                sql +=" where pname LIKE ? OR content LIKE ?";
+                sql +=" order by pnum DESC";
+                
+                pstmt = conn.prepareStatement(sql) ;
+                pstmt.setString(1, "%" + word + "%");
+                pstmt.setString(2, "%" + word + "%");
+
+ 
+            } else if (col.equals("s_pname")) {
+                sql +=" select * ";
+                sql +=" from products";
+                sql +=" where pname LIKE ?";
+                sql +=" order by pnum DESC";
+                
+                pstmt = conn.prepareStatement(sql) ;
+                pstmt.setString(1, "%" + word + "%");
+                
+            } else if (col.equals("scontent")) {
+                sql +=" select * ";
+                sql +=" from products ";
+                sql +=" where content LIKE ?";
+                sql +=" order by pnum DESC";
+                pstmt = conn.prepareStatement(sql) ;
+                pstmt.setString(1, "%" + word + "%");
+ 
+            } else {	//col이 ""로 들어오면 전체를 출력해주기
+                sql +=" select * ";
+                sql +=" from products ";
+                sql +=" order by pnum DESC";
+                pstmt = conn.prepareStatement(sql) ;
+            }
+
+            rs = pstmt.executeQuery(); 
+ 
+            while (rs.next()) {
+                Product product = new Product();
+ 
+                product.setPname(rs.getString("pname"));
+				product.setPrice(rs.getInt("price"));
+				product.setPoint(rs.getInt("point"));				
+				product.setContent(rs.getString("content"));
+				product.setImage(rs.getString("image"));
+				product.setHit(rs.getInt("hit"));
+				product.setPnum(rs.getInt("pnum"));
+				product.setStock(rs.getInt("stock"));
+				product.setCategory(rs.getInt("category"));
+				product.setImage2(rs.getString("image2"));
+ 
+                list.add(product);
+            }
+ 
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+        	try {
+				if( rs != null ){rs.close();}
+				if( pstmt != null ){pstmt.close();}
+				if( conn != null ){conn.close();}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+        }
+ 
+        return list;
+	}
+	
 	public int UpHit(int pnum) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -249,10 +341,11 @@ public class ProductDao extends SuperDao {
 
 	//상품 전체를 읽어오는 메소드
 	public List<Product> SelectAll() {
+		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = " select * from products " ;
+		String sql = " select * from products order by category " ;
 				
 		List<Product> list = new ArrayList<Product>();
 		
@@ -274,7 +367,7 @@ public class ProductDao extends SuperDao {
 				product.setStock(rs.getInt("stock"));
 				product.setCategory(rs.getInt("category"));
 				product.setImage2(rs.getString("image2"));
-				
+
 				list.add(product);
 			}
 		} catch (Exception e) {
