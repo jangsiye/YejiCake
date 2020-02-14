@@ -1,3 +1,4 @@
+
 <%@page import="model.Product"%>
 <%@page import="model.ProductDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -9,128 +10,23 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
-
-<style type="text/css">
-
-<!--인기 상품 css -->
-.box {
-	float:left;
-	margin: 30px;
-	width: 300%;
-}
-
-.crown {
-    position: relative;
-    font-size: 50px;
-    color: rgb(247, 213, 65);
-    bottom:-100px;
-    left:30px;
-}
-        
-<!--캘린더 css -->
-
-.calender {
-   box-sizing: border-box;
-   font-family: Verdana, sans-serif;
-}
-
-.calender ul {list-style-type: none;}
-
-.month {
-  display: inline-block;
-  padding: 10px;
-  width: 30%;
-  /* background: #1abc9c;  */
-  background: #ffcac9;
-  text-align: center;
-}
-
-.month ul {
-  margin: 0;
-  padding: 0;
-  
-}
-
-.month ul li {
-  color: black;
-  font-size: 15px;
-  text-transform: uppercase;
-  letter-spacing: 3px;
-}
-
-.weekdays {
-  margin: 0;
-  padding: 1px 0;
-  width: 30%;
-  background: rgba(42,46,65,0.7);
-  color:white;
-}
-
-.weekdays li {
-  display: inline-block;
-  width: 13.4%;
-  color: white;
-  text-align: center;
-}
-
-.days {
- width: 30%;
-  padding: 10px 0;
-  color:blue;
-  margin: 0;
-  background:#ffcac9;
-}
-
-.days li {
-  list-style-type: none;
-  display: inline-block;
-  width: 13.2%;
-  text-align: center;
-  margin-bottom: 5px;
-  font-size:12px;
-  color: black;
-  
-}
-
-.days li .active {
-  padding: 5px;
-  background: rgba(42,46,65,0.7);
-  color:yellow;
-}
-
-/* Add media queries for smaller screens */
-@media screen and (max-width:720px) {
-  .weekdays li, .days li {width: 13.1%;}
-}
-
-@media screen and (max-width: 420px) {
-  .weekdays li, .days li {width: 12.5%;}
-  .days li .active {padding: 2px;}
-}
-
-@media screen and (max-width: 290px) {
-  .weekdays li, .days li {width: 12.2%;}
-}
-
 <!--sns-->
+<style>
 .sns {
     padding: 10px;
     margin: 30px 0;
 }
-
 .sns a {
     margin: 10px;
     color:rgb(50, 61, 77);
     line-height: 50px;
     font-size: 50px;
 }
-
 /*미술관 홍보동영상*/
 .player {
     margin: 20px 100px;
     padding: 30px 10px;
 }
-
 </style>
 </head>
 <body>
@@ -178,7 +74,6 @@
 <%
    ProductDao dao = new ProductDao();
    Product product = new Product() ;
-
    List<Product> lists = dao.SelectAll_Hit();
    request.setAttribute("lists", lists) ;
 %>
@@ -205,36 +100,233 @@
 	       </div>
       </c:forEach>
       <a href="<%=contextPath%>/product/Plist.jsp">▶더 많은 케이크 보기 Go~</a>
+      <br>
+      <br>
       </div>
    </div>
 </div>
 
-<!-- 달력 -->
-<div class="calender">
-   <div class="month">      
-     <ul>
-       <li>
-         <span style="font-size:18px">2020</span><br>
-          February<br>
-       </li>
-     </ul>
-   </div>
-   
-   <ul class="weekdays">
-      <span style="font-size:12px">
-         <li>Sun</li><li>Mon</li><li>Tue</li>
-         <li>Wed</li><li>Thu</li><li>Fri</li><li>Sat</li>
-      </span>
-   </ul>
-   
-   <ul class="days">  
-     <li></li><li></li><li></li><li></li><li></li><li></li>
-     <li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li>
-     <li>8</li><li>9</li><li>10</li><li>11</li><li>12</li><li>13</li><li><span class="active">14</span></li>
-     <li>15</li><li>16</li><li>17</li><li>18</li><li>19</li><li>20</li><li>21</li>
-     <li>22</li><li>23</li><li>24</li><li>25</li><li>26</li><li>27</li><li>28</li><li>29</li>
-   </ul>
-</div>
+    <style type="text/css">
+        td{
+            width: 40px;
+            height: 40px;
+            text-align: center;
+            font-size: 12px;
+            font-family: sans-serif;
+            border:2px ; 
+        }
+    </style>
+<script type="text/javascript">
+        var today = new Date();
+        var date = new Date();
+        function prevCalendar() {
+         today = new Date(today.getFullYear(), today.getMonth() - 1, today.getDate());
+         buildCalendar(); 
+        }
+ 
+        function nextCalendar() {
+             today = new Date(today.getFullYear(), today.getMonth() + 1, today.getDate());
+             buildCalendar();
+        }
+        
+        function buildCalendar(){
+            var doMonth = new Date(today.getFullYear(),today.getMonth(),1);
+            var lastDate = new Date(today.getFullYear(),today.getMonth()+1,0);
+            var tbCalendar = document.getElementById("calendar");
+            var tbCalendarYM = document.getElementById("tbCalendarYM");
+            
+            tbCalendarYM.innerHTML = today.getFullYear() + "년 " + (today.getMonth() + 1) + "월"; 
+ 
+            while (tbCalendar.rows.length > 2) {
+                  tbCalendar.deleteRow(tbCalendar.rows.length-1);
+             }
+            
+             var row = null;
+             row = tbCalendar.insertRow();
+             
+             var cnt = 0;
+           
+             for (i=0; i<doMonth.getDay(); i++) {
+                  cell = row.insertCell();
+                  cnt = cnt + 1;
+             }
+            
+             for (i=1; i<=lastDate.getDate(); i++) { 
+                  cell = row.insertCell();
+                  cell.innerHTML = i;
+                  cnt = cnt + 1;
+                  
+              if (cnt % 7 == 1) {
+                cell.innerHTML = "<font color=red>" + i;
+           	 }    
+              
+              if (cnt%7 == 0){
+                  cell.innerHTML = "<font color=blue>" + i;
+                   row = calendar.insertRow();
+              }
+              
+              if (today.getFullYear() == date.getFullYear()
+                 && today.getMonth() == date.getMonth()
+                 && i == date.getDate()) {
+                cell.bgColor = "#FEEDEB";
+               }
+             }
+        }
+    </script>
+</head>
+<body>
+    <p></p>
+    <h3 align="center"></h3>
+<table id="calendar" align="center" >
+    <tr>
+        <td><label onclick="prevCalendar()"><</label></td>
+        <td align="center" id="tbCalendarYM" colspan="5">
+        yyyy년 m월</td>
+        <td><label onclick="nextCalendar()">>
+            
+        </label></td>
+    </tr>
+    <tr>
+        <td align="center"><font color ="red">Sun</td>
+        <td align="center">Mon</td>
+        <td align="center">Tue</td>
+        <td align="center">Wed</td>
+        <td align="center">Thu</td>
+        <td align="center">Fri</td>
+        <td align="center"><font color ="blue">Sat</td>
+    </tr> 
+</table>
+<script language="javascript" type="text/javascript">
+    buildCalendar();//
+</script>
+</body>
+</html>
+<br>
+<br>
+<style>
+	html {
+    margin-top: 25px;
+    font-size: 21px;
+    text-align: center;
+    -webkit-animation: fadein 2s; // Page Transition Effect
+    -moz-animation: fadein 2s; // Safari, Chrome and Opera > 12.1 
+    -ms-animation: fadein 2s; // Firefox < 16
+    -o-animation: fadein 2s; // Internet Explorer
+    animation: fadein 2s; // Opera < 12.1
+    -webkit-animation: fadeout 2s; // Page Transition Effect
+    -moz-animation: fadeout 2s; // Safari, Chrome and Opera > 12.1 
+    -ms-animation: fadeout 2s; // Firefox < 16
+    -o-animation: fadeout 2s; // Internet Explorer
+    animation: fadeout 2s; // Opera < 12.1
+}
+
+body {
+    width: 700px;
+    padding-top: 100px;
+    margin: 0 auto;
+    font-size: 12px;
+    color: #272727;
+    font-family: sans-serif;
+    font-size: 20px;
+}
+
+date {
+    width: 700px;
+    padding-top: 200px;
+    padding-left: 10px;
+    margin: 0 auto;
+    font-size: 12px;
+    color: #272727;
+    font-family: sans-serif;
+    font-size: 20px;
+}
+
+#txt {
+    font-family: sans-serif;
+    font-size: 60px;
+    color: #272727;
+}
+
+weather {
+    width: 300px;
+    height: 50px;
+    padding-top: 200px;
+    padding-left: 60px;
+    margin: -300px auto;
+    font-size: 12px;
+    color: #272727;
+    font-family: sans-serif;
+    font-size: 20px;
+}
+	</style>
+    
+
+
+    <script>
+        function startTime() {
+            var today = new Date();
+            var h = today.getHours();
+            var m = today.getMinutes();
+            var s = today.getSeconds();
+            m = checkTime(m);
+            s = checkTime(s);
+            document.getElementById('txt').innerHTML =
+                h + ":" + m + ":" + s;
+            var t = setTimeout(startTime, 500);
+            span.style.fontSize = "25px";
+        }
+
+        function checkTime(i) {
+            if (i < 10) {
+                i = "0" + i
+            }; // add zero in front of numbers < 10
+            return i;
+        }
+    </script>
+    <script>
+	    function date_time(id) {
+	        date = new Date;
+	        year = date.getFullYear();
+	        month = date.getMonth();
+	        months = new Array('January', 'February', 'March', 'April', 'May', 'June', 'Jully', 'August', 'September', 'October', 'November', 'December');
+	        d = date.getDate();
+	        day = date.getDay();
+	        days = new Array('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday');
+	        h = date.getHours();
+	        if (h < 10) {
+	            h = "0" + h;
+	        }
+	        m = date.getMinutes();
+	        if (m < 10) {
+	            m = "0" + m;
+	        }
+	        s = date.getSeconds();
+	        if (s < 10) {
+	            s = "0" + s;
+	        }
+	        result = '' + days[day] + ' ' + months[month] + ' ' + d + ', ' + year;
+	        document.getElementById(id).innerHTML = result;
+	        setTimeout('date_time("' + id + '");', '1000');
+	        return true;
+	    }
+    </script>
+</head>
+
+<body>
+        <body>
+            <span id="date_time"></span>
+            <script type="text/javascript">
+                window.onload = date_time('date_time');
+            </script>
+        </body>
+
+        <body onload="startTime()">
+            <div id="txt">
+            </div>
+            <br>
+        </body>
+        <br>
+</body>
 
 
 <!-- sns link view -->
