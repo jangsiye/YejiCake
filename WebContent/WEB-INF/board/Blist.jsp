@@ -57,73 +57,54 @@
 					</tr>
 				<% } else {%>
 					<% for(Board board : lists) {%>
-					<tr>
-						<% if(whologin==2) {	//관리자면 모든 회원 문의사항 수정삭제조회가능%>
-							<td>
-								<a href="<%=contextPath%>/board/BdetailView.jsp?no=<%=board.getNo()%>">
-								<%=board.getNo()%>
-								</a>
-							</td>
-							<td>
-								<c:forEach begin="1" end="<%= board.getDepth() %>">-</c:forEach>
-								<a href="<%=contextPath%>/board/BdetailView.jsp?no=<%=board.getNo()%>">
-								<%=board.getSubject()%>
-								</a>
-							</td>
-							<td>
-								<a href="<%=contextPath%>/board/BdetailView.jsp?no=<%=board.getNo()%>">
-								<%=board.getWriter()%>
-								</a>
-							</td>			
-							<td>								
-								<a href="<%=contextPath%>/board/BdetailView.jsp?no=<%=board.getNo()%>">
-								<%=board.getPassword()%>
-								</a>
-							</td>
-							<td>								
-								<a href="<%=contextPath%>/board/BdetailView.jsp?no=<%=board.getNo()%>">
-								<%=board.getContent()%>
-								</a>
-							</td>
-							<td>								
-								<a href="<%=contextPath%>/board/BdetailView.jsp?no=<%=board.getNo()%>">
-								<%=board.getRegdate()%>
-								</a>
-							</td>
-							<td><a onclick="return confirm('정말로 삭제하시겠습니까?')" href="<%=contextPath%>/board/Bdelete.jsp?no=<%=board.getNo()%>" class="btn btn-default">삭제</a></td>
+					
+						<% if(whologin==2) {	//관리자면 모두 상세보기 가능. 비밀먼호도 볼 수 있음. %>
+							<tr onclick="location.href='<%=contextPath%>/board/BdetailView.jsp?no=<%=board.getNo()%>'">
+								<td><%=board.getNo()%></td>
+								<td><c:forEach begin="1" end="<%= board.getDepth() %>">-</c:forEach><%=board.getSubject()%></td>
+								<td><%=board.getWriter()%></td>
+								<td><%=board.getPassword()%></td>
+								<td><%=board.getContent()%></td>
+								<td><%=board.getRegdate()%></td>
+							</tr>
 						<% } else if (whologin==1){ %>
-								<% if(bean.getMid().equals(board.getWriter())) {	//순서 그대로 가려면 if else로 세 번 분기처리 해줘야 함%>
-								<td>
-									<a href="<%=contextPath%>/board/BdetailView.jsp?no=<%=board.getNo()%>">
-									<%=board.getNo()%>
-									</a>
-								</td>
-								<td>
-									<c:forEach begin="1" end="<%= board.getDepth() %>">-</c:forEach>
-									<a href="<%=contextPath%>/board/BdetailView.jsp?no=<%=board.getNo()%>">
-									<%=board.getSubject()%>
-									</a>
-								</td>
-								<td>
-									<a href="<%=contextPath%>/board/BdetailView.jsp?no=<%=board.getNo()%>">
-									<%=board.getWriter()%>
-									</a>
-								</td>
-								<%} else {%>
+								<% if(bean.getMid().equals(board.getWriter())) {	//글작성자는 자기 글 상세보기 가능	%>
+								<tr onclick="location.href='<%=contextPath%>/board/BdetailView.jsp?no=<%=board.getNo()%>'">
 									<td><%=board.getNo()%></td>
 									<td><c:forEach begin="1" end="<%= board.getDepth() %>">-</c:forEach><%=board.getSubject()%></td>
 									<td><%=board.getWriter()%></td>
+									<td><%=board.getPassword()%></td>
+									<td><%=board.getContent()%></td>
+									<td><%=board.getRegdate()%></td>
+								</tr>
+								<%} else if(board.getWriter().equals("admin")) { 	//자기 글 아니더라도 관리자 답글은 누구나 볼 수 있음	%>
+									<tr onclick="location.href='<%=contextPath%>/board/BdetailView.jsp?no=<%=board.getNo()%>'">
+									<td><%=board.getNo()%></td>
+									<td><c:forEach begin="1" end="<%= board.getDepth() %>">-</c:forEach><%=board.getSubject()%></td>
+									<td><%=board.getWriter()%></td>
+									<td><%=board.getPassword()%></td>
+									<td><%=board.getContent()%></td>
+									<td><%=board.getRegdate()%></td>
+								</tr>
+								<%} else {	//로그인했지만 글작성자가 아닌 경우 상세보기 불가	%>
+								<tr>
+									<td><%=board.getNo()%></td>
+									<td><c:forEach begin="1" end="<%= board.getDepth() %>">-</c:forEach><%=board.getSubject()%></td>
+									<td><%=board.getWriter()%></td>
+									<td><%=board.getContent()%></td>
+									<td><%=board.getRegdate()%></td>
+								</tr>
 								<%} %>
-							<td><%=board.getContent()%></td>
-							<td><%=board.getRegdate()%></td>
-						<% } else {%>
-							<td><%=board.getNo()%></td>
-							<td><c:forEach begin="1" end="<%= board.getDepth() %>">-</c:forEach><%=board.getSubject()%></td>
-							<td><%=board.getWriter()%></td>
-							<td><%=board.getContent()%></td>
-							<td><%=board.getRegdate()%></td>
+						<% } else {		//미로그인	 상세보기 불가	%>
+							<tr>
+								<td><%=board.getNo()%></td>
+								<td><c:forEach begin="1" end="<%= board.getDepth() %>">-</c:forEach><%=board.getSubject()%></td>
+								<td><%=board.getWriter()%></td>
+								<td><%=board.getContent()%></td>
+								<td><%=board.getRegdate()%></td>
+							</tr>
 						<% }%>
-						</tr>
+						
 					<% }	//for 닫기%>
 				<% }%>
 			</table>
