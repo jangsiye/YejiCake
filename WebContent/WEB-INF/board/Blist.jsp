@@ -65,6 +65,7 @@
 								</a>
 							</td>
 							<td>
+								<c:forEach begin="1" end="<%= board.getDepth() %>">-</c:forEach>
 								<a href="<%=contextPath%>/board/BdetailView.jsp?no=<%=board.getNo()%>">
 								<%=board.getSubject()%>
 								</a>
@@ -98,6 +99,7 @@
 									</a>
 								</td>
 								<td>
+									<c:forEach begin="1" end="<%= board.getDepth() %>">-</c:forEach>
 									<a href="<%=contextPath%>/board/BdetailView.jsp?no=<%=board.getNo()%>">
 									<%=board.getSubject()%>
 									</a>
@@ -109,14 +111,14 @@
 								</td>
 								<%} else {%>
 									<td><%=board.getNo()%></td>
-									<td><%=board.getSubject()%></td>
+									<td><c:forEach begin="1" end="<%= board.getDepth() %>">-</c:forEach><%=board.getSubject()%></td>
 									<td><%=board.getWriter()%></td>
 								<%} %>
 							<td><%=board.getContent()%></td>
 							<td><%=board.getRegdate()%></td>
 						<% } else {%>
 							<td><%=board.getNo()%></td>
-							<td><%=board.getSubject()%></td>
+							<td><c:forEach begin="1" end="<%= board.getDepth() %>">-</c:forEach><%=board.getSubject()%></td>
 							<td><%=board.getWriter()%></td>
 							<td><%=board.getContent()%></td>
 							<td><%=board.getRegdate()%></td>
