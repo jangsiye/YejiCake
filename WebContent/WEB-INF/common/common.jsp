@@ -22,6 +22,7 @@
 	if (loginfo == null) {
 		whologin = 0;
 		mem = "미로그인" ;
+
 	} else { //관리자는 아이디가 admin이라고 가정한다.
 		mem = loginfo.getName() + "(" + loginfo.getMid() + ")님" ;
 		if (loginfo.getMid().equals("admin")) {
@@ -76,7 +77,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <style>
- body {
+  body {
     font: 400 15px Lato, sans-serif;
     line-height: 1.8;
     color: #818181;
@@ -239,6 +240,10 @@
 p > img {
 	border-radius : 5px;
 }
+ a:link { color: none; text-decoration: none;}
+ a:visited { color: black; text-decoration: none;}
+ a:hover { color: none; text-decoration:none;}
+
   </style>
 </head>
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
@@ -301,7 +306,7 @@ p > img {
 					<ul class="dropdown-menu">
 						<li>
 							<a href="<%=contextPath%>/order/Olist.jsp">주문 목록 보기</a>
-						</li>					
+						</li>						
 					</ul>
 				</li>
 				
@@ -366,10 +371,11 @@ p > img {
 
 	</div>
 </nav>
-<div class="jumbotron text-center">
+ <a href="./../common/main.jsp" >
+<div class="jumbotron text-center" >
   <h1>YejiCake</h1> 
   <p>We are making a special cake just for you</p> 
-</div>
+</div></a>
 <c:if test="${not empty requestScope.errmsg}">
 	<script type="text/javascript">
 		alert('${requestScope.errmsg}');
