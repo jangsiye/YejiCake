@@ -7,7 +7,7 @@
 	MemberDao dao = new MemberDao();
 	dao.DeleteData(mid);	
 	
-	response.sendRedirect("./../common/main.jsp") ;
+	response.sendRedirect("./../member/logout.jsp") ;
 %>
 <!DOCTYPE html>
 <html>
