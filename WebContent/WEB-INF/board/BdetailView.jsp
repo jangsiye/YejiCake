@@ -42,7 +42,7 @@
 						<td width="75%" align="left"><%= board.getPassword()%></td>
 					</tr>
 					<tr>
-						<td width="25%" align="center">글내용</td>
+						<td width="25%" height="300px" align="center">글내용</td>
 						<td width="75%" align="left"><%= board.getContent()%></td>
 					</tr>
 					<tr>
@@ -51,11 +51,14 @@
 					</tr>
 					<tr>
 						<td>
-							<a href="<%=contextPath%>/board/replyForm.jsp?no=<%=board.getNo()%>
-							&groupno=<%=board.getGroupno()%>&orderno=<%=board.getOrderno()%>&depth=<%=board.getDepth()%>">답글 달기</a>
+							<a href="<%=contextPath%>/board/replyForm.jsp?no=<%=board.getNo()%>&groupno=<%=board.getGroupno()%>
+								&orderno=<%=board.getOrderno()%>&depth=<%=board.getDepth()%>" class="btn btn-default">답글 달기</a>
 						</td>
-						<td>
-							<a onclick="return confirm('정말로 삭제하시겠습니까?')" href="<%=contextPath%>/board/Bdelete.jsp?no=<%=board.getNo()%>" class="btn btn-default">삭제</a>
+						<td align="right">
+							<a href="<%=contextPath%>/board/BupdateForm.jsp?no=<%=board.getNo()%>" class="btn btn-default">수정</a>
+							&nbsp;
+							<a onclick="return confirm('정말로 삭제하시겠습니까?')" href="<%=contextPath%>/board/Bdelete.jsp?no=<%=board.getNo()%>" 
+								class="btn btn-default">삭제</a>
 						</td>
 					</tr>
 				</table>
