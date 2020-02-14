@@ -32,7 +32,7 @@
 				
 				<hr>
 				<!-- 여기는 그냥 링크 -->
-				<li><a href="<%=contextPath%>/common/storemap/jsp">찾아오시는 길</a></li>
+				<li><a href="<%=contextPath%>/common/storemap.jsp">찾아오시는 길</a></li>
 				<li><a href="<%=contextPath%>/board/Blist.jsp">Q&A</a></li>
 
 				<li class="dropdown"><a class="dropdown-toggle"
