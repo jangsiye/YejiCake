@@ -53,6 +53,7 @@
 						<td>
 							<a href="<%=contextPath%>/board/replyForm.jsp?no=<%=board.getNo()%>&groupno=<%=board.getGroupno()%>
 								&orderno=<%=board.getOrderno()%>&depth=<%=board.getDepth()%>" class="btn btn-default">답글 달기</a>
+							<a href="<%=contextPath%>/board/Blist.jsp" class="btn btn-default">돌아가기</a>
 						</td>
 						<td align="right">
 							<a href="<%=contextPath%>/board/BupdateForm.jsp?no=<%=board.getNo()%>" class="btn btn-default">수정</a>
