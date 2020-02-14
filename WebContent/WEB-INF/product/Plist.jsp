@@ -13,6 +13,16 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+<style type="text/css">
+
+	.box {
+		float:left;
+		margin: 30px;
+		width: 300px;
+		
+	}
+</style>
 </head>
 <body>
 
@@ -25,60 +35,69 @@
 		
 		<div class="container">
 			<br>
-			<ul class="nav nav-tabs">
-				<li class="active"><a data-toggle="tab" href="#bread">Cake</a></li>
-				<li><a data-toggle="tab" href="#beverage">Other Desert</a></li>
-				<li><a data-toggle="tab" href="#chicken">props</a></li>
+			<ul class="nav nav-tabs col-sm-10">
+				<li class="active"><a data-toggle="tab" href="#cake">Cake</a></li>
+				<li><a data-toggle="tab" href="#otherdesert">Other Desert</a></li>
+				<li><a data-toggle="tab" href="#props">props</a></li>
 			</ul>
 		
-			<div class="tab-content">
+			<div class="tab-content col-sm-12">
 
-				<div id="bread" class="tab-pane fade in active">
+				<div id="cake" class="tab-pane fade in active">
+				<h3>맛있는 케이크야</h3>		
 				<c:forEach var="product" items="${requestScope.lists}" >
 				<c:choose>
 				<c:when test="${product.category eq 1}">
-					<h3>맛있는 케이크야</h3>		
-					<p><img src="<%=contextPath%>/upload/${product.image}" width="50%"/></p>
-					<p>
-						<a href="PdetailView.jsp?pnum=${product.pnum}">
-							${product.pname}
-						</a>
-					</p>
-					<p>${product.price}</p>
+					<div class="box">
+						<p><img src="<%=contextPath%>/upload/${product.image}" width="100%"/></p>
+						<p>
+							<a href="PdetailView.jsp?pnum=${product.pnum}">
+								${product.pname}
+							</a>
+						</p>
+						<p>${product.price}Won</p>
+						<p><i class="far fa-eye"></i> ${product.hit}</p>
+					</div>
 				</c:when>
 				</c:choose>
 				</c:forEach>
 				</div>
 				
-				<div id="beverage" class="tab-pane fade in">
+				<div id="otherdesert" class="tab-pane fade in">
+				<h3>다른 디저트</h3>
 				<c:forEach var="product" items="${requestScope.lists}" >
 				<c:choose>
 				<c:when test="${product.category eq 2}">
-					<h3>다른 디저트</h3>		
-					<p><img src="<%=contextPath%>/upload/${product.image}" width="50%"/></p>
-					<p>
-						<a href="PdetailView.jsp?pnum=${product.pnum}">
-							${product.pname}
-						</a>
-					</p>
-					<p>${product.price}</p>
+					<div class="box">
+						<p><img src="<%=contextPath%>/upload/${product.image}" width="100%"/></p>
+						<p>
+							<a href="PdetailView.jsp?pnum=${product.pnum}">
+								${product.pname}
+							</a>
+						</p>
+						<p>${product.price}</p>
+						<p><i class="far fa-eye"></i> ${product.hit}</p>
+					</div>
 				</c:when>
 				</c:choose>
 				</c:forEach>
 				</div>
 				
-				<div id="chicken" class="tab-pane fade in">
+				<div id="props" class="tab-pane fade in">
+				<h3>소품입니다</h3>
 				<c:forEach var="product" items="${requestScope.lists}" >
 				<c:choose>
 				<c:when test="${product.category eq 3}">
-					<h3>소풉입니다</h3>		
-					<p><img src="<%=contextPath%>/upload/${product.image}" width="50%"/></p>
-					<p>
-						<a href="PdetailView.jsp?pnum=${product.pnum}">
-							${product.pname}
-						</a>
-					</p>
-					<p>${product.price}</p>
+					<div class="box">
+						<p><img src="<%=contextPath%>/upload/${product.image}" width="100%"/></p>
+						<p>
+							<a href="PdetailView.jsp?pnum=${product.pnum}">
+								${product.pname}
+							</a>
+						</p>
+						<p>${product.price}</p>
+						<p><i class="far fa-eye"></i> ${product.hit}</p>
+					</div>
 				</c:when>
 				</c:choose>
 				</c:forEach>
