@@ -8,7 +8,8 @@
 <%
 	int oid = Integer.parseInt(request.getParameter("oid")) ;
 
-Order order = odao.SelectDataByPk( oid ) ;
+	Order order = odao.SelectDataByPk( oid ) ;
+	
 	Member member = mdao.SelectByPk(order.getMid());
 	List<ShoppingInfo> lists = odao.ShowDetail( oid ) ;
 	
@@ -48,7 +49,7 @@ Order order = odao.SelectDataByPk( oid ) ;
 								<th class="text-center">단가</th>
 								<th class="text-center">수량</th>
 								<th class="text-center">금액</th>
-								<th class="text-center">요청사항</th>
+								<th class="text-center">레터링</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -65,12 +66,12 @@ Order order = odao.SelectDataByPk( oid ) ;
 											value="${shopinfo.price * shopinfo.qty}" /> <c:set
 											var="totalAmount" value="${totalAmount + amount}" /> <fmt:formatNumber
 											value="${amount}" pattern="###,###"/> 원</td>
-									<td class="text-center">${shopinfo.remark}</td>
 								</tr>
 							</c:forEach>
+							
 							<tr>
-								<td class="thick-line"></td>
-								<td class="thick-line"></td>
+								<td class="no-line"></td>
+								<td class="no-line"></td>
 								<td class="thick-line"></td>
 								<td class="thick-line text-center"><strong>합계</strong></td>
 								<td class="thick-line text-right"><fmt:formatNumber
@@ -90,8 +91,8 @@ Order order = odao.SelectDataByPk( oid ) ;
 								</c:otherwise>
 							</c:choose>
 							<tr>
-								<td class="no-line"></td>
-								<td class="no-line"></td>
+								<td class="thick-line"><strong>레터링</strong></td>
+								<td class="thick-line">《    ${lists[0].remark}   》</td>
 								<td class="no-line"></td>
 								<td class="no-line text-center"><strong>운송비</strong></td>
 								<td class="no-line text-right"><fmt:formatNumber
