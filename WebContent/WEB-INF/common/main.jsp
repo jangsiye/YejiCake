@@ -9,113 +9,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
-<!--sns-->
-<style>
-.sns {
-    padding: 10px;
-    margin: 30px 0;
-}
-.sns a {
-    margin: 10px;
-    color:rgb(50, 61, 77);
-    line-height: 50px;
-    font-size: 50px;
-}
-/*미술관 홍보동영상*/
-.player {
-    margin: 20px 100px;
-    padding: 30px 10px;
-}
-</style>
-</head>
-<body>
 
-<!-- 메인 사진 슬라이드 -->
-<div class="container">
-  <h2>Carousel Example</h2>  
-  <div id="myCarousel" class="carousel slide" data-ride="carousel">
-    <!-- Indicators -->
-    <ol class="carousel-indicators">
-      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-      <li data-target="#myCarousel" data-slide-to="1"></li>
-      <li data-target="#myCarousel" data-slide-to="2"></li>
-    </ol>
-
-    <!-- Wrapper for slides -->
-    <div class="carousel-inner">
-      <div class="item active">
-        <img src="<%=contextPath%>/upload/cake1.JPG" alt="cake1" style="width:100%;">
-      </div>
-
-      <div class="item">
-        <img src="<%=contextPath%>/upload/cake2.JPG" alt="cake2" style="width:100%;">
-      </div>
-    
-      <div class="item">
-        <img src="<%=contextPath%>/upload/cake3.JPG" alt="cake3" style="width:100%;">
-      </div>
-    </div>
-
-    <!-- Left and right controls -->
-    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-      <span class="glyphicon glyphicon-chevron-left"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="right carousel-control" href="#myCarousel" data-slide="next">
-      <span class="glyphicon glyphicon-chevron-right"></span>
-      <span class="sr-only">Next</span>
-    </a>
-  </div>
-</div>
-
-<br><br><br>
-
-<%
-   ProductDao dao = new ProductDao();
-   Product product = new Product() ;
-   List<Product> lists = dao.SelectAll_Hit();
-   request.setAttribute("lists", lists) ;
-%>
-
-<!-- 인기 상품 목록 -->
-<div class="col-sm-offset-1 col-sm-10">
-   <div class="panel panel-default">
-      <div class="panel-heading">
-         <h2 class="panel-title" align = "left">★이 달의 베스트 케이크★</h2>
-      </div>
-      <div class="panel-body col-sm-12">
-      <!-- 베스트 케익 3개만 보여주기 -->
-      <c:forEach var="i" begin="0" end="2">
-	      <div class="box">
-	      	 <p class="crown"><i class="fas fa-crown"></i></p>
-	         <p><img src="<%=contextPath%>/upload/${requestScope.lists[i].image}" width="100%"/></p>
-	         <p>
-	            <a href="PdetailView.jsp?pnum=${requestScope.lists[i].pnum}">
-	               ${requestScope.lists[i].pname}
-	            </a>
-	         </p>
-	         <p>${requestScope.lists[i].price}</p>
-	         <p><i class="far fa-eye"></i> ${requestScope.lists[i].hit}</p>
-	       </div>
-      </c:forEach>
-      <a href="<%=contextPath%>/product/Plist.jsp">▶더 많은 케이크 보기 Go~</a>
-      <br>
-      <br>
-      </div>
-   </div>
-</div>
-
-    <style type="text/css">
-        td{
-            width: 40px;
-            height: 40px;
-            text-align: center;
-            font-size: 12px;
-            font-family: sans-serif;
-            border:2px ; 
-        }
-    </style>
+<!-- 달력 -->
 <script type="text/javascript">
         var today = new Date();
         var date = new Date();
@@ -172,97 +67,10 @@
                }
              }
         }
-    </script>
-</head>
-<body>
-    <p></p>
-    <h3 align="center"></h3>
-<table id="calendar" align="center" >
-    <tr>
-        <td><label onclick="prevCalendar()"><</label></td>
-        <td align="center" id="tbCalendarYM" colspan="5">
-        yyyy년 m월</td>
-        <td><label onclick="nextCalendar()">>
-            
-        </label></td>
-    </tr>
-    <tr>
-        <td align="center"><font color ="red">Sun</td>
-        <td align="center">Mon</td>
-        <td align="center">Tue</td>
-        <td align="center">Wed</td>
-        <td align="center">Thu</td>
-        <td align="center">Fri</td>
-        <td align="center"><font color ="blue">Sat</td>
-    </tr> 
-</table>
-<script language="javascript" type="text/javascript">
-    buildCalendar();//
 </script>
-</body>
-</html>
-<br>
-<br>
-<style>
-	html {
-    margin-top: 25px;
-    font-size: 21px;
-    text-align: center;
-    -webkit-animation: fadein 2s; // Page Transition Effect
-    -moz-animation: fadein 2s; // Safari, Chrome and Opera > 12.1 
-    -ms-animation: fadein 2s; // Firefox < 16
-    -o-animation: fadein 2s; // Internet Explorer
-    animation: fadein 2s; // Opera < 12.1
-    -webkit-animation: fadeout 2s; // Page Transition Effect
-    -moz-animation: fadeout 2s; // Safari, Chrome and Opera > 12.1 
-    -ms-animation: fadeout 2s; // Firefox < 16
-    -o-animation: fadeout 2s; // Internet Explorer
-    animation: fadeout 2s; // Opera < 12.1
-}
 
-body {
-    width: 700px;
-    padding-top: 100px;
-    margin: 0 auto;
-    font-size: 12px;
-    color: #272727;
-    font-family: sans-serif;
-    font-size: 20px;
-}
-
-date {
-    width: 700px;
-    padding-top: 200px;
-    padding-left: 10px;
-    margin: 0 auto;
-    font-size: 12px;
-    color: #272727;
-    font-family: sans-serif;
-    font-size: 20px;
-}
-
-#txt {
-    font-family: sans-serif;
-    font-size: 60px;
-    color: #272727;
-}
-
-weather {
-    width: 300px;
-    height: 50px;
-    padding-top: 200px;
-    padding-left: 60px;
-    margin: -300px auto;
-    font-size: 12px;
-    color: #272727;
-    font-family: sans-serif;
-    font-size: 20px;
-}
-	</style>
-    
-
-
-    <script>
+<!-- 시계 -->
+<script>
         function startTime() {
             var today = new Date();
             var h = today.getHours();
@@ -282,8 +90,7 @@ weather {
             }; // add zero in front of numbers < 10
             return i;
         }
-    </script>
-    <script>
+
 	    function date_time(id) {
 	        date = new Date;
 	        year = date.getFullYear();
@@ -309,24 +116,212 @@ weather {
 	        setTimeout('date_time("' + id + '");', '1000');
 	        return true;
 	    }
-    </script>
+</script>
+
+<!-- sns css -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+<style>
+
+.sns {
+    padding: 10px;
+    margin: 30px 0;
+}
+.sns a {
+    margin: 10px;
+    color:rgb(50, 61, 77);
+    line-height: 50px;
+    font-size: 50px;
+}
+
+/*미술관 홍보동영상*/
+.player {
+    margin: 20px 100px;
+    padding: 30px 10px;
+}
+       
+/*캘린더 css*/
+.calendar td{
+            width: 40px;
+            height: 40px;
+            text-align: center;
+            font-size: 12px;
+            font-family: sans-serif;
+            border:2px ; 
+        }
+
+/*시계 css*/
+html {
+    margin-top: 25px;
+    font-size: 21px;
+    text-align: center;
+}
+
+clockbody {
+    width: 700px;
+    padding-top: 100px;
+    margin: 0 auto;
+    font-size: 12px;
+    color: #272727;
+    font-family: sans-serif;
+    font-size: 20px;
+}
+
+date {
+    width: 700px;
+    padding-top: 200px;
+    padding-left: 10px;
+    margin: 0 auto;
+    font-size: 12px;
+    color: #272727;
+    font-family: sans-serif;
+    font-size: 20px;
+}
+
+#txt {
+    font-family: sans-serif;
+    font-size: 60px;
+    color: #272727;
+} 
+
+<!--인기 상품 css -->
+.box {
+   float:left;
+   margin: 30px;
+   width: 300%;
+}
+
+.crown {
+    position: relative;
+    font-size: 50px;
+    color: rgb(247, 213, 65);
+    bottom:-100px;
+    left:30px;
+}
+         
+</style>
 </head>
 
 <body>
-        <body>
+<!-- 메인 사진 슬라이드 -->
+<div class="container">
+  <h2 align=>Carousel Example</h2>  
+  <div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="1"></li>
+      <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner">
+      <div class="item active">
+        <img src="<%=contextPath%>/upload/cake1.JPG" alt="cake1" style="width:100%;">
+      </div>
+
+      <div class="item">
+        <img src="<%=contextPath%>/upload/cake2.JPG" alt="cake2" style="width:100%;">
+      </div>
+    
+      <div class="item">
+        <img src="<%=contextPath%>/upload/cake3.JPG" alt="cake3" style="width:100%;">
+      </div>
+    </div>
+
+    <!-- Left and right controls -->
+    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+</div>
+
+<br><br><br>
+<%
+   ProductDao dao = new ProductDao();
+   Product product = new Product() ;
+   List<Product> lists = dao.SelectAll_Hit();
+   request.setAttribute("lists", lists) ;
+%>
+
+<!-- 인기 상품 목록 -->
+<div class="col-sm-offset-1 col-sm-10">
+   <div class="panel panel-default">
+      <div class="panel-heading">
+         <h2 class="panel-title">★이 달의 베스트 케이크★</h2>
+      </div>
+      <div class="panel-body col-sm-12">
+      <!-- 베스트 케익 3개만 보여주기 -->
+      <c:forEach var="i" begin="0" end="2">
+	      <div class="box">
+	      	 <p class="crown"><i class="fas fa-crown"></i></p>
+	         <p><img src="<%=contextPath%>/upload/${requestScope.lists[i].image}"></p>
+	         <p>
+	            <a href="PdetailView.jsp?pnum=${requestScope.lists[i].pnum}">
+	               ${requestScope.lists[i].pname}
+	            </a>
+	         </p>
+	         <p>${requestScope.lists[i].price}</p>
+	         <p><i class="far fa-eye"></i> ${requestScope.lists[i].hit}</p>
+	       </div>
+      </c:forEach>
+      <a href="<%=contextPath%>/product/Plist.jsp">▶더 많은 케이크 보기 Go~</a>
+      <br>
+      <br>
+      </div>
+      </div>
+   </div>
+
+<!-- 캘린더 -->
+<div class="calendar">
+    <p></p>
+    <h3 align="center"></h3>
+<table id="calendar" align="center" >
+    <tr>
+        <td><label onclick="prevCalendar()"><</label></td>
+        <td align="center" id="tbCalendarYM" colspan="5">
+        yyyy년 m월</td>
+        <td><label onclick="nextCalendar()">>
+            
+        </label></td>
+    </tr>
+    <tr>
+        <td align="center"><font color ="red">Sun</td>
+        <td align="center">Mon</td>
+        <td align="center">Tue</td>
+        <td align="center">Wed</td>
+        <td align="center">Thu</td>
+        <td align="center">Fri</td>
+        <td align="center"><font color ="blue">Sat</td>
+    </tr> 
+</table>
+<script language="javascript" type="text/javascript">
+    buildCalendar();//
+</script>
+</div>
+<br>
+<br>
+
+
+<!-- 시계 -->
+        <div class="clock">
             <span id="date_time"></span>
             <script type="text/javascript">
                 window.onload = date_time('date_time');
             </script>
-        </body>
-
+ 		</div>
+        <div class="clockbody">
         <body onload="startTime()">
             <div id="txt">
             </div>
-            <br>
         </body>
+        </div>
+
         <br>
-</body>
 
 
 <!-- sns link view -->
