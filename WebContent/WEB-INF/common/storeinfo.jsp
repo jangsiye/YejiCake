@@ -96,11 +96,11 @@
 			<div id="section3">
 				<h1>어떤 수제케이크가 있나요?</h1>
 				<p>예지케잌의 대표 메뉴는 초코, 딸기, 생크림입니다.</p>
-				<p><img src="orange2.JPG" width="60%" alt="사진을 불러올 수 없어요"></p>
+				<p><img src="<%=contextPath%>/upload/orange2.JPG" width="60%" alt="사진을 불러올 수 없어요"></p>
 				<p>오렌지 자몽 케이크</p><br>
-				<p><img src="mixberry2.JPG" width="60%" alt="사진을 불러올 수 없어요"></p>
+				<p><img src="<%=contextPath%>/upload/mixberry2.JPG" width="60%" alt="사진을 불러올 수 없어요"></p>
 				<p>믹스 베리 케이크</p><br>
-				<p><img src="white2.JPG" width="60%" alt="사진을 불러올 수 없어요"></p>
+				<p><img src=src="<%=contextPath%>/upload/white2.JPG" width="60%" alt="사진을 불러올 수 없어요"></p>
 				<p>화이트 초콜릿 케이크</p><br>
 				<p class="morecake"><a href="<%=contextPath%>/product/Plist.jsp">▶더 많은 케이크 보기 Go~</a></p>
 			</div>
