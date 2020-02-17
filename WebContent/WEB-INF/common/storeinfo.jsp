@@ -100,7 +100,7 @@
 				<p>오렌지 자몽 케이크</p><br>
 				<p><img src="<%=contextPath%>/upload/mixberry2.JPG" width="60%" alt="사진을 불러올 수 없어요"></p>
 				<p>믹스 베리 케이크</p><br>
-				<p><img src=src="<%=contextPath%>/upload/white2.JPG" width="60%" alt="사진을 불러올 수 없어요"></p>
+				<p><img src="<%=contextPath%>/upload/white2.JPG" width="60%" alt="사진을 불러올 수 없어요"></p>
 				<p>화이트 초콜릿 케이크</p><br>
 				<p class="morecake"><a href="<%=contextPath%>/product/Plist.jsp">▶더 많은 케이크 보기 Go~</a></p>
 			</div>
