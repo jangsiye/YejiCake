@@ -18,6 +18,10 @@
 <body>
 <%
 	request.setCharacterEncoding("UTF-8");
+
+	//★ remark는 getter로 불러옴
+	String remark = mycart.getRemark();
+
 	//쇼핑 내역 없음
 	if (mycart == null) {
 		session.setAttribute("message", "쇼핑 내역이 존재하지 않습니다.");
@@ -32,11 +36,10 @@
 		int totalAmount = 0;	//총 금액
 		int totalPoint = 0;		//총 포인트
 
+		
 		for(Integer pnum : keylist) {
 			//★ qty는 GetAllOrderLists()메소드로 불러오고
 			Integer qty = maplists.get(pnum);
-			//★ remark는 getter로 불러옴
-			String remark = mycart.getRemark();
 			
 			//product 빈객체에 해당 pnum의 데이터를 삽입
 			ProductDao dao = new ProductDao();
@@ -61,6 +64,9 @@
 			
 			shoplists.add(shopInfo);
 		}	//for 끝
+					
+		//총 금액에서 할인금액 빼주기
+		totalAmount -= totalSale;
 		
 		//어디서든 사용할 수 있게, 세션에 쇼핑리스트, 총금액, 총포인트 저장하기
 		session.setAttribute("shoplists", shoplists);
@@ -86,7 +92,6 @@
 						<td>포인트</td>
 						<td>금액</td>
 						<td>누적포인트</td>
-						<td>요청사항</td>
 						<td>삭제</td>
 					</tr>					
 				</thead>
@@ -113,13 +118,15 @@
 							<fmt:formatNumber value="${shopinfo.qty * shopinfo.point}" pattern="###,###"/>포인트
 						</td>
 						<td align="center" valign="middle">
-							${shopinfo.remark}
-						</td>
-						<td align="center" valign="middle">
 							<a href="delete.jsp?pnum=${shopinfo.pnum}">삭제</a>
 						</td>
 					</tr>
 				</c:forEach>
+				<tr class="header">
+					<td colspan="8"  align="center">
+						※ 레터링 문구를 확인해주세요 : 《   <%=remark%>   》
+					</td>
+				</tr>
 				<tr class="header">
 					<td colspan="4"  align="center">
 						<a href="calculate.jsp">결제하기</a>
@@ -127,6 +134,9 @@
 						<a href="./../product/Plist.jsp">추가 주문</a>
 					</td>
 					<td colspan="4"  align="center">
+						<%-- 할인 금액 : <fmt:formatNumber value="${sessionScope.totalSale}" pattern="##,###,###"/>원 --%>
+						할인 금액 : <fmt:formatNumber value="<%=totalSale%>" pattern="##,###,###"/>원
+						&nbsp;&nbsp;
 						총 금액 : <fmt:formatNumber value="${sessionScope.totalAmount}" pattern="##,###,###"/>원
 						&nbsp;&nbsp;
 						총 누적 포인트 : <fmt:formatNumber value="${sessionScope.totalPoint}" pattern="##,###,###"/>원
