@@ -22,6 +22,21 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+<!-- 입력한 수량이 0개보다 작을 때 경고를 띄웁니다. -->
+<script type="text/javascript">
+	function cartcheck(){
+		var qty = document.cartform.qty.value ;
+		if(qty==0){
+			alert('수량은 1개부터 가능합니다.') ;
+			return false ;
+			if(qty<0){
+				alert('수량은 1개부터 가능합니다.') ;
+				return false ;
+			}
+		}
+	}
+</script>
 </head>
 <body>
 <div class="container col-sm-offset-2 col-sm-8">
@@ -54,7 +69,7 @@
 				<p>${product.hit}명이나 이 케이크를 살펴봤습니다!</p>
 
 				<br><br>
-				<form action="./../mall/insert.jsp" method="post" role="form" class="form-inline">	
+				<form action="./../mall/insert.jsp" method="post" role="form" class="form-inline" name="cartform">	
 				<input type="hidden" name="pnum" value="<%=product.getPnum()%>">
 				<input type="hidden" name="stock" value="<%=product.getStock()%>">
 				<table class="table table-hover table-condensed">
@@ -72,7 +87,7 @@
 					<tr>
 						<td></td>
 						<td></td>
-						<td align="right"><button class="btn btn-default" type="submit">장바구니 담기</button></td>
+						<td align="right"><button class="btn btn-default" type="submit" onclick="return cartcheck();">장바구니 담기</button></td>
 					</tr>			
 				</table>
 				</form>	
