@@ -15,6 +15,7 @@
 	
 </style>
 <body>
+<hr>
 <br><br><br>
 <footer>
 <br><br><br>
