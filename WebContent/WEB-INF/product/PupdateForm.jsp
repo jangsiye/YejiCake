@@ -16,6 +16,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+input[name="content"] {
+	height: 300px;
+}
+</style>
 <script type="text/javascript">
 		function formCheck(){
 			var id = document.myform.id.value;
@@ -61,14 +66,12 @@
 		</div>
 		<div class="panel-body">
 			<form action="PupdateTo.jsp" name="myform" method="post" class="form-horizontal" role="form">
-			<input type="hidden" name="mpoint" value="0">
-                
                 <div class="form-group">
                     <div class="col-sm-3">
                         <label class="control-label form-control-static">상품명</label>
                     </div>
                     <div class="col-sm-9">
-                        <input type="text" name="pname" id="pname" class="form-control" value="">
+                        <input type="text" name="pname" id="pname" class="form-control" value="<%=product.getPname()%>">
                     </div>
                 </div>
                 <div class="form-group">
@@ -76,7 +79,15 @@
                         <label class="control-label form-control-static">가격</label>
                     </div>
                     <div class="col-sm-9">
-                        <input type="text" name="price" id="price" class="form-control" value="">
+                        <input type="text" name="price" id="price" class="form-control" value="<%=product.getPrice()%>">
+                    </div>
+                </div>
+				<div class="form-group">
+                    <div class="col-sm-3">
+                        <label class="control-label form-control-static">재고</label>
+                    </div>
+                    <div class="col-sm-9">
+                        <input type="text" name="price" id="price" class="form-control" value="<%=product.getStock()%>">
                     </div>
                 </div>
                 <div class="form-group">
@@ -84,7 +95,7 @@
                         <label class="control-label form-control-static">소개</label>
                     </div>
                     <div class="col-sm-9">
-                        <input type="text" name="content" id="content" class="form-control" value="">
+                        <input type="text" name="content" id="content" class="form-control" value="<%=product.getContent()%>">
                     </div>
 				</div>
 				   <div class="form-group">
@@ -92,7 +103,7 @@
                         <label class="control-label form-control-static">적립 포인트</label>
                     </div>
                     <div class="col-sm-9">
-                        <input type="text" name="point" id="point" class="form-control" value="">
+                        <input type="text" name="point" id="point" class="form-control" value="<%=product.getPoint()%>">
                     </div>
 				</div>
 				<div class="form-group">
