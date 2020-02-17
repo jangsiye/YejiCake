@@ -4,11 +4,100 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="./../common/common.jsp" %>
+
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+<style type="text/css">
+
+<!--인기 상품 css -->
+.noth {
+	float : left;
+	margin : 50px;
+	width : 50px;
+	}
+
+.crown {
+    position: relative;
+    font-size: 40px;
+    color: rgb(247, 213, 65);
+    bottom:-90px;
+    left:-100px;
+}
+
+.box {
+	float : left;
+   margin: 70px;
+   width: 300px;
+}
+
+<!-- sns -->
+.sns {
+    padding: 10px;
+    margin: 30px 0;
+}
+.sns a {
+    margin: 10px;
+    color:rgb(50, 61, 77);
+    line-height: 50px;
+    font-size: 50px;
+}
+
+/*미술관 홍보동영상*/
+.player {
+    margin: 20px 100px;
+    padding: 30px 10px;
+}
+       
+.calendar td{
+            width: 40px;
+            height: 40px;
+            text-align: center;
+            font-size: 15px;
+            font-family: sans-serif;
+            border:2px ;
+        }
+       
+/*시계 css*/
+html {
+    margin-top: 25px;
+    font-size: 21px;
+    text-align: center;
+}
+
+clockbody {
+    width: 700px;
+    padding-top: 100px;
+    margin: 0 auto;
+    font-size: 12px;
+    color: #272727;
+    font-family: sans-serif;
+    font-size: 20px;
+}
+
+date {
+    width: 700px;
+    padding-top: 200px;
+    padding-left: 10px;
+    margin: 0 auto;
+    font-size: 12px;
+    color: #272727;
+    font-family: sans-serif;
+    font-size: 20px;
+}
+
+#txt {
+    font-family: sans-serif;
+    font-size: 60px;
+    color: #272727;
+} 
+       
+</style>
 
 <!-- 달력 -->
 <script type="text/javascript">
@@ -118,90 +207,15 @@
 	    }
 </script>
 
-<!-- sns css -->
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
-<style>
-
-.sns {
-    padding: 10px;
-    margin: 30px 0;
-}
-.sns a {
-    margin: 10px;
-    color:rgb(50, 61, 77);
-    line-height: 50px;
-    font-size: 50px;
-}
-
-/*미술관 홍보동영상*/
-.player {
-    margin: 20px 100px;
-    padding: 30px 10px;
-}
-       
-/*캘린더 css*/
-.calendar td{
-            width: 40px;
-            height: 40px;
-            text-align: center;
-            font-size: 12px;
-            font-family: sans-serif;
-            border:2px ; 
-        }
-
-/*시계 css*/
-html {
-    margin-top: 25px;
-    font-size: 21px;
-    text-align: center;
-}
-
-clockbody {
-    width: 700px;
-    padding-top: 100px;
-    margin: 0 auto;
-    font-size: 12px;
-    color: #272727;
-    font-family: sans-serif;
-    font-size: 20px;
-}
-
-date {
-    width: 700px;
-    padding-top: 200px;
-    padding-left: 10px;
-    margin: 0 auto;
-    font-size: 12px;
-    color: #272727;
-    font-family: sans-serif;
-    font-size: 20px;
-}
-
-#txt {
-    font-family: sans-serif;
-    font-size: 60px;
-    color: #272727;
-} 
-
-<!--인기 상품 css -->
-.box {
-   float:left;
-   margin: 30px;
-   width: 300%;
-}
-
-.crown {
-    position: relative;
-    font-size: 50px;
-    color: rgb(247, 213, 65);
-    bottom:-100px;
-    left:30px;
-}
-         
-</style>
+<%
+   ProductDao dao = new ProductDao();
+   Product product = new Product() ;
+   List<Product> lists = dao.SelectAll_Hit();
+   request.setAttribute("lists", lists) ;
+%>
 </head>
-
 <body>
+
 <!-- 메인 사진 슬라이드 -->
 <div class="container">
   <h2 align=>Carousel Example</h2>  
@@ -240,72 +254,64 @@ date {
   </div>
 </div>
 
-<br><br><br>
-<%
-   ProductDao dao = new ProductDao();
-   Product product = new Product() ;
-   List<Product> lists = dao.SelectAll_Hit();
-   request.setAttribute("lists", lists) ;
-%>
+<br><br><br><br><br>
 
 <!-- 인기 상품 목록 -->
 <div class="col-sm-offset-1 col-sm-10">
-   <div class="panel panel-default">
+      <div class="panel panel-default">
       <div class="panel-heading">
          <h2 class="panel-title">★이 달의 베스트 케이크★</h2>
       </div>
       <div class="panel-body col-sm-12">
       <!-- 베스트 케익 3개만 보여주기 -->
       <c:forEach var="i" begin="0" end="2">
-	      <div class="box">
+	      <div class="box" align="center">
 	      	 <p class="crown"><i class="fas fa-crown"></i></p>
-	         <p><img src="<%=contextPath%>/upload/${requestScope.lists[i].image}"></p>
+	         <p><img src="<%=contextPath%>/upload/${requestScope.lists[i].image}" width="100%"></p>
 	         <p>
 	            <a href="PdetailView.jsp?pnum=${requestScope.lists[i].pnum}">
 	               ${requestScope.lists[i].pname}
 	            </a>
 	         </p>
-	         <p>${requestScope.lists[i].price}</p>
+	         <p>${requestScope.lists[i].price}won</p>
 	         <p><i class="far fa-eye"></i> ${requestScope.lists[i].hit}</p>
 	       </div>
       </c:forEach>
-      <a href="<%=contextPath%>/product/Plist.jsp">▶더 많은 케이크 보기 Go~</a>
-      <br>
-      <br>
       </div>
       </div>
-   </div>
-
+         <a href="<%=contextPath%>/product/Plist.jsp">▶더 많은 케이크 보기 Go~</a>
+               <br><br><br><br><br>
+      </div>
+      
 <!-- 캘린더 -->
-<div class="calendar">
-    <p></p>
-    <h3 align="center"></h3>
-<table id="calendar" align="center" >
+<div class="calendar" align="center">
+<table id="calendar">
     <tr>
         <td><label onclick="prevCalendar()"><</label></td>
         <td align="center" id="tbCalendarYM" colspan="5">
         yyyy년 m월</td>
         <td><label onclick="nextCalendar()">>
-            
         </label></td>
     </tr>
     <tr>
-        <td align="center"><font color ="red">Sun</td>
-        <td align="center">Mon</td>
-        <td align="center">Tue</td>
-        <td align="center">Wed</td>
-        <td align="center">Thu</td>
-        <td align="center">Fri</td>
-        <td align="center"><font color ="blue">Sat</td>
+        <td align="center"><font color ="red">Sun </td>
+        <td align="center">Mon </td>
+        <td align="center">Tue </td>
+        <td align="center">Wed </td>
+        <td align="center">Thu </td>
+        <td align="center">Fri </td>
+        <td align="center"><font color ="blue">Sat </td>
     </tr> 
 </table>
 <script language="javascript" type="text/javascript">
     buildCalendar();//
 </script>
-</div>
-<br>
-<br>
 
+</div>
+
+<br>
+<br>
+<br>
 
 <!-- 시계 -->
         <div class="clock">
