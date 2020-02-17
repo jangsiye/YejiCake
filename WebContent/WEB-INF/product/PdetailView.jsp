@@ -81,7 +81,8 @@
 					<tr>
 						<td></td>
 						<td>요청사항</td>
-						<td><input type="text" placeholder="레터링을 적어주세요" class="form-control" name="remark"><br></td>
+						<td>※ 레터링은 주문 당 한 번만 서비스로 제공해드리고 있습니다. 여러번 적으신 경우, 가장 마지막 주문에 적어주신 레터링으로 자동선택됩니다.<br>
+						<input type="text" placeholder="레터링을 적어주세요" class="form-control" name="remark"><br></td>
 					</tr>	
 						
 					<tr>
