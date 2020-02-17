@@ -39,6 +39,7 @@
 		border-radius: 0 25px 25px 0;
 		padding: 8px 12px 8px 12px;
     }
+    
 </style>
 </head>
 <body>
@@ -52,7 +53,7 @@
 		</div>
 		
 		<!-- 검색 기능 -->
-		<div class='search'>
+		<div class="search">
 			<form method='GET' action='Plist.jsp'>
 				<select class="selectpicker" name='col'> 
 					<option value='all'>전체</option>
@@ -63,7 +64,7 @@
 				<button type='submit'>검색</button>
 			</form>
 		</div>
-				
+		
 		<div class="container">
 			<br>
 			<ul class="nav nav-tabs col-sm-10">
@@ -76,19 +77,16 @@
 
 				<div id="cake" class="tab-pane fade in active">
 				<h3>맛있는 케이크야</h3>
-				<c:forEach var="product" items="${requestScope.lists}" >
+				<c:forEach var="product" items="${requestScope.lists}" >				
 				<c:choose>
 				<c:when test="${product.category eq 1}">
-					<div class="box">
-						<p><img src="<%=contextPath%>/upload/${product.image}" width="100%"/></p>
-						<p>
-							<a href="PdetailView.jsp?pnum=${product.pnum}">
-								${product.pname}
-							</a>
-						</p>
+
+					<a href="PdetailView.jsp?pnum=${product.pnum}"><div class="box">
+						<p><img src="<%=contextPath%>/upload/${product.image}" width="300px" height="300px"/></p>
+						<p>${product.pname}</p>
 						<p>${product.price}Won</p>
 						<p><i class="far fa-eye"></i> ${product.hit}</p>
-					</div>
+					</div></a>
 				</c:when>
 				</c:choose>
 				</c:forEach>
@@ -99,16 +97,12 @@
 				<c:forEach var="product" items="${requestScope.lists}" >
 				<c:choose>
 				<c:when test="${product.category eq 2}">
-					<div class="box">
-						<p><img src="<%=contextPath%>/upload/${product.image}" width="100%"/></p>
-						<p>
-							<a href="PdetailView.jsp?pnum=${product.pnum}">
-								${product.pname}
-							</a>
-						</p>
-						<p>${product.price}</p>
+					<a href="PdetailView.jsp?pnum=${product.pnum}"><div class="box">
+						<p><img src="<%=contextPath%>/upload/${product.image}" width="300px" height="300px"/></p>
+						<p>${product.pname}</p>
+						<p>${product.price}Won</p>
 						<p><i class="far fa-eye"></i> ${product.hit}</p>
-					</div>
+					</div></a>
 				</c:when>
 				</c:choose>
 				</c:forEach>
@@ -119,16 +113,12 @@
 				<c:forEach var="product" items="${requestScope.lists}" >
 				<c:choose>
 				<c:when test="${product.category eq 3}">
-					<div class="box">
-						<p><img src="<%=contextPath%>/upload/${product.image}" width="100%"/></p>
-						<p>
-							<a href="PdetailView.jsp?pnum=${product.pnum}">
-								${product.pname}
-							</a>
-						</p>
-						<p>${product.price}</p>
+					<a href="PdetailView.jsp?pnum=${product.pnum}"><div class="box">
+						<p><img src="<%=contextPath%>/upload/${product.image}" width="300px" height="300px"/></p>
+						<p>${product.pname}</p>
+						<p>${product.price}Won</p>
 						<p><i class="far fa-eye"></i> ${product.hit}</p>
-					</div>
+					</div></a>
 				</c:when>
 				</c:choose>
 				</c:forEach>
