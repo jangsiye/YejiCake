@@ -109,6 +109,7 @@
 		</div>
 		<!-- end panel-body -->
 	</div>
+	<%@include file="./../common/footer.jsp %>
 </div>
 
 </body>
