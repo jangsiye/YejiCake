@@ -60,7 +60,11 @@
 	        }).open();
 	    }
 	</script>
-	
+	<!-- 핸드폰 번호 하이픈 자동입력 -->
+	<script type="text/javascript">
+		$(document).on("keyup", ".phoneNumber", function() { $(this).val( $(this).val().replace(/[^0-9]/g, "")
+				.replace(/(^02|^0505|^1[0-9]{3}|^0[0-9]{2})([0-9]+)?([0-9]{4})/,"$1-$2-$3").replace("--", "-") ); });
+	</script>
 </head>
 <body>
 <div class="col-sm-offset-2 col-sm-8">
@@ -104,7 +108,7 @@
                         <label class="control-label form-control-static">핸드폰 번호</label>
                     </div>
                     <div class="col-sm-9">
-                        <input type="text" name="phone" id="phone" class="form-control" value = "010-0000-0000">
+                        <input type="text" name="phone" id="phone" class="form-control phoneNumber">
                     </div>
                 </div>
                 <div class="form-group">
