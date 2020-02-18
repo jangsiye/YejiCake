@@ -32,12 +32,12 @@
 </head>
 <body>
 
-<h3>게시물 작성 페이지입니다</h3>
+<h4>문의글 작성 페이지입니다</h4>
 
 <div class="col-sm-offset-2 col-sm-8">
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<h2 class="panel-title">게시글 작성</h2>
+			<h2 class="panel-title">문의하기</h2>
 		</div>
 		<form action="BinsertTo.jsp" method="post"  class="form-horizontal" role="form" name="boardform">
 			<div class="panel-body">
@@ -50,11 +50,14 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <div class="col-sm-3">
-                        <label class="control-label form-control-static">글쓴이</label>
-                    </div>
-                    <div class="col-sm-9">
-                        <input type="text" name="writer" id="writer" value="<%=bean.getMid()%>" class="form-control">
+                	<div class="col-sm-3">
+                		<label class="control-label form-control-static">글쓴이</label>
+                	</div>
+                	<div class="col-sm-9">
+                        <input type="text" name="fakewriter" id="fakewriter" 
+                        disabled="disabled"
+                        class="form-control" value = "<%=bean.getMid()%>">
+                        <input type="hidden" name="writer" id="writer" value ="<%=bean.getMid()%>">
                     </div>
                 </div>
                 <div class="form-group">
@@ -70,7 +73,7 @@
                         <label class="control-label form-control-static">내용</label>
                     </div>
                     <div class="col-sm-9">
-                        <input type="text" name="content" id="content" value="어쩌구저쩌구" class="form-control">
+                        <input type="text" name="content" id="content" value="문의합니다." class="form-control">
                     </div>
                 </div>
 			</div>
@@ -80,6 +83,7 @@
 			</div>
 		</form>
 	</div>
+<%@include file="./../common/footer.jsp" %>
 </div>
 
 </body>
