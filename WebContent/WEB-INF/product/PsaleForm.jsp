@@ -124,8 +124,8 @@
 
     <div class="col">
         <div class="table">
-            <h2>Black Pakage</h2>
-            <div class="pop">Popula</div>
+            <h2>Black Package</h2>
+            <div class="pop">Popular</div>
             <div class="price">
                 7000원 할인
                 <span>할인가 : 37000원 -> 30000원</span>
@@ -166,7 +166,7 @@
 
     <div class="col">
         <div class="table">
-            <h2>Fruit Pakage</h2>
+            <h2>Fruit Package</h2>
             <div class="price">
                 5000원 할인
                 <span>할인가 : 34100원 -> 29100원</span>
@@ -203,7 +203,7 @@
     
 	<div class="col">
 	    <div class="table">
-	        <h2>Macaron Pakage</h2>
+	        <h2>Macaron Package</h2>
 	        <div class="price">
 	            3000원 할인
 	            <span>할인가 : 20000원 -> 17000원</span>
