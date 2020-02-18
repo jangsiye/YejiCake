@@ -32,6 +32,12 @@ public class MyCartList {
 		this.AddOrder(key, stock, remark);
 	}
 	
+		
+	//레터링 수정
+	public void EditRemark(String remark) {
+		this.remark=remark;
+	}
+	
 	//구매 목록에서 삭제
 	public void DeleteOrder(int key) {
 		orderlists.remove(key);	// remove(key) : map에서 뺄 때
