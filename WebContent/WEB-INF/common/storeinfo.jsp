@@ -13,7 +13,7 @@
 	}
 	
 	.morecake {
-		text-align: right;
+		text-align: center;
 	}
 	
 	.calendar td{
@@ -42,7 +42,7 @@
 				
 				<hr>
 				<!-- 여기는 그냥 링크 -->
-				<li><a href="<%=contextPath%>/common/storemap/jsp">찾아오시는 길</a></li>
+				<li><a href="<%=contextPath%>/common/storemap.jsp">찾아오시는 길</a></li>
 				<li><a href="<%=contextPath%>/board/Blist.jsp">Q&A</a></li>
 
 				<li class="dropdown"><a class="dropdown-toggle"
@@ -83,8 +83,6 @@
 			<div id="section1">
 				<h1> 예지케잌을 소개합니다. </h1>
 				<p><img src="<%=contextPath%>/upload/storeinfo.JPG" alt="사진을 불러올 수 없어요"></p>
-				<p><img src="/upload/storeinfo.JPG" alt="사진을 불러올 수 없어요"></p>
-				<p><img src="storeinfo.JPG" width="80%" alt="사진을 불러올 수 없어요"></p>
 				<p>케이크를 사랑하는 사람들이 모여 만든 가게 입니다.</p>
 				<p>맛있는 수제 케이크를 만들어드려요!</p>
 				<p>원하시면 레터링도 가능하답니다.</p>
@@ -206,6 +204,11 @@
 			</div>
 		</div>
 	</div>
+</div>
+
+<!-- footer  -->
+<div>
+<%@include file="./../common/footer.jsp" %>
 </div>
 </body>
 </html>
