@@ -306,6 +306,9 @@ date {
 <script language="javascript" type="text/javascript">
     buildCalendar();//
 </script>
+    <br>
+    <br>
+<a href="<%=contextPath%>/common/storeinfo.jsp">☞  예지케잌 신상품 및 추가 입고 일정 보기  ☜</a>
 
 </div>
 
