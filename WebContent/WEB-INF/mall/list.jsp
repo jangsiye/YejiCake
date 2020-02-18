@@ -25,6 +25,7 @@
 <body>
 <%
 	request.setCharacterEncoding("UTF-8");
+
 	//★ remark는 getter로 불러옴
 	String remark = mycart.getRemark();
 
@@ -126,7 +127,18 @@
 				</c:forEach>
 				<tr class="header">
 					<td colspan="8"  align="center">
-						※ 레터링 문구를 확인해주세요 : 《   <%=remark%>   》
+						※ 레터링 문구를 확인해주세요 : 《   <%=remark%>  》
+						<form action="updateToremark.jsp">
+							<div class="form-group">
+			                    <div class="col-sm-offset-4 col-sm-3">
+			                	    <input type="text" name="remark" value="<%=remark%>" class="form-control">
+			                    </div>
+			                    <div class="col-sm-1">
+			                	    <input type="submit" value="수정" class="btn btn-default">
+			                    </div>
+			                </div>
+						</form>
+				
 					</td>
 				</tr>
 				<tr class="header">
