@@ -305,6 +305,11 @@ p > img {
 							</c:if>
 						</li>
 						<li>
+							<c:if test="${whologin != 0}">	<!-- 로그인 한 사람만 할인 상품 볼 수 있음 -->
+								<a href="<%=contextPath%>/product/PsaleForm.jsp">패키지 할인 상품 보기</a>
+							</c:if>
+						</li>
+						<li>
 							<a href="<%=contextPath%>/product/Plist.jsp">상품 목록 보기</a>
 						</li>						
 					</ul>
