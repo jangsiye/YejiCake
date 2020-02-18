@@ -42,56 +42,47 @@
 						<th>글번호</th>
 						<th>제목</th>
 						<th>글쓴이</th>
-					<%if(whologin==2){%>
-						<th>비번</th>
-					<%} %>
-						<th>글내용</th>
 						<th>작성일자</th>
 					</tr>				
 				</thead>
 				<% if(lists.size()==0) { %>
 					<tr>
-						<td colspan="6">
+						<td colspan="4">
 							찾으시는 데이터가 존재하지 않습니다.
 						</td>
 					</tr>
 				<% } else {%>
 					<% for(Board board : lists) {%>
 					
-						<% if(whologin==2) {	//관리자면 모두 상세보기 가능. 비밀먼호도 볼 수 있음. %>
+						<% if(whologin==2) {	//관리자면 모두 상세보기 가능. %>
 							<tr onclick="location.href='<%=contextPath%>/board/BdetailView.jsp?no=<%=board.getNo()%>'">
 								<td><%=board.getNo()%></td>
 								<td><c:forEach begin="1" end="<%= board.getDepth() %>">-</c:forEach><%=board.getSubject()%></td>
 								<td><%=board.getWriter()%></td>
-								<td><%=board.getPassword()%></td>
-								<td><%=board.getContent()%></td>
 								<td><%=board.getRegdate()%></td>
 							</tr>
+							
 						<% } else if (whologin==1){ %>
 								<% if(bean.getMid().equals(board.getWriter())) {	//글작성자는 자기 글 상세보기 가능	%>
 								<tr onclick="location.href='<%=contextPath%>/board/BdetailView.jsp?no=<%=board.getNo()%>'">
 									<td><%=board.getNo()%></td>
 									<td><c:forEach begin="1" end="<%= board.getDepth() %>">-</c:forEach><%=board.getSubject()%></td>
-									<td><%=board.getWriter()%></td>
-									<td><%=board.getPassword()%></td>
-									<td><%=board.getContent()%></td>
-									<td><%=board.getRegdate()%></td>
+									<td><%=board.getWriter()%></td><td><%=board.getRegdate()%></td>
 								</tr>
+								
 								<%} else if(board.getWriter().equals("admin")) { 	//자기 글 아니더라도 관리자 답글은 누구나 볼 수 있음	%>
 									<tr onclick="location.href='<%=contextPath%>/board/BdetailView.jsp?no=<%=board.getNo()%>'">
 									<td><%=board.getNo()%></td>
 									<td><c:forEach begin="1" end="<%= board.getDepth() %>">-</c:forEach><%=board.getSubject()%></td>
 									<td><%=board.getWriter()%></td>
-									<td><%=board.getPassword()%></td>
-									<td><%=board.getContent()%></td>
 									<td><%=board.getRegdate()%></td>
 								</tr>
+								
 								<%} else {	//로그인했지만 글작성자가 아닌 경우 상세보기 불가	%>
 								<tr>
 									<td><%=board.getNo()%></td>
 									<td><c:forEach begin="1" end="<%= board.getDepth() %>">-</c:forEach><%=board.getSubject()%></td>
 									<td><%=board.getWriter()%></td>
-									<td><%=board.getContent()%></td>
 									<td><%=board.getRegdate()%></td>
 								</tr>
 								<%} %>
@@ -100,20 +91,27 @@
 								<td><%=board.getNo()%></td>
 								<td><c:forEach begin="1" end="<%= board.getDepth() %>">-</c:forEach><%=board.getSubject()%></td>
 								<td><%=board.getWriter()%></td>
-								<td><%=board.getContent()%></td>
 								<td><%=board.getRegdate()%></td>
 							</tr>
 						<% }%>
 						
 					<% }	//for 닫기%>
 				<% }%>
+			
 			</table>
+			<tr>
+					<td align="right">
+						<a href="<%=contextPath%>/board/BinsertForm.jsp" class="btn btn-default">문의하기</a>
+					</td>
+				</tr>
 		</div>
         <div class="panel-footer" align="center">
 			<%= pageInfo.getPagingHtml() %>
 		</div>
+			
 	</div>
+	<%@include file="./../common/footer.jsp" %>
 </div>
-
 </body>
+
 </html>
