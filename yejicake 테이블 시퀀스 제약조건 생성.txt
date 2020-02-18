@@ -9,11 +9,13 @@ create table orders (
 );
 
 create table orderdetails (
-    oid number primary key,
+    oid number,
     pnum number,
     qty number,
     remark varchar(255)
 );
+
+alter table orderdetails drop primary key ;
 
 create table members (
     mid varchar(255) primary key,
@@ -40,7 +42,7 @@ create table products (
 );
 
 alter table products add(category number);
-alter table products add(img2 varchar(255));
+alter table products add(image2 varchar(255));
 
 create table boards (
     no number primary key,
@@ -79,4 +81,51 @@ alter table boards
 add constraint boards_writer_fk
 foreign key(writer) references members(mid)
 on delete cascade;
+------------------------------------------------------------
+
+-- 시퀀스 에러나서 삭제하고 다시 생성해줌
+drop sequence seqoid;
+create sequence seqoid start with 10;
+
+commit;
+
+select * from products;
+
+------------------------------------------------------------
+
+--벌크로딩을 위한 준비
+--기존 데이터 다 삭제해주기
+delete from products;
+delete from orders;
+delete from orderdetails;
+commit;
+
+insert into products values(3,'더치 솔티드 카라멜 케이크',26000,	26,'부드럽고 촉촉한 초콜릿 시트와 카라멜 생크림 사이사이, 솔티드 카라멜 크런치펄과 로스티드 월넛을 듬뿍 넣은 케이크','caramel1.JPG',0,20,1,'caramel2.JPG');
+insert into products values(5,'믹스베리 초콜릿 생크림	',25000,25,'한가득 올린 믹스베리, 크런치 초코볼이 초코 생크림 사이사이 씹히는 케이크','mixberry1.JPG',0,15,1,'mixberry2.JPG');
+insert into products values(6,'마스카포네 생크림',27000,27,'신선한 자몽, 오렌지, 라즈베리와 부드러운 마스카포네 생크림이 어우러져 상큼하게 즐길 수 있는 케이크','orange1.JPG',0,15,1,'orange2.JPG');
+insert into products values(8,'트리플 초콜릿 무스',28000,28,'다크, 밀크, 화이트 세 가지 초콜릿을 한 번에 즐길 수 있는 무스 케이크','choco3.JPG',0,20,1,'choco4.JPG');
+
+commit;
+
+select * from seq;
+select SEQOID.nextval from dual;
+ccommit;
+
+--패키지 상품 : 카테고리는 4로 설정하여 Plist에 나타나지 않게 한다
+insert into products values(22,'블랙 패키지',37000,37,'블랙 패키지 입니다.','blackpakage.JPG',0,20,4,null);
+insert into products values(23,'프룻 패키지',34100,34,'프룻 패지키 입니다.','fruitpakage.JPG',0,20,4,null);
+insert into products values(24,'마카롱 패키지',20000,	20,'프룻 패지키 입니다.','macaronpakage.JPG',0,20,4,null);
+
+--할인쿠폰 : 카테고리는 5로 설정하여 Plist에 나타나지 않게 한다
+insert into products values(25,'7000원 할인쿠폰',-7000,0,'7000원 할인이 적용되었습니다.','salecoupon.JPG',0,20,5,null);
+insert into products values(26,'5000원 할인쿠폰',-5000,0,'5000원 할인이 적용되었습니다.','salecoupon.JPG',0,20,5,null);
+insert into products values(27,'3000원 할인쿠폰',-3000,0,'3000원 할인이 적용되었습니다.','salecoupon.JPG',0,20,5,null);
+
+commit;
+
+--기본 데이터 27개 넣고, product의 시퀀스 넘버는 28부터 시작
+drop sequence seqpnum;
+create sequence seqpnum start with 28;
+
+commit;
 
