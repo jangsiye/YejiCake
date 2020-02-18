@@ -24,6 +24,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+
+.sale {
+	display:none;
+}
+</style>
 </head>
 <body>
 	<div class="container col-md-offset-<%=2%> col-md-<%=8%>">
@@ -130,11 +136,33 @@
 								<td class="text-center gr"><strong>주문일</strong></td>
 								<td>${order.orderdate}</td>
 							</tr>
+							<% 
+								//※ jsp변수를 jstl변수로 바꿔주기!
+								int saleprice = 0;
+								pageContext.setAttribute("saleprice", saleprice);
+							%>
 							<tr>
 								<td class="text-center gr"><strong>주문 총액</strong></td>
-								<td><fmt:formatNumber value="${finalAmount}" pattern="###,###"/> 원</td>
+								<td><fmt:formatNumber value="${totalAmount}" pattern="###,###"/> 원</td>
 								<td class="text-center gr"><strong>할인 금액</strong></td>
-								<td>0원</td>
+								<td>
+								<div class="sale">
+									<c:forEach items="${requestScope.lists}" var="shopinfo">
+										<c:choose>
+											<c:when test="${shopinfo.pnum==25}">
+												${saleprice = saleprice + shopinfo.price}
+											</c:when>
+											<c:when test="${shopinfo.pnum==26}">
+												${saleprice = saleprice + shopinfo.price}
+											</c:when> 
+											<c:when test="${shopinfo.pnum==27}">
+												${saleprice = saleprice + shopinfo.price}
+											</c:when> 
+										</c:choose>
+									</c:forEach>
+								</div>
+								<fmt:formatNumber value="${saleprice}" pattern="##,###,###"/>원
+								</td>
 							</tr>
 							<tr>
 								<td class="text-center gr"><strong>결제 금액</strong></td>
