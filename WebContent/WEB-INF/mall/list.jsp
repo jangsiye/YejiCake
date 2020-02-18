@@ -7,6 +7,7 @@
 <%@page import="java.util.Map"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="./../common/common.jsp"%>
 
 <!DOCTYPE html>
@@ -14,11 +15,16 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+
+.sale {
+	display:none;
+}
+</style>
 </head>
 <body>
 <%
 	request.setCharacterEncoding("UTF-8");
-
 	//★ remark는 getter로 불러옴
 	String remark = mycart.getRemark();
 
@@ -36,7 +42,6 @@
 		int totalAmount = 0;	//총 금액
 		int totalPoint = 0;		//총 포인트
 
-		
 		for(Integer pnum : keylist) {
 			//★ qty는 GetAllOrderLists()메소드로 불러오고
 			Integer qty = maplists.get(pnum);
@@ -64,10 +69,7 @@
 			
 			shoplists.add(shopInfo);
 		}	//for 끝
-					
-		//총 금액에서 할인금액 빼주기
-		totalAmount -= totalSale;
-		
+
 		//어디서든 사용할 수 있게, 세션에 쇼핑리스트, 총금액, 총포인트 저장하기
 		session.setAttribute("shoplists", shoplists);
 		session.setAttribute("totalAmount", totalAmount);
@@ -134,8 +136,30 @@
 						<a href="./../product/Plist.jsp">추가 주문</a>
 					</td>
 					<td colspan="4"  align="center">
-						<%-- 할인 금액 : <fmt:formatNumber value="${sessionScope.totalSale}" pattern="##,###,###"/>원 --%>
-						할인 금액 : <fmt:formatNumber value="<%=totalSale%>" pattern="##,###,###"/>원
+						<% 
+							//※ jsp변수를 jstl변수로 바꿔주기!
+							int saleprice = 0;
+							pageContext.setAttribute("saleprice", saleprice);
+						%>
+						<strong>할인 금액 : </strong>
+						<div class="sale">
+							<c:if test="${not empty sessionScope.shoplists}">
+								<c:forEach items="${sessionScope.shoplists}" var="shopinfo">
+									<c:choose>
+										<c:when test="${shopinfo.pnum==25}">
+											${saleprice = saleprice + shopinfo.price}
+										</c:when>
+										<c:when test="${shopinfo.pnum==26}">
+											${saleprice = saleprice + shopinfo.price}
+										</c:when> 
+										<c:when test="${shopinfo.pnum==27}">
+											${saleprice = saleprice + shopinfo.price}
+										</c:when> 
+									</c:choose>
+								</c:forEach>
+							</c:if>
+						</div>
+						<fmt:formatNumber value="${saleprice}" pattern="##,###,###"/>원
 						&nbsp;&nbsp;
 						총 금액 : <fmt:formatNumber value="${sessionScope.totalAmount}" pattern="##,###,###"/>원
 						&nbsp;&nbsp;
@@ -143,9 +167,6 @@
 					</td>
 				</tr>
 			</table>
-		</div>
-        <div class="panel-footer" align="center">
-			footer
 		</div>
 	</div>
 </div>
