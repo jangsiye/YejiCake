@@ -32,8 +32,12 @@
 
 .box {
 	float : left;
-   margin: 70px;
-   width: 300px;
+	margin: 10px;
+	width: 300px;
+}
+
+.panel-heading {
+	color: blue;
 }
 
 <!-- sns -->
@@ -218,7 +222,6 @@ date {
 
 <!-- 메인 사진 슬라이드 -->
 <div class="container">
-  <h2 align=>Carousel Example</h2>  
   <div id="myCarousel" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
     <ol class="carousel-indicators">
@@ -265,17 +268,15 @@ date {
       <div class="panel-body col-sm-12">
       <!-- 베스트 케익 3개만 보여주기 -->
       <c:forEach var="i" begin="0" end="2">
-	      <div class="box" align="center">
-	      	 <p class="crown"><i class="fas fa-crown"></i></p>
-	         <p><img src="<%=contextPath%>/upload/${requestScope.lists[i].image}" width="100%"></p>
-	         <p>
-	            <a href="PdetailView.jsp?pnum=${requestScope.lists[i].pnum}">
-	               ${requestScope.lists[i].pname}
-	            </a>
-	         </p>
-	         <p>${requestScope.lists[i].price}won</p>
-	         <p><i class="far fa-eye"></i> ${requestScope.lists[i].hit}</p>
-	       </div>
+	      <a href="./../product/PdetailView.jsp?pnum=${requestScope.lists[i].pnum}">
+		      <div class="box" align="center">
+		      	 <p class="crown"><i class="fas fa-crown"></i></p>
+		         <p><img src="<%=contextPath%>/upload/${requestScope.lists[i].image}" width="100%"></p>
+		         <p>${requestScope.lists[i].pname}</p>
+		         <p>${requestScope.lists[i].price}won</p>
+		         <p><i class="far fa-eye"></i> ${requestScope.lists[i].hit}</p>
+		      </div>
+		  </a>
       </c:forEach>
       </div>
       </div>
@@ -285,6 +286,7 @@ date {
       
 <!-- 캘린더 -->
 <div class="calendar" align="center">
+
 <table id="calendar">
     <tr>
         <td><label onclick="prevCalendar()"><</label></td>
@@ -308,7 +310,7 @@ date {
 </script>
     <br>
     <br>
-<a href="<%=contextPath%>/common/storeinfo.jsp">☞  예지케잌 신상품 및 추가 입고 일정 보기  ☜</a>
+<a href="<%=contextPath%>/common/storeinfo.jsp#section2">☞  예지케잌 신상품 및 추가 입고 일정 보기  ☜</a>
 
 </div>
 
@@ -340,6 +342,9 @@ date {
   <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
 </div>
 
-
+<!-- footer  -->
+<div>
+<%@include file="./../common/footer.jsp" %>
+</div>
 </body>
 </html>
