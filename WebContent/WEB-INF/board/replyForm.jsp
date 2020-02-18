@@ -45,8 +45,11 @@
                     <div class="col-sm-3">
                         <label class="control-label form-control-static">글쓴이</label>
                     </div>
-                    <div class="col-sm-9">
-                        <input type="text" name="writer" id="writer" value="<%=bean.getMid()%>" class="form-control">
+					<div class="col-sm-9">
+                        <input type="text" name="fakewriter" id="fakewriter" 
+                        disabled="disabled"
+                        class="form-control" value = "<%=bean.getMid()%>">
+                        <input type="hidden" name="writer" id="writer" value ="<%=bean.getMid()%>">
                     </div>
                 </div>               
                 <div class="form-group">
