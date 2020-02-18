@@ -69,6 +69,7 @@
 				<p>${product.hit}명이나 이 케이크를 살펴봤습니다!</p>
 
 				<br><br>
+				<% if (whologin != 0){ 	//미로그인자는 폼 자체가 안 보임		%>
 				<form action="./../mall/insert.jsp" method="post" role="form" class="form-inline" name="cartform">	
 				<input type="hidden" name="pnum" value="<%=product.getPnum()%>">
 				<input type="hidden" name="stock" value="<%=product.getStock()%>">
@@ -88,10 +89,13 @@
 					<tr>
 						<td></td>
 						<td></td>
+						
 						<td align="right"><button class="btn btn-default" type="submit" onclick="return cartcheck();">장바구니 담기</button></td>
+						
 					</tr>			
 				</table>
 				</form>	
+				<%} %>
 			</div>
 
 			<hr>
@@ -109,7 +113,6 @@
 		</div>
 		<!-- end panel-body -->
 	</div>
-	<%@include file="./../common/footer.jsp %>
 </div>
 
 </body>
