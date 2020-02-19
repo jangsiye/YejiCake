@@ -36,7 +36,13 @@
 				return false ;
 			}
 		}
-	</script>	
+	</script>
+	
+	<style type="text/css">
+	.footer {
+		clear:both;
+	}
+	</style>	
 </head>
 <body>
 <div class="col-sm-offset-2 col-sm-8">
@@ -104,11 +110,17 @@
                     			초기화
                     		</b>
                     	</button>
+                    	<a href="<%=contextPath%>/member/MdetailView.jsp?mid=<%=member.getMid() %>" onclick="return confirm('수정을 취소하시겠습니까? 내 정보 보기로 돌아갑니다.')" class="btn btn-default">돌아가기</a>
                     </div>
                 </div>
             </form>
 		</div>
 	</div>
+</div>
+
+<!-- footer  -->
+<div class="footer">
+<%@include file="./../common/footer.jsp" %>
 </div>
 </body>
 </html>
