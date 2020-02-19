@@ -80,9 +80,10 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <style>
   body {
-    font: 400 15px Lato, sans-serif;
-    line-height: 1.8;
-    color: #818181;
+	font: 400 15px Lato, sans-serif;
+	line-height: 1.8;
+	color: #818181;
+	font-family: Montserrat, sans-serif;
   }
   h2 {
     font-size: 24px;
