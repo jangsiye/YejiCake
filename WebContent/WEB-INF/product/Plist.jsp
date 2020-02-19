@@ -40,6 +40,11 @@
 		padding: 8px 12px 8px 12px;
     }
     
+
+	.footer {
+		clear:both;
+	}
+
 </style>
 </head>
 <body>
@@ -81,12 +86,23 @@
 				<c:choose>
 				<c:when test="${product.category eq 1}">
 
-					<a href="PdetailView.jsp?pnum=${product.pnum}"><div class="box">
+					<div class="box">
+					<a href="PdetailView.jsp?pnum=${product.pnum}">
 						<p><img src="<%=contextPath%>/upload/${product.image}" width="300px" height="300px"/></p>
 						<p>${product.pname}</p>
 						<p>${product.price}Won</p>
 						<p><i class="far fa-eye"></i> ${product.hit}</p>
-					</div></a>
+					</a>
+					<!-- 태그를 검색어로 넘겨줌 -->
+					<c:if test="${not empty product.tag1 || not empty product.tag2 || not empty product.tag3}">
+					<form method='GET' action='Plist.jsp'>
+						<input type="hidden" name="col" value="stag">
+						<button type='submit' class="btn btn-link" name='word' value='${product.tag1}'>${product.tag1}</button>
+						<button type='submit' class="btn btn-link" name='word' value='${product.tag2}'>${product.tag2}</button>
+						<button type='submit' class="btn btn-link" name='word' value='${product.tag3}'>${product.tag3}</button>
+					</form>
+					</c:if>
+					</div>
 				</c:when>
 				</c:choose>
 				</c:forEach>
@@ -97,12 +113,23 @@
 				<c:forEach var="product" items="${requestScope.lists}" >
 				<c:choose>
 				<c:when test="${product.category eq 2}">
-					<a href="PdetailView.jsp?pnum=${product.pnum}"><div class="box">
+					<div class="box">
+					<a href="PdetailView.jsp?pnum=${product.pnum}">
 						<p><img src="<%=contextPath%>/upload/${product.image}" width="300px" height="300px"/></p>
 						<p>${product.pname}</p>
 						<p>${product.price}Won</p>
 						<p><i class="far fa-eye"></i> ${product.hit}</p>
-					</div></a>
+					</a>
+					<!-- 태그를 검색어로 넘겨줌 -->
+					<c:if test="${not empty product.tag1 || not empty product.tag2 || not empty product.tag3}">
+					<form method='GET' action='Plist.jsp'>
+						<input type="hidden" name="col" value="stag">
+						<button type='submit' class="btn btn-link" name='word' value='${product.tag1}'>${product.tag1}</button>
+						<button type='submit' class="btn btn-link" name='word' value='${product.tag2}'>${product.tag2}</button>
+						<button type='submit' class="btn btn-link" name='word' value='${product.tag3}'>${product.tag3}</button>
+					</form>
+					</c:if>
+					</div>
 				</c:when>
 				</c:choose>
 				</c:forEach>
@@ -113,12 +140,23 @@
 				<c:forEach var="product" items="${requestScope.lists}" >
 				<c:choose>
 				<c:when test="${product.category eq 3}">
-					<a href="PdetailView.jsp?pnum=${product.pnum}"><div class="box">
+					<div class="box">
+					<a href="PdetailView.jsp?pnum=${product.pnum}">
 						<p><img src="<%=contextPath%>/upload/${product.image}" width="300px" height="300px"/></p>
 						<p>${product.pname}</p>
 						<p>${product.price}Won</p>
 						<p><i class="far fa-eye"></i> ${product.hit}</p>
-					</div></a>
+					</a>
+					<!-- 태그를 검색어로 넘겨줌 -->
+					<c:if test="${not empty product.tag1 || not empty product.tag2 || not empty product.tag3}">
+					<form method='GET' action='Plist.jsp'>
+						<input type="hidden" name="col" value="stag">
+						<button type='submit' class="btn btn-link" name='word' value='${product.tag1}'>${product.tag1}</button>
+						<button type='submit' class="btn btn-link" name='word' value='${product.tag2}'>${product.tag2}</button>
+						<button type='submit' class="btn btn-link" name='word' value='${product.tag3}'>${product.tag3}</button>
+					</form>
+					</c:if>
+					</div>
 				</c:when>
 				</c:choose>
 				</c:forEach>
@@ -126,11 +164,12 @@
 
 			</div>
 		</div>
+	</div>
+	</div>
 
-       	<div class="panel-footer">
-		하단
-		</div>
-	</div>
-	</div>
+<!-- footer  -->
+<div class="footer">
+<%@include file="./../common/footer.jsp" %>
+</div>
 </body>
 </html>
