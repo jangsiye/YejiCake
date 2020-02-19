@@ -55,6 +55,10 @@ create table products (
 alter table products add(category number);
 alter table products add(image2 varchar(255));
 
+alter table products add(tag1 varchar(255));
+alter table products add(tag2 varchar(255));
+alter table products add(tag3 varchar(255));
+
 create table boards (
     no number primary key,
     subject varchar2(100),
