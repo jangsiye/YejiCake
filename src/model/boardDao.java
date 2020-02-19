@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BoardDao extends SuperDao {
+
 	public int ReplyData(Board bean) {
 		Connection conn = null;
 		PreparedStatement pstmt1 = null;
@@ -106,7 +107,7 @@ public class BoardDao extends SuperDao {
 	public int UpdateData(Board bean) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		String sql = " update boards set subject=?, writer=?, password=?, content=?, regdate=?, groupno=?, orderno=?, depth=? ";
+		String sql = " update boards set subject=?, writer=?, password=?, content=? ";
 		sql += " where no=? ";
 		int cnt = -1;
 		
@@ -119,13 +120,7 @@ public class BoardDao extends SuperDao {
 			pstmt.setString(2, bean.getWriter());
 			pstmt.setString(3, bean.getPassword());
 			pstmt.setString(4, bean.getContent());
-			pstmt.setString(5, bean.getRegdate());
-			
-			pstmt.setInt(6, bean.getGroupno());
-			pstmt.setInt(7, bean.getOrderno());
-			pstmt.setInt(8, bean.getDepth());
-			
-			pstmt.setInt(9, bean.getNo());
+			pstmt.setInt(5, bean.getNo());
 
 			cnt = pstmt.executeUpdate();
 			
@@ -352,5 +347,6 @@ public class BoardDao extends SuperDao {
 		return list;
 	}
 }
+
 
 
