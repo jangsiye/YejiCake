@@ -20,43 +20,11 @@
 input[name="content"] {
 	height: 300px;
 }
+
+.footer {
+	clear:both;
+}
 </style>
-<script type="text/javascript">
-		function formCheck(){
-			var id = document.myform.id.value;
-			if(id.length >=4 && id.length <= 12 ){
-				
-			} else {
-				alert( '4 <= id <= 12' );
-				return false;
-			}
-			var name = document.myform.name.value;
-			var reg =/^[가-힣a-z]{2,}/;
-			var result = reg.test(name);
-			if(result == false){
-				alert('이름은 2글자 이상이어야 합니다.');
-				return false;				
-			}
-			/* 특수 문자는 @!만 가능하다. */
-			var password = document.myform.password.value;
-			reg=/^[a-z][a-zA-Z0-9@!]{3,11}/;
-			result = reg.test(password);
-			if(result == false){
-				alert('비밀번호는 4글자 이상, 12글자 이하여야합니다.');
-				return false;				
-			}
-			var zipcode = document.myform.zipcode.value;
-			reg=/^\d{5}/;
-			result = reg.test(zipcode);
-			if(result == false){
-				alert('우편번호는 5글자여야합니다.');
-				return false;				
-			}
-			//alert( id );			
-			//alert( id.length );
-			return true;
-		}
-	</script>
 </head>
 <body>
 <div class="col-sm-offset-2 col-sm-8">
@@ -66,6 +34,8 @@ input[name="content"] {
 		</div>
 		<div class="panel-body">
 			<form action="PupdateTo.jsp" name="myform" method="post" class="form-horizontal" role="form">
+                <input type="hidden" name="pnum" value="<%=product.getPnum()%>">
+                
                 <div class="form-group">
                     <div class="col-sm-3">
                         <label class="control-label form-control-static">상품명</label>
@@ -87,7 +57,7 @@ input[name="content"] {
                         <label class="control-label form-control-static">재고</label>
                     </div>
                     <div class="col-sm-9">
-                        <input type="text" name="price" id="price" class="form-control" value="<%=product.getStock()%>">
+                        <input type="text" name="stock" id="stock" class="form-control" value="<%=product.getStock()%>">
                     </div>
                 </div>
                 <div class="form-group">
@@ -119,22 +89,27 @@ input[name="content"] {
                 </div>
                 <div class="form-group">
                     <div class="col-sm-12" align="center">
-                        <button  type ="submit" class="btn btn-default"
-                        	onclick="return formCheck();">
+                        <button  type ="submit" class="btn btn-default">
                         	<b> 수정
                         	</b>
                         </button>
                         &nbsp;&nbsp;&nbsp;&nbsp;
                         <button  type ="reset" class="btn btn-default">
-                        	<b> 취소
+                        	<b> 초기화
                         	</b>
                         </button>
+                        <a href="<%=contextPath%>/product/PdetailView.jsp?pnum=<%=product.getPnum() %>" onclick="return confirm('수정을 취소하시겠습니까? 상품 상세보기로 돌아갑니다.')" class="btn btn-default">돌아가기</a>
                     </div>
                 </div>
              
             </form>
 		</div>
 		</div>
+</div>
+
+<!-- footer  -->
+<div class="footer">
+<%@include file="./../common/footer.jsp" %>
 </div>
 </body>
 </html>
