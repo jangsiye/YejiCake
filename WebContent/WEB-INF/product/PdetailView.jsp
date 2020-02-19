@@ -37,6 +37,11 @@
 		}
 	}
 </script>
+<style type="text/css">
+.footer {
+	clear:both;
+}
+</style>
 </head>
 <body>
 <div class="container col-sm-offset-2 col-sm-8">
@@ -114,6 +119,9 @@
 		<!-- end panel-body -->
 	</div>
 </div>
-
+<!-- footer  -->
+<div class="footer">
+<%@include file="./../common/footer.jsp" %>
+</div>
 </body>
 </html>
