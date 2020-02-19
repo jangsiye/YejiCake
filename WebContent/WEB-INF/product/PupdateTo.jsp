@@ -4,24 +4,30 @@
     pageEncoding="UTF-8"%>
 <%
 	request.setCharacterEncoding("UTF-8");
-	String image = request.getParameter("image");
+	
+	int pnum = Integer.parseInt(request.getParameter("pnum"));
 	String pname = request.getParameter("pname");
 	int price = Integer.parseInt(request.getParameter("price"));
+	int hit = Integer.parseInt(request.getParameter("hit"));
+	int stock = Integer.parseInt(request.getParameter("stock"));
 	String content = request.getParameter("content");
 	int point = Integer.parseInt(request.getParameter("point"));
 
 %> 
 <% 
-	Product bean = new Product();
-	bean.setImage(image);
-	bean.setPname(pname);
-	bean.setPrice(price);
-	bean.setContent(content);
-	bean.setPoint(point);
+	Product product = new Product();
+	
+	product.setPnum(pnum);
+	product.setPname(pname);
+	product.setPrice(price);
+	product.setHit(hit);
+	product.setStock(stock);
+	product.setContent(content);
+	product.setPoint(point);
 	
 	ProductDao dao = new ProductDao();
 	int cnt = -1 ;
-	cnt = dao.UpdateData(bean);
+	cnt = dao.UpdateData(product);
 %>     
 <%
 	if(cnt == -1){
