@@ -66,6 +66,16 @@ public class ProductDao extends SuperDao {
                 pstmt = conn.prepareStatement(sql) ;
                 pstmt.setString(1, "%" + word + "%");
  
+            } else if (col.equals("stag")) {
+                sql +=" select * ";
+                sql +=" from products ";
+                sql +=" where tag1 LIKE ? OR tag2 LIKE ? OR tag3 LIKE ?";
+                sql +=" order by pnum DESC";
+                pstmt = conn.prepareStatement(sql) ;
+                pstmt.setString(1, "%" + word + "%");
+                pstmt.setString(2, "%" + word + "%");
+                pstmt.setString(3, "%" + word + "%");
+                
             } else {	//col이 ""로 들어오면 전체를 출력해주기
                 sql +=" select * ";
                 sql +=" from products ";
@@ -88,7 +98,10 @@ public class ProductDao extends SuperDao {
 				product.setStock(rs.getInt("stock"));
 				product.setCategory(rs.getInt("category"));
 				product.setImage2(rs.getString("image2"));
- 
+				product.setTag1(rs.getString("tag1"));
+				product.setTag2(rs.getString("tag2"));
+				product.setTag3(rs.getString("tag3"));
+				
                 list.add(product);
 
             }
@@ -146,8 +159,8 @@ public class ProductDao extends SuperDao {
 	public int InsertData(MultipartRequest mr) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		String sql =" insert into products(pnum, pname, price, point, content, image, hit, stock, image2, category)";
-		sql += " values(seqpnum.nextval, ?, ?, ?, ?, ?, 0, ?, ?, ?) ";
+		String sql =" insert into products(pnum, pname, price, point, content, image, hit, stock, image2, category, tag1, tag2, tag3)";
+		sql += " values(seqpnum.nextval, ?, ?, ?, ?, ?, 0, ?, ?, ?, ?, ?, ?) ";
 		int cnt = -1;
 		try {
 			conn = super.getConnection();
@@ -162,7 +175,10 @@ public class ProductDao extends SuperDao {
 			pstmt.setInt(6, Integer.parseInt(mr.getParameter("stock")));
 			pstmt.setString(7, mr.getFilesystemName("image2"));
 			pstmt.setInt(8, Integer.parseInt(mr.getParameter("category")));
-			
+			pstmt.setString(9, mr.getParameter("tag1"));
+			pstmt.setString(10, mr.getParameter("tag2"));
+			pstmt.setString(11, mr.getParameter("tag3"));
+
 			cnt = pstmt.executeUpdate();
 		
 			conn.commit();
@@ -185,9 +201,9 @@ public class ProductDao extends SuperDao {
 	}
 
 	public int UpdateData(Product bean) {
-		Connection conn = null;
+		Connection conn = null; 
 		PreparedStatement pstmt = null;
-		String sql = " update products set pname=?, price=?, point=?, content=?, hit=?, stock=?";
+		String sql = " update products set pname=?, price=?, point=?, content=?, hit=?, stock=?, tag1=?, tag2=?, tag3=? ";
 		sql += " where pnum = ? ";
 		int cnt = -1;
 		
@@ -203,8 +219,10 @@ public class ProductDao extends SuperDao {
 			pstmt.setInt(5, bean.getHit());
 			pstmt.setInt(6, bean.getStock());
 			pstmt.setInt(7, bean.getPnum());
+			pstmt.setString(8, bean.getTag1());
+			pstmt.setString(9, bean.getTag2());
+			pstmt.setString(10, bean.getTag3());
 			
-
 			cnt = pstmt.executeUpdate();
 			
 			conn.commit();
@@ -321,6 +339,10 @@ public class ProductDao extends SuperDao {
 				product.setStock(rs.getInt("stock"));
 				product.setCategory(rs.getInt("category"));
 				product.setImage2(rs.getString("image2"));
+				product.setTag1(rs.getString("tag1"));
+				product.setTag2(rs.getString("tag2"));
+				product.setTag3(rs.getString("tag3"));
+				
 			}
 			
 		} catch (Exception e) {
@@ -366,7 +388,10 @@ public class ProductDao extends SuperDao {
 				product.setStock(rs.getInt("stock"));
 				product.setCategory(rs.getInt("category"));
 				product.setImage2(rs.getString("image2"));
-
+				product.setTag1(rs.getString("tag1"));
+				product.setTag2(rs.getString("tag2"));
+				product.setTag3(rs.getString("tag3"));
+				
 				list.add(product);
 			}
 		} catch (Exception e) {
@@ -410,6 +435,9 @@ public class ProductDao extends SuperDao {
 				product.setStock(rs.getInt("stock"));
 				product.setCategory(rs.getInt("category"));
 				product.setImage2(rs.getString("image2"));
+				product.setTag1(rs.getString("tag1"));
+				product.setTag2(rs.getString("tag2"));
+				product.setTag3(rs.getString("tag3"));
 				
 				list.add(product);
 			}
@@ -432,8 +460,8 @@ public class ProductDao extends SuperDao {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = " select pnum, pname, price, point, content, image, hit, stock, image2, category ";
-		sql += " from ( select pnum, pname, price, point, content, image, hit, stock, image2, category rank() over(order by pnum desc) as ranking from products) ";
+		String sql = " select pnum, pname, price, point, content, image, hit, stock, image2, category, tag1, tag2, tag3 ";
+		sql += " from ( select pnum, pname, price, point, content, image, hit, stock, image2, category, tag1, tag2, tag3 rank() over(order by pnum desc) as ranking from products) ";
 		sql += " where ranking between ? and ? ";
 		
 		List<Product> list = new ArrayList<Product>();
@@ -458,6 +486,9 @@ public class ProductDao extends SuperDao {
 				product.setHit(rs.getInt("hit"));
 				product.setPnum(rs.getInt("pnum"));
 				product.setStock(rs.getInt("stock"));
+				product.setTag1(rs.getString("tag1"));
+				product.setTag2(rs.getString("tag2"));
+				product.setTag3(rs.getString("tag3"));
 				
 				list.add(product);
 			}
