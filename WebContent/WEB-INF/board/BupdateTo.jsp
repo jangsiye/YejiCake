@@ -7,7 +7,6 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 	int no = Integer.parseInt(request.getParameter("no"));
-	String regdate = request.getParameter("regdate");
 	String subject = request.getParameter("subject");
 	String writer = request.getParameter("writer");
 	String password = request.getParameter("password");
@@ -17,19 +16,18 @@
 
 <%
 	//빈 객체를 만들어서
-	Board bean = new Board();
+	Board board = new Board();
 	//빈 객체에 setter로 입력된 파라미터들을 집어넣는다
-	bean.setNo(no);
-	bean.setRegdate(regdate);
-	bean.setSubject(subject);
-	bean.setWriter(writer);
-	bean.setPassword(password);
-	bean.setContent(content);
+	board.setNo(no);
+	board.setSubject(subject);
+	board.setWriter(writer);
+	board.setPassword(password);
+	board.setContent(content);
 	
 	//dao로 빈 객체를 넘겨서 db에 저장한다 
 	BoardDao dao = new BoardDao();
 	int cnt = -1;
-	cnt = dao.UpdateData(bean);
+	cnt = dao.UpdateData(board);
 %>
 <% 
 
