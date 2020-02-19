@@ -26,9 +26,20 @@ create table members (
     mpoint number
 );
 
-insert into members values('admin','관리자','1234','010-0000-0000','서울시 서초구', 0);
-insert into members values('hong','홍길동','1234','010-1111-1111','경기도 수원시', 0);
-insert into members values('kim','김영희','1234','010-2222-2222','경기도 성남시', 0);
+insert into members values('admin','관리자','1234','010-0000-0000','경기도 하남시', 0);
+
+insert into members values('hong','홍길동','1234', '010-0000-0000','서울시 마포구',0);
+insert into members values('kim','김영희','1234', '010-0000-0000','인천시 중구',0);
+insert into members values('park','박소담','1234', '010-0000-0000','인천시 동구',0);
+insert into members values('kang','강철수','1234', '010-0000-0000','전주시 완산구',0);
+insert into members values('simm','심은하','1234', '010-0000-0000','서울시 관악구',0);
+insert into members values('moon','문강','1234', '010-0000-0000','서울시 강남구',0);
+insert into members values('jang','장길산','1234', '010-0000-0000','경기도 일산시',0);
+insert into members values('anne','앤마리','1234', '010-0000-0000','경기도 수원시',0);
+insert into members values('jung','정산도','1234', '010-0000-0000','부산시 영도구',0);
+insert into members values('yoon','윤미래','1234', '010-0000-0000','울산시 북구',0);
+
+commit;
 
 create table products (
     pnum number primary key,
@@ -56,6 +67,80 @@ create table boards (
     depth number
 );
 
+delete from boards;
+
+insert into boards values(1, '할인 해주세여', 'hong', '1234',
+'케이크 두개 사면 할인해주는거 없어여? ^_^', sysdate, 1, 0, 0);
+insert into boards values(6, 'hong 고객님 답변 드립니다.', 'admin', '1234',
+'안녕하세요 고객님! 항상 저희 예지케이크를 이용해주셔서 감사합니다~♥
+현재 고객님이 요청하신 수량 할인은 따로 없으며 특정 상품을 함께 구입시에 적용되는 패키지 할인만 진행되고 있습니다~
+다음 이용 시에는 꼭 패키지 할인을 적용하여 더 많은 혜택을 받으시길 바랍니다!
+감사합니다 고객님~♥ ', sysdate, 1, 1, 1);
+
+insert into boards values(2, '레터링 꼭 글로만 해야되나요?', 'simm', '1234',
+'친구 생일 케이크에 얼굴 왕따시만하게 그려주고싶은데ㅠㅠ 가능한가요 ? ', sysdate, 2, 0, 0);
+insert into boards values(7, 'simm 고객님 답변 드립니다.', 'admin', '1234',
+'안녕하세요 고객님! 항상 저희 예지케이크를 이용해주셔서 감사합니다~♥
+예지케이크의 모든 상품은 기본적으로 케이크 위에 다양한 토핑이 올라가있어 작은 크기의 레터링 작업만 가능합니다~ㅠㅠ
+글자와 작은 이모티콘 정도만 요청 가능하니 꼭 참고 부탁드리겠습니다 !
+감사합니다 고객님~♥ ', sysdate, 2, 1, 1);
+insert into boards values(18, '그럼 레터링은 몇 글자까지 되나요?', 'simm', '1234',
+'최대한 정성스럽고 긴 편지를 써주고 싶어서요', sysdate, 2, 2, 2);
+
+insert into boards values(3, '포장 문의드립니다.', 'yoon', '1234',
+'선물 포장 하고싶은데 혹시 가능할까요?', sysdate, 3, 0, 0);
+insert into boards values(8, 'yoon 고객님 답변 드립니다.', 'admin', '1234',
+'안녕하세요 고객님! 항상 저희 예지케이크를 이용해주셔서 감사합니다~♥
+포장 문의건은 온라인에서는 제공되지 않고 있으며 저희 매장에 직접 방문 수령할 시 제공해드리고 있습니다 !
+감사합니다 고객님~♥ ', sysdate, 3, 1, 1);
+
+insert into boards values(4, '배송 얼마나 걸리나요ㅠㅠ', 'anne', '1234',
+'주문한지 5일지났는데 깜깜무소식이네영.. ', sysdate, 4, 0, 0);
+insert into boards values(9, 'anne 고객님 답변 드립니다.', 'admin', '1234',
+'안녕하세요 고객님! 항상 저희 예지케이크를 이용해주셔서 감사합니다~♥
+예지케이크의 전 주문은 제작이 완료되면 별도로 고객님에게 문자를 보내드립니다.
+제작 즉시 바로 배송해드리나, 앞 주문이 밀려있으면 제작이 조금 늦어질 수 있다는 점 양해부탁드리겠습니다 ㅠㅠ
+anne 고객님의 경우 오늘 제작 완료되었으며 출고 되어 곧 자택으로 받아보실 수 있을 겁니다 !
+최대한 신속, 신선하게 상품을 준비할 수 있도록 노력하겠습니다~
+감사합니다 고객님~♥ ', sysdate, 4, 1, 1);
+insert into boards values(11, '꼭 모레까지 배송부탁드려요!', 'anne', '1234',
+'그날이 친구 생일이라서요 ㅠ', sysdate, 4, 2, 2);
+
+insert into boards values(5, '토핑 관련 문의', 'jung', '1234',
+'믹스베리 초콜릿 생크림 케이크 주문하고싶은데 베리 토핑 기존의 반만 올려주시면 안될까요..? 마카롱 같이 시켜서 따로 올릴려구요', 
+sysdate, 5, 0, 0);
+insert into boards values(10, 'jung 고객님 답변 드립니다.', 'admin', '1234',
+'안녕하세요 고객님! 항상 저희 예지케이크를 이용해주셔서 감사합니다~♥
+고객님 요청하신 사항 반영하여 상품 제작 가능하니 고객님 아이디로 바로 주문해주시면됩니다^^
+감사합니다 고객님~♥ ', sysdate, 5, 1, 1);
+insert into boards values(13, '가격은 똑같나요 ?', 'jung', '1234',
+'그럼 토핑 빼는건데 따로 가격 조정은 없나용 ?..', sysdate, 5, 2, 2);
+
+insert into boards values(12, '케이크가 잘못왔어요ㅡㅡ', 'kim', '1234',
+'블랙벨벳 케이크 시켰는데 블루베리 쉬폰 케이크로 잘못왔어요; 당장 내일 먹어야하는데;;; 어떻게 하실건가여', 
+sysdate, 12, 0, 0);
+insert into boards values(15, 'kim 고객님 답변 드립니다.', 'admin', '1234',
+'안녕하세요 고객님! 항상 저희 예지케이크를 이용해주셔서 감사합니다~♥
+kim 고객님 주문내역을 보니 블루베리 쉬폰 케이크와 초콜릿 추가로 확인됩니다ㅠㅠ.. 이전주문내역 한번 더 확인해보시고
+저희 매장으로 전화주시면 빠른 응대 도와드리겠습니다.
+감사합니다 고객님~♥ ', sysdate, 12, 1, 1);
+
+insert into boards values(14, '???? 할인 적용 안된채로 결제됬어요', 'jang', '1234',
+'패키지로 구입했는데 할인적용이 안됐을까요 확인좀 해주세요', 
+sysdate, 14, 0, 0);
+insert into boards values(16, 'jang 고객님 답변 드립니다.', 'admin', '1234',
+'안녕하세요 고객님! 항상 저희 예지케이크를 이용해주셔서 감사합니다~♥
+해당 패키지 구입은 쿠폰을 장바구니에 동일하게 넣으셔야 적용이 가능합니다ㅠㅠ
+jang 고객님 이전주문내역 확인 후 다시 한번 문의 주시면 취소 후 재결제 도와드리겠습니다~^^
+감사합니다 고객님~♥ ', sysdate, 14, 1, 1);
+insert into boards values(17, '주문 취소 후 재결제했어요.', 'jang', '1234',
+'답변 주신대로 처리했습니다!', 
+sysdate, 14, 2, 2);
+
+drop sequence seqno;
+create sequence seqno start with 19;
+
+commit;
 ------------------------------------------------------------
 -- 참조무결성 제약 조건
 -- 회원 탈퇴를 해도 주문내역은 남아 있어야 한다.
@@ -100,17 +185,8 @@ delete from orders;
 delete from orderdetails;
 commit;
 
-insert into products values(3,'더치 솔티드 카라멜 케이크',26000,	26,'부드럽고 촉촉한 초콜릿 시트와 카라멜 생크림 사이사이, 솔티드 카라멜 크런치펄과 로스티드 월넛을 듬뿍 넣은 케이크','caramel1.JPG',0,20,1,'caramel2.JPG');
-insert into products values(5,'믹스베리 초콜릿 생크림	',25000,25,'한가득 올린 믹스베리, 크런치 초코볼이 초코 생크림 사이사이 씹히는 케이크','mixberry1.JPG',0,15,1,'mixberry2.JPG');
-insert into products values(6,'마스카포네 생크림',27000,27,'신선한 자몽, 오렌지, 라즈베리와 부드러운 마스카포네 생크림이 어우러져 상큼하게 즐길 수 있는 케이크','orange1.JPG',0,15,1,'orange2.JPG');
-insert into products values(8,'트리플 초콜릿 무스',28000,28,'다크, 밀크, 화이트 세 가지 초콜릿을 한 번에 즐길 수 있는 무스 케이크','choco3.JPG',0,20,1,'choco4.JPG');
-
-commit;
-
-select * from seq;
-select SEQOID.nextval from dual;
-ccommit;
-
+--상품 벌크로딩 할 때 같이하기!
+--꼭 pnum 22,23,24로 맞춰줘야 함!
 --패키지 상품 : 카테고리는 4로 설정하여 Plist에 나타나지 않게 한다
 insert into products values(22,'블랙 패키지',37000,37,'블랙 패키지 입니다.','blackpakage.JPG',0,20,4,null);
 insert into products values(23,'프룻 패키지',34100,34,'프룻 패지키 입니다.','fruitpakage.JPG',0,20,4,null);
@@ -123,7 +199,6 @@ insert into products values(27,'3000원 할인쿠폰',-3000,0,'3000원 할인이
 
 commit;
 
---기본 데이터 27개 넣고, product의 시퀀스 넘버는 28부터 시작
 drop sequence seqpnum;
 create sequence seqpnum start with 28;
 
