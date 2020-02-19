@@ -12,6 +12,9 @@
 	int stock = Integer.parseInt(request.getParameter("stock"));
 	String content = request.getParameter("content");
 	int point = Integer.parseInt(request.getParameter("point"));
+	String tag1 = request.getParameter("tag1");
+	String tag2 = request.getParameter("tag2");
+	String tag3 = request.getParameter("tag3");
 
 %> 
 <% 
@@ -24,6 +27,9 @@
 	product.setStock(stock);
 	product.setContent(content);
 	product.setPoint(point);
+	product.setTag1(tag1);
+	product.setTag2(tag2);
+	product.setTag3(tag3);
 	
 	ProductDao dao = new ProductDao();
 	int cnt = -1 ;
