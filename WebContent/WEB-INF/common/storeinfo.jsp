@@ -199,8 +199,10 @@
 			</div>
 			<br>
 			<div id="section5">
-				<h1> 로고 </h1>
-				로고 사진을 넣어주기
+				<h1> 로고 소개 </h1>
+				<p><img src="<%=contextPath%>/upload/logo.JPG" width="60%" alt="사진을 불러올 수 없어요"></p>
+				<p>필기체를 사용하여 멋들어진 로고를 만들었어요.</p>
+				<p>예지케이크는 당신만을 위한 특별한 케이크를 만듭니다</p>
 			</div>
 		</div>
 	</div>
