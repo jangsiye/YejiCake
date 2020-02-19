@@ -37,8 +37,8 @@
 				<li><a href="#section1">소개</a></li>
 				<li><a href="#section2">신상품 및 추가 입고 일정</a>
 				<li><a href="#section3">창업 연혁</a></li>
-				<li><a href="#section4">케이크 종류</a></li>
-				<li><a href="#section5">로고</a></li>
+				<li><a href="#section4">대표 케이크</a></li>
+				<li><a href="#section5">로고 소개</a></li>
 				
 				<hr>
 				<!-- 여기는 그냥 링크 -->
@@ -187,14 +187,14 @@
 			</div>
 			<br>
 			<div id="section4">
-				<h1> 대표 상품 </h1>
-				<p>예지케잌의 대표 메뉴는 초코, 딸기, 생크림입니다.</p>
+				<h1> 대표 케이크 </h1>
+				<p>예지케잌의 대표 메뉴는 마스카포네 생크림, 믹스베리 초콜릿 생크림, 화이트 포레스트입니다.</p>
 				<p><img src="<%=contextPath%>/upload/orange2.JPG" width="60%" alt="사진을 불러올 수 없어요"></p>
-				<p>오렌지 자몽 케이크</p><br>
+				<p>마스카포네 생크림</p><br>
 				<p><img src="<%=contextPath%>/upload/mixberry2.JPG" width="60%" alt="사진을 불러올 수 없어요"></p>
-				<p>믹스 베리 케이크</p><br>
+				<p>믹스베리 초콜릿 생크림</p><br>
 				<p><img src="<%=contextPath%>/upload/white2.JPG" width="60%" alt="사진을 불러올 수 없어요"></p>
-				<p>화이트 초콜릿 케이크</p><br>
+				<p>화이트 포레스트</p><br>
 				<p class="morecake"><a href="<%=contextPath%>/product/Plist.jsp">▶더 많은 케이크 보기 Go~</a></p>
 			</div>
 			<br>
