@@ -68,6 +68,16 @@ input[name="content"] {
                         <input type="text" name="content" id="content" class="form-control" value="<%=product.getContent()%>">
                     </div>
 				</div>
+				<div class="form-group">
+                    <div class="col-sm-3">
+                        <label class="control-label form-control-static">태그</label>
+                    </div>
+                    <div class="col-sm-9">
+                        <input type="text" name="tag1" id="tag1" class="form-control" value="<%=product.getTag1()%>">
+                        <input type="text" name="tag2" id="tag2" class="form-control" value="<%=product.getTag2()%>">
+                        <input type="text" name="tag3" id="tag3" class="form-control" value="<%=product.getTag3()%>">
+                    </div>
+				</div>
 				   <div class="form-group">
                     <div class="col-sm-3">
                         <label class="control-label form-control-static">적립 포인트</label>
