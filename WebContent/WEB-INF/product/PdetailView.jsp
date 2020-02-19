@@ -72,7 +72,16 @@
 				
 				<p>${product.point}점을 적립해드려요.</p>
 				<p>${product.hit}명이나 이 케이크를 살펴봤습니다!</p>
-
+				<br>
+				<!-- 태그를 검색어로 넘겨줌 -->
+					<c:if test="${not empty product.tag1 || not empty product.tag2 || not empty product.tag3}">
+					<form method='GET' action='Plist.jsp'>
+						<input type="hidden" name="col" value="stag">
+						<button type='submit' class="btn btn-link" name='word' value='${product.tag1}'>${product.tag1}</button>
+						<button type='submit' class="btn btn-link" name='word' value='${product.tag2}'>${product.tag2}</button>
+						<button type='submit' class="btn btn-link" name='word' value='${product.tag3}'>${product.tag3}</button>
+					</form>
+					</c:if>
 				<br><br>
 				<% if (whologin != 0){ 	//미로그인자는 폼 자체가 안 보임		%>
 				<form action="./../mall/insert.jsp" method="post" role="form" class="form-inline" name="cartform">	
