@@ -6,41 +6,45 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+	
+<style type="text/css">
+	.footer {
+		clear:both;
+	}
+</style>
+
 	<script type="text/javascript">
-		function formCheck(){
-			var id = document.myform.id.value;
-			if(id.length >=4 && id.length <= 12 ){
-				
-			} else {
-				alert( '4 <= id <= 12' );
-				return false;
+		function formcheck() {	
+			var tag1 = document.myform.tag1.value ;
+			var reg = /^[#]/ ;
+			var result = reg.test(tag1) ;
+
+			if(tag1 != "" && result == false){
+				alert('태그는 반드시 #으로 시작해야 합니다!') ;
+				return false ;
 			}
-			var name = document.myform.name.value;
-			var reg =/^[가-힣a-z]{2,}/;
-			var result = reg.test(name);
-			if(result == false){
-				alert('이름은 2글자 이상이어야 합니다.');
-				return false;				
-			}
-			/* 특수 문자는 @!만 가능하다. */
-			var password = document.myform.password.value;
-			reg=/^[a-z][a-zA-Z0-9@!]{3,11}/;
-			result = reg.test(password);
-			if(result == false){
-				alert('비밀번호는 4글자 이상, 12글자 이하여야합니다.');
-				return false;				
-			}
-			var zipcode = document.myform.zipcode.value;
-			reg=/^\d{5}/;
-			result = reg.test(zipcode);
-			if(result == false){
-				alert('우편번호는 5글자여야합니다.');
-				return false;				
-			}
-			//alert( id );			
-			//alert( id.length );
-			return false;
+			
+			var tag2 = document.myform.tag2.value ;
+			reg = /^[#]/ ;
+			result = reg.test(tag2) ;
+
+				if(tag2 != "" && result == false){
+					alert('태그는 반드시 #으로 시작해야 합니다!') ;
+					return false ;
+				}
+	
+			
+			var tag3 = document.myform.tag3.value ;
+			reg = /^[#]/ ;
+			result = reg.test(tag3) ;
+
+				if(tag3 != "" && result == false){
+					alert('태그는 반드시 #으로 시작해야 합니다!') ;
+					return false ;
+				}
+
 		}
+
 	</script>
 </head>
 <body>
@@ -122,11 +126,20 @@
                         <input type="text" name="point" id="point" class="form-control" value="20">
                     </div>
                 </div>										
-					
+				<div class="form-group">
+                    <div class="col-sm-3">
+                        <label class="control-label form-control-static">태그</label>
+                    </div>
+                    <div class="col-sm-9">
+                        <input type="text" name="tag1" id="tag1" class="form-control" value="#케이크">
+                        <input type="text" name="tag2" id="tag2" class="form-control" value="">
+                        <input type="text" name="tag3" id="tag3" class="form-control" value="">
+                    </div>
+                </div>		
                 
                       <div class="form-group">
                     <div class="col-sm-12" align="center">
-                        <button  type ="submit" class="btn btn-default">
+                        <button  type ="submit" class="btn btn-default" onclick = "return formcheck();">
                         	<b> 등록
                         	</b>
                         </button>
@@ -141,6 +154,11 @@
             </form>
 		</div>
 		</div>
+</div>
+
+<!-- footer  -->
+<div class="footer">
+<%@include file="./../common/footer.jsp" %>
 </div>
 </body>
 </html>
