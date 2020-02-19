@@ -21,8 +21,6 @@
 </head>
 <body>
 
-<h3>게시글 수정 페이지입니다</h3>
-
 <div class="col-sm-offset-2 col-sm-8">
 	<div class="panel panel-default">
 		<div class="panel-heading">
@@ -30,10 +28,9 @@
 		</div>
 		<form action="BupdateTo.jsp" method="post"  class="form-horizontal" role="form">
 			<input type="hidden" name="password" id="password" value="<%=board.getPassword() %>" class="form-control">
+			<input type="hidden" name="no" id="no" value="<%=board.getNo()%>">
 			<div class="panel-body">
                 <div class="form-group">
-                	<input type="hidden" name="no" id="no" value="<%=board.getNo()%>">
-                	<input type="hidden" name="regdate" id="regdate" value="<%=board.getRegdate()%>">
                     <div class="col-sm-3">
                         <label class="control-label form-control-static">제목</label>
                     </div>
