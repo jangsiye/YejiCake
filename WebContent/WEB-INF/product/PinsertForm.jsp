@@ -131,6 +131,7 @@
                         <label class="control-label form-control-static">태그</label>
                     </div>
                     <div class="col-sm-9">
+                    	<p>※ 태그는 반드시 #으로 시작해야 합니다.</p>
                         <input type="text" name="tag1" id="tag1" class="form-control" value="#케이크">
                         <input type="text" name="tag2" id="tag2" class="form-control" value="">
                         <input type="text" name="tag3" id="tag3" class="form-control" value="">
