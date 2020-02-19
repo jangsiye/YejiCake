@@ -14,12 +14,17 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+.footer {
+	clear:both;
+}
+</style>
 </head>
 <body>
 <div class="container col-sm-offset-3 col-sm-6">
-	<div class="panel panel-default panel-primary">
+	<div class="panel panel-default">
 		<div class="panel-heading">
-			<h1 class="panel-title" align="left">회원 정보 상세 보기</h1>
+			<h1 class="panel-title" align="left"><%=member.getName()%>님 - 회원 정보 상세 보기</h1>
 		</div>
 		<div class="panel-body">
 			<div class="col-sm-12 col-sm-12">
@@ -27,6 +32,10 @@
 					<tr>
 						<td width="25%" align="center">아이디</td>
 						<td width="75%" align="left"><%=member.getMid()%></td>
+					</tr>
+					<tr>
+						<td width="25%" align="center">이름</td>
+						<td width="75%" align="left"><%=member.getName()%></td>
 					</tr>
 					<tr>
 						<td width="25%" align="center">연락처</td>
@@ -47,17 +56,23 @@
 									회원 정보 수정
 								</button>
 							</a>
-							<a onclick="return confirm('정말로 탈퇴하시겠습니까?')" 
+						</td>
+						<td>
+						<a onclick="return confirm('정말로 탈퇴하시겠습니까?')" 
 								href="Mdelete.jsp?mid=<%=member.getMid()%>" 
 								class="btn btn-default">회원 탈퇴
-							</a>
-						</td>
+						</a>
+						</td>	
 					</tr>
 				</table>
 			</div>
 		</div>
 		<!-- end panel-body -->
 	</div>
+</div>
+<!-- footer  -->
+<div class="footer">
+<%@include file="./../common/footer.jsp" %>
 </div>
 </body>
 </html>
