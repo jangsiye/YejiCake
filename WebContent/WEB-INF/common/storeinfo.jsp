@@ -101,13 +101,13 @@
 				        <td align="left" colspan="7">⊙ 2020년 2월 ⊙</td>
 				    </tr>
 				    <tr>
-				        <td align="center"><font color ="red">Sun </td>
+				        <td align="center"><font color ="red">Sun </font></td>
 				        <td align="center">Mon </td>
 				        <td align="center">Tue </td>
 				        <td align="center">Wed </td>
 				        <td align="center">Thu </td>
 				        <td align="center">Fri </td>
-				        <td align="center"><font color ="blue">Sat </td>
+				        <td align="center"><font color ="blue">Sat </font></td>
 				    </tr>
 				    <tr>
 				    	<td align="center"> </td>
@@ -116,48 +116,48 @@
 				    	<td align="center"> </td>
 				    	<td align="center"> </td>
 				    	<td align="center"> </td>
-				    	<td align="center"><font color ="blue">1 </td>
+				    	<td align="center"><font color ="blue">1 </font></td>
 				    </tr>
 				    <tr>
-				    	<td align="center"><font color ="red">2 </td>
+				    	<td align="center"><font color ="red">2 </font></td>
 				    	<td align="center">3 </td>
 				    	<td align="center">4 </td>
 				    	<td align="center">5 </td>
 				    	<td align="center">6 </td>
-				    	<td align="center"><font color="6ED746">7<br><font size ="4">★NEW★</font>
+				    	<td align="center"><font color="6ED746">7</font><br><font size ="4">★NEW★</font>
 				    	</td>
-				    	<td align="center"><font color ="blue">8 </td>
+				    	<td align="center"><font color ="blue">8 </font></td>
 				    </tr>
 				    <tr>
-				    	<td align="center"><font color ="red">9</td>
-				    	<td align="center"><font color="9900E0">3<br><font size ="3">★REORDER★</font>
+				    	<td align="center"><font color ="red">9</font></td>
+				    	<td align="center"><font color="9900E0">3</font><br><font size ="3">★REORDER★</font>
 				    	</td>
 				    	<td align="center">11 </td>
 				    	<td align="center">12 </td>
 				    	<td align="center">13 </td>
 				    	<td align="center">14 </td>
-				    	<td align="center"><font color ="blue">15 </td>
+				    	<td align="center"><font color ="blue">15 </font></td>
 				    </tr>
 				    <tr>
-				    	<td align="center"><font color ="red">16 </td>
-				    	<td align="center"><font color="6ED746">17<br><font size ="4">★NEW★</font>
+				    	<td align="center"><font color ="red">16 </font></td>
+				    	<td align="center"><font color="6ED746">17</font><br><font size ="4">★NEW★</font>
 						</td>
 				    	<td align="center">18 </td>
 				    	<td align="center">19 </td>
 				    	<td align="center">20 </td>
-				    	<td align="center"><font color="9900E0">21<br><font size ="3">★REORDER★</font>
-				    	<td align="center"><font color ="blue">22 </td>
+				    	<td align="center"><font color="9900E0">21</font><br><font size ="3">★REORDER★</font>
+				    	<td align="center"><font color ="blue">22 </font></td>
 				    </tr>
 				    <tr>
-				    	<td align="center"><font color ="red">23 </td>
-				    	<td align="center"><font color="9900E0">24<br><font size ="3">★REORDER★</font>
+				    	<td align="center"><font color ="red">23 </font></td>
+				    	<td align="center"><font color="9900E0">24</font><br><font size ="3">★REORDER★</font>
 				    	</td>
-				    	<td align="center"><font color="6ED746">25<br><font size ="4">★NEW★</font>
+				    	<td align="center"><font color="6ED746">25</font><br><font size ="4">★NEW★</font>
 				    	</td>
 				    	<td align="center">26 </td>
 				    	<td align="center">27 </td>
 				    	<td align="center">28 </td>
-				    	<td align="center"><font color ="blue">29 </td>
+				    	<td align="center"><font color ="blue">29</font> </td>
 				    </tr>
 				</table>
 				<div id="new">
@@ -207,7 +207,7 @@
 		</div>
 	</div>
 </div>
-
+</div>
 <!-- footer  -->
 <div>
 <%@include file="./../common/footer.jsp" %>
