@@ -72,9 +72,9 @@ public class ProductDao extends SuperDao {
                 sql +=" order by pnum DESC";
                 pstmt = conn.prepareStatement(sql) ;
             }
-
+            
             rs = pstmt.executeQuery(); 
- 
+
             while (rs.next()) {
                 Product product = new Product();
  
@@ -90,6 +90,7 @@ public class ProductDao extends SuperDao {
 				product.setImage2(rs.getString("image2"));
  
                 list.add(product);
+
             }
  
         } catch (Exception e) {
@@ -107,6 +108,7 @@ public class ProductDao extends SuperDao {
         return list;
 	}
 	
+	//조회수 증가시켜주는 메소드
 	public int UpHit(int pnum) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -185,7 +187,7 @@ public class ProductDao extends SuperDao {
 	public int UpdateData(Product bean) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		String sql = " update products set pname=?, price=?, point=?, content=?, image=?, hit=?, stock=?, image2=?, category=? ";
+		String sql = " update products set pname=?, price=?, point=?, content=?, hit=?, stock=?";
 		sql += " where pnum = ? ";
 		int cnt = -1;
 		
@@ -193,17 +195,14 @@ public class ProductDao extends SuperDao {
 			conn = super.getConnection();
 			conn.setAutoCommit(false);
 			pstmt = conn.prepareStatement(sql);
-			
+
 			pstmt.setString(1, bean.getPname());
 			pstmt.setInt(2, bean.getPrice());
 			pstmt.setInt(3, bean.getPoint());
 			pstmt.setString(4, bean.getContent());
-			pstmt.setString(5, bean.getImage());
-			pstmt.setInt(6, bean.getHit());
-			pstmt.setInt(7, bean.getStock());
-			pstmt.setString(8, bean.getImage2());
-			pstmt.setInt(9, bean.getCategory());
-			pstmt.setInt(10, bean.getPnum());
+			pstmt.setInt(5, bean.getHit());
+			pstmt.setInt(6, bean.getStock());
+			pstmt.setInt(7, bean.getPnum());
 			
 
 			cnt = pstmt.executeUpdate();
