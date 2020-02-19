@@ -7,161 +7,81 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.oreilly.servlet.MultipartRequest;
+public class BoardDao extends SuperDao {
 
-public class ProductDao extends SuperDao {
-
-	public ProductDao() {
-		
-	}
-	
-	//검색할 때 널 체크하는 메소드
-	public String checkNull(String i ) {
-		if(i==null) {
-			return "";
-		} else {
-			return i;
-		}
-	}
-	
-	//검색기능 : 검색 안 하면 전체 출력해줘야함
-	public List<Product> SelectAll(String col, String word) {
-		
-		Connection conn = null ;
-		PreparedStatement pstmt = null ;
-		ResultSet rs = null ;
-		
-		String sql = "";
-		
-        List<Product> list = new ArrayList<Product>();
-		
-        try {
-        	conn = super.getConnection() ;
-        	
-            if (col.equals("all")) {
-                sql +=" select * ";
-                sql +=" from products ";
-                sql +=" where pname LIKE ? OR content LIKE ?";
-                sql +=" order by pnum DESC";
-                
-                pstmt = conn.prepareStatement(sql) ;
-                pstmt.setString(1, "%" + word + "%");
-                pstmt.setString(2, "%" + word + "%");
-
- 
-            } else if (col.equals("s_pname")) {
-                sql +=" select * ";
-                sql +=" from products";
-                sql +=" where pname LIKE ?";
-                sql +=" order by pnum DESC";
-                
-                pstmt = conn.prepareStatement(sql) ;
-                pstmt.setString(1, "%" + word + "%");
-                
-            } else if (col.equals("scontent")) {
-                sql +=" select * ";
-                sql +=" from products ";
-                sql +=" where content LIKE ?";
-                sql +=" order by pnum DESC";
-                pstmt = conn.prepareStatement(sql) ;
-                pstmt.setString(1, "%" + word + "%");
- 
-            } else {	//col이 ""로 들어오면 전체를 출력해주기
-                sql +=" select * ";
-                sql +=" from products ";
-                sql +=" order by pnum DESC";
-                pstmt = conn.prepareStatement(sql) ;
-            }
-            
-            rs = pstmt.executeQuery(); 
-
-            while (rs.next()) {
-                Product product = new Product();
- 
-                product.setPname(rs.getString("pname"));
-				product.setPrice(rs.getInt("price"));
-				product.setPoint(rs.getInt("point"));				
-				product.setContent(rs.getString("content"));
-				product.setImage(rs.getString("image"));
-				product.setHit(rs.getInt("hit"));
-				product.setPnum(rs.getInt("pnum"));
-				product.setStock(rs.getInt("stock"));
-				product.setCategory(rs.getInt("category"));
-				product.setImage2(rs.getString("image2"));
- 
-                list.add(product);
-
-            }
- 
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-        	try {
-				if( rs != null ){rs.close();}
-				if( pstmt != null ){pstmt.close();}
-				if( conn != null ){conn.close();}
-			} catch (Exception e2) {
-				e2.printStackTrace();
-			}
-        }
- 
-        return list;
-	}
-	
-	//조회수 증가시켜주는 메소드
-	public int UpHit(int pnum) {
+	public int ReplyData(Board bean) {
 		Connection conn = null;
-		PreparedStatement pstmt = null;
-		String sql = " update products set hit = hit + 1 where pnum = ?";
-	    int cnt = -1;
-
+		PreparedStatement pstmt1 = null;
+		PreparedStatement pstmt2 = null;
+		
+		String sql1 = " update boards set orderno = orderno + 1 "; 
+		sql1 += " where groupno = ? and orderno > ? ";
+		
+		String sql2 = " insert into boards(no, subject, writer, password, content, regdate, groupno, orderno, depth) ";
+		sql2 += " values(seqno.nextval, ?, ?, ?, ?, sysdate, ?, ?, ?) ";
+		int cnt = -1;
 		try {
 			conn = super.getConnection();
 			conn.setAutoCommit(false);
-			pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setInt(1, pnum);
+			pstmt1 = conn.prepareStatement(sql1);
+			pstmt1.setInt(1, bean.getGroupno());
+			pstmt1.setInt(2, bean.getOrderno());
+			
+			cnt = pstmt1.executeUpdate();
+			
+			pstmt2 = conn.prepareStatement(sql2);
+			pstmt2.setString(1, bean.getSubject());
+			pstmt2.setString(2, bean.getWriter());
+			pstmt2.setString(3, bean.getPassword());
+			pstmt2.setString(4, bean.getContent());
+			
+			pstmt2.setInt(5, bean.getGroupno());
+			pstmt2.setInt(6, bean.getOrderno()+1);
+			pstmt2.setInt(7, bean.getDepth()+1);
 
-			cnt = pstmt.executeUpdate();
 			
+			cnt = pstmt2.executeUpdate();
+		
 			conn.commit();
-					
 		} catch (Exception e) {
+			e.printStackTrace();
 			try {
 				conn.rollback();
-			} catch (Exception e2) {
-				e.printStackTrace();
+			} catch (SQLException e2) {
+				e2.printStackTrace();
 			}
 		} finally {
 			try {
-				if(pstmt != null) {pstmt.close();}
+				if(pstmt1 != null) {pstmt1.close();}
+				if(pstmt2 != null) {pstmt2.close();}
 				if(conn != null) {conn.close();}
 			} catch (Exception e2) {
 				e2.printStackTrace();
-			}	
+			}
 		}
 		return cnt;
-	   }
+	}
+
+	public BoardDao() {
+		
+	}
 	
-	public int InsertData(MultipartRequest mr) {
+	public int InsertData(Board bean) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		String sql =" insert into products(pnum, pname, price, point, content, image, hit, stock, image2, category)";
-		sql += " values(seqpnum.nextval, ?, ?, ?, ?, ?, 0, ?, ?, ?) ";
+		String sql =" insert into boards(no, subject, writer, password, content, regdate, groupno, orderno, depth)";
+		sql += " values(seqno.nextval, ?, ?, ?, ?, sysdate, seqno.currval, 0, 0) ";
 		int cnt = -1;
 		try {
 			conn = super.getConnection();
 			conn.setAutoCommit(false);
 			pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setString(1, mr.getParameter("pname")); 
-			pstmt.setInt(2, Integer.parseInt(mr.getParameter("price")));
-			pstmt.setInt(3, Integer.parseInt(mr.getParameter("point")));
-			pstmt.setString(4, mr.getParameter("content"));
-			pstmt.setString(5, mr.getFilesystemName("image"));
-			pstmt.setInt(6, Integer.parseInt(mr.getParameter("stock")));
-			pstmt.setString(7, mr.getFilesystemName("image2"));
-			pstmt.setInt(8, Integer.parseInt(mr.getParameter("category")));
+			pstmt.setString(1, bean.getSubject());
+			pstmt.setString(2, bean.getWriter());
+			pstmt.setString(3, bean.getPassword());
+			pstmt.setString(4, bean.getContent());
 			
 			cnt = pstmt.executeUpdate();
 		
@@ -184,26 +104,23 @@ public class ProductDao extends SuperDao {
 		return cnt;
 	}
 
-	public int UpdateData(Product bean) {
+	public int UpdateData(Board bean) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		String sql = " update products set pname=?, price=?, point=?, content=?, hit=?, stock=?";
-		sql += " where pnum = ? ";
+		String sql = " update boards set subject=?, writer=?, password=?, content=? ";
+		sql += " where no=? ";
 		int cnt = -1;
 		
 		try {
 			conn = super.getConnection();
 			conn.setAutoCommit(false);
 			pstmt = conn.prepareStatement(sql);
-
-			pstmt.setString(1, bean.getPname());
-			pstmt.setInt(2, bean.getPrice());
-			pstmt.setInt(3, bean.getPoint());
-			pstmt.setString(4, bean.getContent());
-			pstmt.setInt(5, bean.getHit());
-			pstmt.setInt(6, bean.getStock());
-			pstmt.setInt(7, bean.getPnum());
 			
+			pstmt.setString(1, bean.getSubject());
+			pstmt.setString(2, bean.getWriter());
+			pstmt.setString(3, bean.getPassword());
+			pstmt.setString(4, bean.getContent());
+			pstmt.setInt(5, bean.getNo());
 
 			cnt = pstmt.executeUpdate();
 			
@@ -226,11 +143,11 @@ public class ProductDao extends SuperDao {
 		return cnt;
 	}
 
-	public int DeleteData(int pnum) {
+	public int DeleteData(int no) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		String sql = " delete from products ";
-		sql += " where pnum=?";
+		String sql = " delete from boards ";
+		sql += " where no=?";
 		int cnt = -1;
 		
 		try {
@@ -238,7 +155,7 @@ public class ProductDao extends SuperDao {
 			conn.setAutoCommit(false);
 			pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setInt(1, pnum);
+			pstmt.setInt(1, no);
 			
 			cnt = pstmt.executeUpdate();
 			
@@ -265,7 +182,7 @@ public class ProductDao extends SuperDao {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = " select count(*) as cnt from products";
+		String sql = " select count(*) as cnt from boards";
 		int cnt = -1;
 		
 		try {
@@ -291,36 +208,35 @@ public class ProductDao extends SuperDao {
 		return cnt;
 	}
 
-	public Product SelectByPk(int pnum) {
-		
+	public Board SelectByPk(int no) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = " select * from products ";
-		sql += " where pnum=? ";
-		Product product = null;
+		String sql = " select * from boards ";
+		sql += " where no=? ";
+		Board board = null;
 		
 		try {
 			conn = super.getConnection();
 			pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setInt(1, pnum);
+			pstmt.setInt(1, no);
 			
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
-				product = new Product();
+				board = new Board();
 				
-				product.setPname(rs.getString("pname"));
-				product.setPrice(rs.getInt("price"));
-				product.setPoint(rs.getInt("point"));				
-				product.setContent(rs.getString("content"));
-				product.setImage(rs.getString("image"));
-				product.setHit(rs.getInt("hit"));
-				product.setPnum(rs.getInt("pnum"));
-				product.setStock(rs.getInt("stock"));
-				product.setCategory(rs.getInt("category"));
-				product.setImage2(rs.getString("image2"));
+				board.setNo(rs.getInt("no"));
+				board.setSubject(rs.getString("subject"));
+				board.setWriter(rs.getString("writer"));
+				board.setPassword(rs.getString("password"));
+				board.setContent(rs.getString("content"));
+				board.setRegdate(rs.getString("regdate"));
+				
+				board.setGroupno(rs.getInt("groupno"));
+				board.setOrderno(rs.getInt("orderno"));
+				board.setDepth(rs.getInt("depth"));
 			}
 			
 		} catch (Exception e) {
@@ -335,18 +251,16 @@ public class ProductDao extends SuperDao {
 				}
 				
 			}
-		return product;
+		return board;
 	}
 
-	//상품 전체를 읽어오는 메소드
-	public List<Product> SelectAll() {
-		
+	public List<Board> SelectAll() {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = " select * from products order by category " ;
+		String sql = " select * from boards " ;
 				
-		List<Product> list = new ArrayList<Product>();
+		List<Board> list = new ArrayList<Board>();
 		
 		try {
 			conn = super.getConnection();
@@ -354,64 +268,20 @@ public class ProductDao extends SuperDao {
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
-				Product product = new Product();
+				Board board = new Board();
 				
-				product.setPname(rs.getString("pname"));
-				product.setPrice(rs.getInt("price"));
-				product.setPoint(rs.getInt("point"));				
-				product.setContent(rs.getString("content"));
-				product.setImage(rs.getString("image"));
-				product.setHit(rs.getInt("hit"));
-				product.setPnum(rs.getInt("pnum"));
-				product.setStock(rs.getInt("stock"));
-				product.setCategory(rs.getInt("category"));
-				product.setImage2(rs.getString("image2"));
-
-				list.add(product);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if(rs != null) {rs.close();}
-				if(pstmt != null) {pstmt.close();}
-				if(conn != null) {conn.close();}
-			} catch (Exception e2) {
-				e2.printStackTrace();
-			}
-		}
-		return list;
-	}
-	
-	//상품 중 케이크만, hit가 높은 순으로 정렬해서 데이터 가져오는 메소드
-	public List<Product> SelectAll_Hit() {
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		String sql = " select * from products where category = 1 order by hit desc" ;
+				board.setNo(rs.getInt("no"));
+				board.setSubject(rs.getString("subject"));
+				board.setWriter(rs.getString("writer"));
+				board.setPassword(rs.getString("password"));
+				board.setContent(rs.getString("content"));
+				board.setRegdate(rs.getString("regdate"));
 				
-		List<Product> list = new ArrayList<Product>();
-		
-		try {
-			conn = super.getConnection();
-			pstmt = conn.prepareStatement(sql);
-			rs = pstmt.executeQuery();
+				board.setGroupno(rs.getInt("groupno"));
+				board.setOrderno(rs.getInt("orderno"));
+				board.setDepth(rs.getInt("depth"));
 			
-			while(rs.next()) {
-				Product product = new Product();
-				
-				product.setPname(rs.getString("pname"));
-				product.setPrice(rs.getInt("price"));
-				product.setPoint(rs.getInt("point"));				
-				product.setContent(rs.getString("content"));
-				product.setImage(rs.getString("image"));
-				product.setHit(rs.getInt("hit"));
-				product.setPnum(rs.getInt("pnum"));
-				product.setStock(rs.getInt("stock"));
-				product.setCategory(rs.getInt("category"));
-				product.setImage2(rs.getString("image2"));
-				
-				list.add(product);
+				list.add(board);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -427,16 +297,16 @@ public class ProductDao extends SuperDao {
 		return list;
 	}
 
-	//페이징 처리도 해주면서 pnum이 큰(신메뉴 순)으로 정렬해주는 메소드
-	public List<Product> SelectAll(int beginRow, int endRow) {
+	public List<Board> SelectAll(int beginRow, int endRow) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = " select pnum, pname, price, point, content, image, hit, stock, image2, category ";
-		sql += " from ( select pnum, pname, price, point, content, image, hit, stock, image2, category rank() over(order by pnum desc) as ranking from products) ";
+		String sql = " select no, subject, writer, password, content, regdate, groupno, orderno, depth";
+		sql += " from ( select no, subject, writer, password, content, regdate, groupno, orderno, depth, rank() over(order by groupno desc, orderno asc, depth asc) as ranking ";
+		sql += " from boards) ";
 		sql += " where ranking between ? and ? ";
 		
-		List<Product> list = new ArrayList<Product>();
+		List<Board> list = new ArrayList<Board>();
 		
 		try {
 			conn = super.getConnection();
@@ -448,18 +318,20 @@ public class ProductDao extends SuperDao {
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
-				Product product = new Product();
+				Board board = new Board();
 				
-				product.setPname(rs.getString("pname"));
-				product.setPrice(rs.getInt("price"));
-				product.setPoint(rs.getInt("point"));				
-				product.setContent(rs.getString("content"));
-				product.setImage(rs.getString("image"));
-				product.setHit(rs.getInt("hit"));
-				product.setPnum(rs.getInt("pnum"));
-				product.setStock(rs.getInt("stock"));
+				board.setNo(rs.getInt("no"));
+				board.setSubject(rs.getString("subject"));
+				board.setWriter(rs.getString("writer"));
+				board.setPassword(rs.getString("password"));
+				board.setContent(rs.getString("content"));
+				board.setRegdate(rs.getString("regdate"));
+			
+				board.setGroupno(rs.getInt("groupno"));
+				board.setOrderno(rs.getInt("orderno"));
+				board.setDepth(rs.getInt("depth"));
 				
-				list.add(product);
+				list.add(board);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -475,4 +347,6 @@ public class ProductDao extends SuperDao {
 		return list;
 	}
 }
+
+
 
