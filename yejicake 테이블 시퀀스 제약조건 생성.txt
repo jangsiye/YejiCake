@@ -15,8 +15,6 @@ create table orderdetails (
     remark varchar(255)
 );
 
-alter table orderdetails drop primary key ;
-
 create table members (
     mid varchar(255) primary key,
     name varchar(255),
@@ -189,22 +187,9 @@ delete from orders;
 delete from orderdetails;
 commit;
 
---상품 벌크로딩 할 때 같이하기!
---꼭 pnum 22,23,24로 맞춰줘야 함!
---패키지 상품 : 카테고리는 4로 설정하여 Plist에 나타나지 않게 한다
-insert into products values(22,'블랙 패키지',37000,37,'블랙 패키지 입니다.','blackpakage.JPG',0,20,4,null);
-insert into products values(23,'프룻 패키지',34100,34,'프룻 패지키 입니다.','fruitpakage.JPG',0,20,4,null);
-insert into products values(24,'마카롱 패키지',20000,	20,'프룻 패지키 입니다.','macaronpakage.JPG',0,20,4,null);
-
---할인쿠폰 : 카테고리는 5로 설정하여 Plist에 나타나지 않게 한다
-insert into products values(25,'7000원 할인쿠폰',-7000,0,'7000원 할인이 적용되었습니다.','salecoupon.JPG',0,20,5,null);
-insert into products values(26,'5000원 할인쿠폰',-5000,0,'5000원 할인이 적용되었습니다.','salecoupon.JPG',0,20,5,null);
-insert into products values(27,'3000원 할인쿠폰',-3000,0,'3000원 할인이 적용되었습니다.','salecoupon.JPG',0,20,5,null);
-
-commit;
-
 drop sequence seqpnum;
-create sequence seqpnum start with 28;
-
+create sequence seqpnum;
 commit;
+
+
 
