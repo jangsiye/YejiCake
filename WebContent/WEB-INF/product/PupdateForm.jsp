@@ -25,6 +25,41 @@ input[name="content"] {
 	clear:both;
 }
 </style>
+
+<script type="text/javascript">
+		function formcheck() {	
+			var tag1 = document.myform.tag1.value ;
+			var reg = /^[#]/ ;
+			var result = reg.test(tag1) ;
+
+			if(tag1 != "" && result == false){
+				alert('태그는 반드시 #으로 시작해야 합니다!') ;
+				return false ;
+			}
+			
+			var tag2 = document.myform.tag2.value ;
+			reg = /^[#]/ ;
+			result = reg.test(tag2) ;
+
+				if(tag2 != "" && result == false){
+					alert('태그는 반드시 #으로 시작해야 합니다!') ;
+					return false ;
+				}
+	
+			
+			var tag3 = document.myform.tag3.value ;
+			reg = /^[#]/ ;
+			result = reg.test(tag3) ;
+
+				if(tag3 != "" && result == false){
+					alert('태그는 반드시 #으로 시작해야 합니다!') ;
+					return false ;
+				}
+
+		}
+
+</script>
+	
 </head>
 <body>
 <div class="col-sm-offset-2 col-sm-8">
@@ -99,7 +134,7 @@ input[name="content"] {
                 </div>
                 <div class="form-group">
                     <div class="col-sm-12" align="center">
-                        <button  type ="submit" class="btn btn-default">
+                        <button  type ="submit" class="btn btn-default" onclick = "return formcheck();">
                         	<b> 수정
                         	</b>
                         </button>
