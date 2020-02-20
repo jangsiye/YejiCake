@@ -218,10 +218,10 @@ public class ProductDao extends SuperDao {
 			pstmt.setString(4, bean.getContent());
 			pstmt.setInt(5, bean.getHit());
 			pstmt.setInt(6, bean.getStock());
-			pstmt.setInt(7, bean.getPnum());
-			pstmt.setString(8, bean.getTag1());
-			pstmt.setString(9, bean.getTag2());
-			pstmt.setString(10, bean.getTag3());
+			pstmt.setString(7, bean.getTag1());
+			pstmt.setString(8, bean.getTag2());
+			pstmt.setString(9, bean.getTag3());
+			pstmt.setInt(10, bean.getPnum());
 			
 			cnt = pstmt.executeUpdate();
 			
