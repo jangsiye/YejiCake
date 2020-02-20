@@ -24,18 +24,19 @@ create table members (
     mpoint number
 );
 
+
 insert into members values('admin','관리자','1234','010-0000-0000','경기도 하남시', 0);
 
-insert into members values('hong','홍길동','1234', '010-0000-0000','서울시 마포구',0);
-insert into members values('kim','김영희','1234', '010-0000-0000','인천시 중구',0);
-insert into members values('park','박소담','1234', '010-0000-0000','인천시 동구',0);
-insert into members values('kang','강철수','1234', '010-0000-0000','전주시 완산구',0);
-insert into members values('simm','심은하','1234', '010-0000-0000','서울시 관악구',0);
-insert into members values('moon','문강','1234', '010-0000-0000','서울시 강남구',0);
-insert into members values('jang','장길산','1234', '010-0000-0000','경기도 일산시',0);
-insert into members values('anne','앤마리','1234', '010-0000-0000','경기도 수원시',0);
-insert into members values('jung','정산도','1234', '010-0000-0000','부산시 영도구',0);
-insert into members values('yoon','윤미래','1234', '010-0000-0000','울산시 북구',0);
+insert into members values('hong','홍길동','1234', '010-0000-0000','서울시 마포구',830);
+insert into members values('kim','김영희','1234', '010-0000-0000','인천시 중구',43);
+insert into members values('park','박소담','1234', '010-0000-0000','인천시 동구',22);
+insert into members values('kang','강철수','1234', '010-0000-0000','전주시 완산구',154);
+insert into members values('simm','심은하','1234', '010-0000-0000','서울시 관악구',445);
+insert into members values('moon','문강','1234', '010-0000-0000','서울시 강남구',100);
+insert into members values('jang','장길산','1234', '010-0000-0000','경기도 일산시',54);
+insert into members values('anne','앤마리','1234', '010-0000-0000','경기도 수원시',322);
+insert into members values('jung','정산도','1234', '010-0000-0000','부산시 영도구',143);
+insert into members values('yoon','윤미래','1234', '010-0000-0000','울산시 북구',418);
 
 commit;
 
